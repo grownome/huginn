@@ -38,7 +38,7 @@
                  (pseq/assoc-in ["unit"] "celsius")         ;; Update the event to reflect the new unit.
                  (math/round-decimals "value" 2)            ;; Tidy up our decimals.
                  (t/output-topic "as-celsius")))
-
+ 
 (deftest test-streaming-temperature-sensor-readings
   (let [simulation (roaming/simulate! config service temperature-records)]
     (is (:success? simulation))
