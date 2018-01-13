@@ -26,7 +26,7 @@ RUN apt-get update -q &&\
 ENV LEIN_VERSION=2.8.1
 ENV LEIN_INSTALL=/usr/local/bin/
 
-RUN apt-get install -ya wget
+RUN apt-get install -yq wget
 # Download the whole repo as an archive
 RUN mkdir -p $LEIN_INSTALL \
   && wget -q https://raw.githubusercontent.com/technomancy/leiningen/$LEIN_VERSION/bin/lein-pkg \
