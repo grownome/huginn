@@ -20,13 +20,14 @@ RUN apt-get update -q &&\
     uv4l-xscreen \
     uv4l-webrtc$([ $(uname -m) = armv6l ] && echo -armv6) \
     vlc \
+    wget \
+    leiningen \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 
 ENV LEIN_VERSION=2.8.1
 ENV LEIN_INSTALL=/usr/local/bin/
 
-RUN apt-get install -yq wget
 # Download the whole repo as an archive
 RUN mkdir -p $LEIN_INSTALL \
   && wget -q https://raw.githubusercontent.com/technomancy/leiningen/$LEIN_VERSION/bin/lein-pkg \
