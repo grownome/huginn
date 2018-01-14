@@ -1,0 +1,78 @@
+NAME           ID                                           PARTITIONS   READ KEY                               WRITE KEY                              
+huginn-alpha   topic-e12d30eb-63a6-4044-9241-c617fe15ea60   0            8c950229-1b00-4de7-b716-06dbfedd3c7d   9d1bfa7d-6aae-407e-8df3-9b0b36f44e72   
+
+➜ The Clojure SDK
+
+✔ Read the docs at: https://github.com/pyroclastio/pyroclast-clojure
+
+✔ Install it with Leiningen
+
+[io.pyroclast/pyroclast-clojure "0.2.1"]
+
+✔ Produce events to huginn-alpha
+
+(require '[pyroclast-clojure.v1.client :as client])
+
+(def config
+  {:pyroclast.topic/id "topic-e12d30eb-63a6-4044-9241-c617fe15ea60"
+   :pyroclast.topic/write-key "9d1bfa7d-6aae-407e-8df3-9b0b36f44e72"})
+
+;; Send a single event asynchronously, returning a promise
+(def resp (client/topic-send-event! config {:value {:event-type "page-visit" :page "/home" :timestamp 1495072835000}}))
+
+;; Use clojure.core/deref to block on promise resolution
+@resp ;; => true
+
+;; Can use deref/@ inline for a synchronous operation.
+@(client/topic-send-event! config {:value {:event-type "page-visit" :page "/home" :timestamp 1495072835000}})
+;; => true
+
+;; Batch events together for better performance
+@(client/topic-send-events! config [{:value {:event-type "page-visit" :page "/home" :timestamp 1495072835000}}
+                             {:value {:event-type "page-visit" :page "/home" :timestamp 1495072835032}}])
+;; => true
+
+✔ Consume from events from huginn-alpha
+
+(require '[pyroclast-clojure.v1.client :as client])
+
+(def config
+  {:pyroclast.topic/read-key "8c950229-1b00-4de7-b716-06dbfedd3c7d"
+   :pyroclast.topic/id "topic-e12d30eb-63a6-4044-9241-c617fe15ea60"
+   :pyroclast.archiver/bucket "<BUCKET_NAME>"})
+
+;; Subscribe to a topic, registering a new Consumer Group
+(def consumer-instance-map (client/topic-subscribe config "my-consumer-group"))
+;; => {:group-id my-consumer-group, :consumer-instance-id 4e5f319b-4f97-4556-b0b6-aa9a9ff087f3}
+
+;;
+;; Poll the topic using the consumer instance map returned from topic-subscribe.
+;; Note that JSON records are returned.
+@(client/topic-consumer-poll! consumer-instance-map)
+;; => [{"value" {"event-type" "page-visit" "page" "/home" "timestamp" 1495072835000}}
+;;     {"value" {"event-type" "page-visit" "page" "/home" "timestamp" 1495072835032}}]
+
+;; Subsequent topic-consumer-poll!'s return nothing, since we've already consumed up to
+;; the largest offset on our consumer instance.
+@(client/topic-consumer-poll! consumer-instance-map)
+;; => []
+
+;; Reset back to the beginning with
+(client/topic-consumer-seek-beginning consumer-instance-map) ;; => true
+
+;; Polling returns results again.
+@(client/topic-consumer-poll! consumer-instance-map)
+;; => [{"value" {"event-type" "page-visit" "page" "/home" "timestamp" 1495072835000}}
+;;     {"value" {"event-type" "page-visit" "page" "/home" "timestamp" 1495072835032}}]
+
+;; Commit the highest offset the consumer has read from, so consumer
+;; instances on the consumer group "my-consumer-group" will start
+;; reading after this commit.
+(client/topic-consumer-commit-offsets consumer-instance-map)
+;; => true
+
+;; New consumer instances start reading after the last commit.
+(def new-consumer-instance (client/topic-subscribe config "my-consumer-group"))
+
+@(client/topic-consumer-poll! new-consumer-instance)
+;; => []
