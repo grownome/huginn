@@ -15,8 +15,9 @@
   (let [random-samples (specs/generate-reading-seq)]
     (while true
       (Thread/sleep 600)
-      (client/topic-send-event! config
-                                {:value
-                                 (assoc
-                                  (take 1 random-samples)
-                                  :client-id "client-id-a") }))))
+      (println "Sending")
+      (println @(client/topic-send-event! config
+                                          {:value
+                                           (assoc
+                                            (take 1 random-samples)
+                                            :client-id "client-id-a") })))))
