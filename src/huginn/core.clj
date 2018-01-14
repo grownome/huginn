@@ -14,7 +14,7 @@
 (defn -main []
   (let [random-samples (specs/generate-reading-seq)]
     (while true
-      (Thread/sleep 60000)
+      (Thread/sleep 600)
       (client/topic-send-event! config
                                 {:value
                                  (assoc
