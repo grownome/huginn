@@ -62,7 +62,9 @@ ENV CONF_DIR=/data/config/ \
 
 COPY ./ /usr/src/app
 # Disable uv4l_raspicam service which we'll manually start later
+
 RUN systemctl disable uv4l_raspicam
+RUN lein deps
 
 # Start app
 CMD ["lein", "run"]
