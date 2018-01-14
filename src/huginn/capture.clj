@@ -1,3 +1,4 @@
+;; Basically copied from https://github.com/alandipert/berrycam/blob/master/src/berrycam/capture.clj
 
 
 (set! *warn-on-reflection* true)

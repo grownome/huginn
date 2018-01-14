@@ -11,7 +11,7 @@
 (def resp (client/topic-send-event! config {:value (first (specs/generate-reading-seq))}))
 
 
-(defn -main []
+(defn main []
   (let [random-samples (specs/generate-reading-seq)]
     (while true
       (Thread/sleep 600)
