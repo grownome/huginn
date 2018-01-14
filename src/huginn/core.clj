@@ -5,7 +5,9 @@
 
 (def config
   {:pyroclast.topic/id "topic-e12d30eb-63a6-4044-9241-c617fe15ea60"
-   :pyroclast.topic/write-key "9d1bfa7d-6aae-407e-8df3-9b0b36f44e72"})
+   :pyroclast.topic/write-key "9d1bfa7d-6aae-407e-8df3-9b0b36f44e72"
+   :pyroclast.archiver/bucket "test-huginn"
+   :pyroclast.api/region "us-west-2"})
 
 
 
