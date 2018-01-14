@@ -11,7 +11,7 @@
 (def resp (client/topic-send-event! config {:value (first (specs/generate-reading-seq))}))
 
 
-(defn main []
+(defn -main []
   (let [random-samples (specs/generate-reading-seq)]
     (while true
       (Thread/sleep 600)
@@ -19,5 +19,5 @@
       (println @(client/topic-send-event! config
                                           {:value
                                            (assoc
-                                            (take 1 random-samples)
+                                            (first (take 1 random-samples))
                                             :client-id "client-id-a") })))))
