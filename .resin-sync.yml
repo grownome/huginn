@@ -1,0 +1,6 @@
+destination: '/usr/src/app'
+before: 'echo Hello'
+after: 'echo Done'
+ignore:
+        - .git
+        - node_modules/
