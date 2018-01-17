@@ -3,6 +3,7 @@
 /checkouts
 node_modules
 .cljs_node_repl
+out
 pom.xml
 pom.xml.asc
 *.jar
