@@ -52,6 +52,7 @@
                :exp (+ (* tokenExpMins 60) (round-now)) ;now + 20 min
                :aud projectId}
           privKey (or (clean-env-key privateKey) (io/slurp privateKeyFile))]
+      (println privKey)
       (jwt/sign token privKey #js {:algorithm algorithm })))
 
 

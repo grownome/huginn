@@ -1,6 +1,13 @@
-destination: '/usr/src/app'
-before: 'echo Hello'
-after: 'echo Done'
+destination: /usr/src/app
+before: echo Hello
+after: echo Done
 ignore:
-        - .git
-        - node_modules/
+  - .git
+  - node_modules/
+local_resinos:
+  app-name: local-app
+  build-triggers:
+    - Dockerfile: 11c149d4393acd5e0abc215aecad4245756894d1430c4955aad99d75a0a54b10
+    - package.json: e0388bd08743894252251c860b1b02f56ecd5d50c9eccef3e7a367c512e44ee0
+  environment: []
+uuid: aef56fff893fbb9aedaa04a8359cc381
