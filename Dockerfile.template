@@ -1,4 +1,6 @@
 FROM resin/%%RESIN_MACHINE_NAME%%-node:6-slim
+
+RUN apt-get update -q && apt-get install curl
 # Install the UV4L PPA
 RUN curl -s http://www.linux-projects.org/listing/uv4l_repo/lrkey.asc | sudo apt-key add - &&\
   sed -i '1s;^;deb http://www.linux-projects.org/listing/uv4l_repo/raspbian/ jessie main\n;' /etc/apt/sources.list
