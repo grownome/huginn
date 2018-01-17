@@ -6577,65 +6577,65 @@ cljs.core.Var.prototype.call = function() {
     a = this;
     a = a.val.cljs$core$IFn$_invoke$arity$0 ? a.val.cljs$core$IFn$_invoke$arity$0() : a.val.call(null);
     return a.cljs$core$IFn$_invoke$arity$6 ? a.cljs$core$IFn$_invoke$arity$6(b, c, d, e, f, g) : a.call(null, b, c, d, e, f, g);
-  }, k = function(a, b, c, d, e, f, g, k) {
+  }, k = function(a, b, c, d, e, f, g, h) {
     a = this;
     a = a.val.cljs$core$IFn$_invoke$arity$0 ? a.val.cljs$core$IFn$_invoke$arity$0() : a.val.call(null);
-    return a.cljs$core$IFn$_invoke$arity$7 ? a.cljs$core$IFn$_invoke$arity$7(b, c, d, e, f, g, k) : a.call(null, b, c, d, e, f, g, k);
-  }, l = function(a, b, c, d, e, f, g, k, h) {
+    return a.cljs$core$IFn$_invoke$arity$7 ? a.cljs$core$IFn$_invoke$arity$7(b, c, d, e, f, g, h) : a.call(null, b, c, d, e, f, g, h);
+  }, l = function(a, b, c, d, e, f, g, h, k) {
     a = this;
     a = a.val.cljs$core$IFn$_invoke$arity$0 ? a.val.cljs$core$IFn$_invoke$arity$0() : a.val.call(null);
-    return a.cljs$core$IFn$_invoke$arity$8 ? a.cljs$core$IFn$_invoke$arity$8(b, c, d, e, f, g, k, h) : a.call(null, b, c, d, e, f, g, k, h);
-  }, m = function(a, b, c, d, e, f, g, k, h, m) {
+    return a.cljs$core$IFn$_invoke$arity$8 ? a.cljs$core$IFn$_invoke$arity$8(b, c, d, e, f, g, h, k) : a.call(null, b, c, d, e, f, g, h, k);
+  }, m = function(a, b, c, d, e, f, g, h, k, m) {
     a = this;
     a = a.val.cljs$core$IFn$_invoke$arity$0 ? a.val.cljs$core$IFn$_invoke$arity$0() : a.val.call(null);
-    return a.cljs$core$IFn$_invoke$arity$9 ? a.cljs$core$IFn$_invoke$arity$9(b, c, d, e, f, g, k, h, m) : a.call(null, b, c, d, e, f, g, k, h, m);
-  }, n = function(a, b, c, d, e, f, g, k, h, m, l) {
+    return a.cljs$core$IFn$_invoke$arity$9 ? a.cljs$core$IFn$_invoke$arity$9(b, c, d, e, f, g, h, k, m) : a.call(null, b, c, d, e, f, g, h, k, m);
+  }, n = function(a, b, c, d, e, f, g, h, k, m, l) {
     a = this;
     a = a.val.cljs$core$IFn$_invoke$arity$0 ? a.val.cljs$core$IFn$_invoke$arity$0() : a.val.call(null);
-    return a.cljs$core$IFn$_invoke$arity$10 ? a.cljs$core$IFn$_invoke$arity$10(b, c, d, e, f, g, k, h, m, l) : a.call(null, b, c, d, e, f, g, k, h, m, l);
-  }, p = function(a, b, c, d, e, f, g, k, h, m, l, n) {
+    return a.cljs$core$IFn$_invoke$arity$10 ? a.cljs$core$IFn$_invoke$arity$10(b, c, d, e, f, g, h, k, m, l) : a.call(null, b, c, d, e, f, g, h, k, m, l);
+  }, p = function(a, b, c, d, e, f, g, h, k, m, l, n) {
     a = this;
     a = a.val.cljs$core$IFn$_invoke$arity$0 ? a.val.cljs$core$IFn$_invoke$arity$0() : a.val.call(null);
-    return a.cljs$core$IFn$_invoke$arity$11 ? a.cljs$core$IFn$_invoke$arity$11(b, c, d, e, f, g, k, h, m, l, n) : a.call(null, b, c, d, e, f, g, k, h, m, l, n);
-  }, q = function(a, b, c, d, e, f, g, k, h, m, l, n, p) {
+    return a.cljs$core$IFn$_invoke$arity$11 ? a.cljs$core$IFn$_invoke$arity$11(b, c, d, e, f, g, h, k, m, l, n) : a.call(null, b, c, d, e, f, g, h, k, m, l, n);
+  }, q = function(a, b, c, d, e, f, g, h, k, m, l, n, p) {
     a = this;
     a = a.val.cljs$core$IFn$_invoke$arity$0 ? a.val.cljs$core$IFn$_invoke$arity$0() : a.val.call(null);
-    return a.cljs$core$IFn$_invoke$arity$12 ? a.cljs$core$IFn$_invoke$arity$12(b, c, d, e, f, g, k, h, m, l, n, p) : a.call(null, b, c, d, e, f, g, k, h, m, l, n, p);
-  }, r = function(a, b, c, d, e, f, g, k, h, m, l, n, p, q) {
+    return a.cljs$core$IFn$_invoke$arity$12 ? a.cljs$core$IFn$_invoke$arity$12(b, c, d, e, f, g, h, k, m, l, n, p) : a.call(null, b, c, d, e, f, g, h, k, m, l, n, p);
+  }, r = function(a, b, c, d, e, f, g, h, k, m, l, n, p, q) {
     a = this;
     a = a.val.cljs$core$IFn$_invoke$arity$0 ? a.val.cljs$core$IFn$_invoke$arity$0() : a.val.call(null);
-    return a.cljs$core$IFn$_invoke$arity$13 ? a.cljs$core$IFn$_invoke$arity$13(b, c, d, e, f, g, k, h, m, l, n, p, q) : a.call(null, b, c, d, e, f, g, k, h, m, l, n, p, q);
-  }, t = function(a, b, c, d, e, f, g, k, h, m, l, n, p, q, r) {
+    return a.cljs$core$IFn$_invoke$arity$13 ? a.cljs$core$IFn$_invoke$arity$13(b, c, d, e, f, g, h, k, m, l, n, p, q) : a.call(null, b, c, d, e, f, g, h, k, m, l, n, p, q);
+  }, t = function(a, b, c, d, e, f, g, h, k, m, l, n, p, q, r) {
     a = this;
     a = a.val.cljs$core$IFn$_invoke$arity$0 ? a.val.cljs$core$IFn$_invoke$arity$0() : a.val.call(null);
-    return a.cljs$core$IFn$_invoke$arity$14 ? a.cljs$core$IFn$_invoke$arity$14(b, c, d, e, f, g, k, h, m, l, n, p, q, r) : a.call(null, b, c, d, e, f, g, k, h, m, l, n, p, q, r);
-  }, v = function(a, b, c, d, e, f, g, k, h, m, l, n, p, q, r, t) {
+    return a.cljs$core$IFn$_invoke$arity$14 ? a.cljs$core$IFn$_invoke$arity$14(b, c, d, e, f, g, h, k, m, l, n, p, q, r) : a.call(null, b, c, d, e, f, g, h, k, m, l, n, p, q, r);
+  }, v = function(a, b, c, d, e, f, g, h, k, m, l, n, p, q, r, t) {
     a = this;
     a = a.val.cljs$core$IFn$_invoke$arity$0 ? a.val.cljs$core$IFn$_invoke$arity$0() : a.val.call(null);
-    return a.cljs$core$IFn$_invoke$arity$15 ? a.cljs$core$IFn$_invoke$arity$15(b, c, d, e, f, g, k, h, m, l, n, p, q, r, t) : a.call(null, b, c, d, e, f, g, k, h, m, l, n, p, q, r, t);
-  }, u = function(a, b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u) {
+    return a.cljs$core$IFn$_invoke$arity$15 ? a.cljs$core$IFn$_invoke$arity$15(b, c, d, e, f, g, h, k, m, l, n, p, q, r, t) : a.call(null, b, c, d, e, f, g, h, k, m, l, n, p, q, r, t);
+  }, u = function(a, b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u) {
     a = this;
     a = a.val.cljs$core$IFn$_invoke$arity$0 ? a.val.cljs$core$IFn$_invoke$arity$0() : a.val.call(null);
-    return a.cljs$core$IFn$_invoke$arity$16 ? a.cljs$core$IFn$_invoke$arity$16(b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u) : a.call(null, b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u);
-  }, w = function(a, b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u, v) {
+    return a.cljs$core$IFn$_invoke$arity$16 ? a.cljs$core$IFn$_invoke$arity$16(b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u) : a.call(null, b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u);
+  }, w = function(a, b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u, v) {
     a = this;
     a = a.val.cljs$core$IFn$_invoke$arity$0 ? a.val.cljs$core$IFn$_invoke$arity$0() : a.val.call(null);
-    return a.cljs$core$IFn$_invoke$arity$17 ? a.cljs$core$IFn$_invoke$arity$17(b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u, v) : a.call(null, b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u, v);
-  }, x = function(a, b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u, v, w) {
+    return a.cljs$core$IFn$_invoke$arity$17 ? a.cljs$core$IFn$_invoke$arity$17(b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u, v) : a.call(null, b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u, v);
+  }, x = function(a, b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u, v, w) {
     a = this;
     a = a.val.cljs$core$IFn$_invoke$arity$0 ? a.val.cljs$core$IFn$_invoke$arity$0() : a.val.call(null);
-    return a.cljs$core$IFn$_invoke$arity$18 ? a.cljs$core$IFn$_invoke$arity$18(b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u, v, w) : a.call(null, b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u, v, w);
-  }, z = function(a, b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u, v, w, y) {
+    return a.cljs$core$IFn$_invoke$arity$18 ? a.cljs$core$IFn$_invoke$arity$18(b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u, v, w) : a.call(null, b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u, v, w);
+  }, z = function(a, b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u, v, w, y) {
     a = this;
     a = a.val.cljs$core$IFn$_invoke$arity$0 ? a.val.cljs$core$IFn$_invoke$arity$0() : a.val.call(null);
-    return a.cljs$core$IFn$_invoke$arity$19 ? a.cljs$core$IFn$_invoke$arity$19(b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u, v, w, y) : a.call(null, b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u, v, w, y);
-  }, y = function(a, b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u, v, w, y, x) {
+    return a.cljs$core$IFn$_invoke$arity$19 ? a.cljs$core$IFn$_invoke$arity$19(b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u, v, w, y) : a.call(null, b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u, v, w, y);
+  }, y = function(a, b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u, v, w, y, x) {
     a = this;
     a = a.val.cljs$core$IFn$_invoke$arity$0 ? a.val.cljs$core$IFn$_invoke$arity$0() : a.val.call(null);
-    return a.cljs$core$IFn$_invoke$arity$20 ? a.cljs$core$IFn$_invoke$arity$20(b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u, v, w, y, x) : a.call(null, b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u, v, w, y, x);
-  }, R = function(a, b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u, v, w, y, x, z) {
+    return a.cljs$core$IFn$_invoke$arity$20 ? a.cljs$core$IFn$_invoke$arity$20(b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u, v, w, y, x) : a.call(null, b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u, v, w, y, x);
+  }, R = function(a, b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u, v, w, y, x, z) {
     a = this;
-    return cljs.core.apply.cljs$core$IFn$_invoke$arity$variadic(a.val.cljs$core$IFn$_invoke$arity$0 ? a.val.cljs$core$IFn$_invoke$arity$0() : a.val.call(null), b, c, d, e, cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([f, g, k, h, m, l, n, p, q, r, t, u, v, w, y, x, z], 0));
+    return cljs.core.apply.cljs$core$IFn$_invoke$arity$variadic(a.val.cljs$core$IFn$_invoke$arity$0 ? a.val.cljs$core$IFn$_invoke$arity$0() : a.val.call(null), b, c, d, e, cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([f, g, h, k, m, l, n, p, q, r, t, u, v, w, y, x, z], 0));
   };
   a = function(a, C, D, E, A, B, F, H, I, J, K, G, N, P, Q, L, O, M, T, U, S, Y) {
     switch(arguments.length) {
@@ -7925,50 +7925,50 @@ cljs.core.MetaFn.prototype.call = function() {
   }, h = function(a, b, c, d, e, f, g) {
     a = this;
     return a.afn.cljs$core$IFn$_invoke$arity$6 ? a.afn.cljs$core$IFn$_invoke$arity$6(b, c, d, e, f, g) : a.afn.call(null, b, c, d, e, f, g);
-  }, k = function(a, b, c, d, e, f, g, k) {
+  }, k = function(a, b, c, d, e, f, g, h) {
     a = this;
-    return a.afn.cljs$core$IFn$_invoke$arity$7 ? a.afn.cljs$core$IFn$_invoke$arity$7(b, c, d, e, f, g, k) : a.afn.call(null, b, c, d, e, f, g, k);
-  }, l = function(a, b, c, d, e, f, g, k, h) {
+    return a.afn.cljs$core$IFn$_invoke$arity$7 ? a.afn.cljs$core$IFn$_invoke$arity$7(b, c, d, e, f, g, h) : a.afn.call(null, b, c, d, e, f, g, h);
+  }, l = function(a, b, c, d, e, f, g, h, k) {
     a = this;
-    return a.afn.cljs$core$IFn$_invoke$arity$8 ? a.afn.cljs$core$IFn$_invoke$arity$8(b, c, d, e, f, g, k, h) : a.afn.call(null, b, c, d, e, f, g, k, h);
-  }, m = function(a, b, c, d, e, f, g, k, h, m) {
+    return a.afn.cljs$core$IFn$_invoke$arity$8 ? a.afn.cljs$core$IFn$_invoke$arity$8(b, c, d, e, f, g, h, k) : a.afn.call(null, b, c, d, e, f, g, h, k);
+  }, m = function(a, b, c, d, e, f, g, h, k, m) {
     a = this;
-    return a.afn.cljs$core$IFn$_invoke$arity$9 ? a.afn.cljs$core$IFn$_invoke$arity$9(b, c, d, e, f, g, k, h, m) : a.afn.call(null, b, c, d, e, f, g, k, h, m);
-  }, n = function(a, b, c, d, e, f, g, k, h, m, l) {
+    return a.afn.cljs$core$IFn$_invoke$arity$9 ? a.afn.cljs$core$IFn$_invoke$arity$9(b, c, d, e, f, g, h, k, m) : a.afn.call(null, b, c, d, e, f, g, h, k, m);
+  }, n = function(a, b, c, d, e, f, g, h, k, m, l) {
     a = this;
-    return a.afn.cljs$core$IFn$_invoke$arity$10 ? a.afn.cljs$core$IFn$_invoke$arity$10(b, c, d, e, f, g, k, h, m, l) : a.afn.call(null, b, c, d, e, f, g, k, h, m, l);
-  }, p = function(a, b, c, d, e, f, g, k, h, m, l, n) {
+    return a.afn.cljs$core$IFn$_invoke$arity$10 ? a.afn.cljs$core$IFn$_invoke$arity$10(b, c, d, e, f, g, h, k, m, l) : a.afn.call(null, b, c, d, e, f, g, h, k, m, l);
+  }, p = function(a, b, c, d, e, f, g, h, k, m, l, n) {
     a = this;
-    return a.afn.cljs$core$IFn$_invoke$arity$11 ? a.afn.cljs$core$IFn$_invoke$arity$11(b, c, d, e, f, g, k, h, m, l, n) : a.afn.call(null, b, c, d, e, f, g, k, h, m, l, n);
-  }, q = function(a, b, c, d, e, f, g, k, h, m, l, n, p) {
+    return a.afn.cljs$core$IFn$_invoke$arity$11 ? a.afn.cljs$core$IFn$_invoke$arity$11(b, c, d, e, f, g, h, k, m, l, n) : a.afn.call(null, b, c, d, e, f, g, h, k, m, l, n);
+  }, q = function(a, b, c, d, e, f, g, h, k, m, l, n, p) {
     a = this;
-    return a.afn.cljs$core$IFn$_invoke$arity$12 ? a.afn.cljs$core$IFn$_invoke$arity$12(b, c, d, e, f, g, k, h, m, l, n, p) : a.afn.call(null, b, c, d, e, f, g, k, h, m, l, n, p);
-  }, r = function(a, b, c, d, e, f, g, k, h, m, l, n, p, q) {
+    return a.afn.cljs$core$IFn$_invoke$arity$12 ? a.afn.cljs$core$IFn$_invoke$arity$12(b, c, d, e, f, g, h, k, m, l, n, p) : a.afn.call(null, b, c, d, e, f, g, h, k, m, l, n, p);
+  }, r = function(a, b, c, d, e, f, g, h, k, m, l, n, p, q) {
     a = this;
-    return a.afn.cljs$core$IFn$_invoke$arity$13 ? a.afn.cljs$core$IFn$_invoke$arity$13(b, c, d, e, f, g, k, h, m, l, n, p, q) : a.afn.call(null, b, c, d, e, f, g, k, h, m, l, n, p, q);
-  }, t = function(a, b, c, d, e, f, g, k, h, m, l, n, p, q, r) {
+    return a.afn.cljs$core$IFn$_invoke$arity$13 ? a.afn.cljs$core$IFn$_invoke$arity$13(b, c, d, e, f, g, h, k, m, l, n, p, q) : a.afn.call(null, b, c, d, e, f, g, h, k, m, l, n, p, q);
+  }, t = function(a, b, c, d, e, f, g, h, k, m, l, n, p, q, r) {
     a = this;
-    return a.afn.cljs$core$IFn$_invoke$arity$14 ? a.afn.cljs$core$IFn$_invoke$arity$14(b, c, d, e, f, g, k, h, m, l, n, p, q, r) : a.afn.call(null, b, c, d, e, f, g, k, h, m, l, n, p, q, r);
-  }, v = function(a, b, c, d, e, f, g, k, h, m, l, n, p, q, r, t) {
+    return a.afn.cljs$core$IFn$_invoke$arity$14 ? a.afn.cljs$core$IFn$_invoke$arity$14(b, c, d, e, f, g, h, k, m, l, n, p, q, r) : a.afn.call(null, b, c, d, e, f, g, h, k, m, l, n, p, q, r);
+  }, v = function(a, b, c, d, e, f, g, h, k, m, l, n, p, q, r, t) {
     a = this;
-    return a.afn.cljs$core$IFn$_invoke$arity$15 ? a.afn.cljs$core$IFn$_invoke$arity$15(b, c, d, e, f, g, k, h, m, l, n, p, q, r, t) : a.afn.call(null, b, c, d, e, f, g, k, h, m, l, n, p, q, r, t);
-  }, u = function(a, b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u) {
+    return a.afn.cljs$core$IFn$_invoke$arity$15 ? a.afn.cljs$core$IFn$_invoke$arity$15(b, c, d, e, f, g, h, k, m, l, n, p, q, r, t) : a.afn.call(null, b, c, d, e, f, g, h, k, m, l, n, p, q, r, t);
+  }, u = function(a, b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u) {
     a = this;
-    return a.afn.cljs$core$IFn$_invoke$arity$16 ? a.afn.cljs$core$IFn$_invoke$arity$16(b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u) : a.afn.call(null, b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u);
-  }, w = function(a, b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u, v) {
+    return a.afn.cljs$core$IFn$_invoke$arity$16 ? a.afn.cljs$core$IFn$_invoke$arity$16(b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u) : a.afn.call(null, b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u);
+  }, w = function(a, b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u, v) {
     a = this;
-    return a.afn.cljs$core$IFn$_invoke$arity$17 ? a.afn.cljs$core$IFn$_invoke$arity$17(b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u, v) : a.afn.call(null, b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u, v);
-  }, x = function(a, b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u, v, w) {
+    return a.afn.cljs$core$IFn$_invoke$arity$17 ? a.afn.cljs$core$IFn$_invoke$arity$17(b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u, v) : a.afn.call(null, b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u, v);
+  }, x = function(a, b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u, v, w) {
     a = this;
-    return a.afn.cljs$core$IFn$_invoke$arity$18 ? a.afn.cljs$core$IFn$_invoke$arity$18(b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u, v, w) : a.afn.call(null, b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u, v, w);
-  }, z = function(a, b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u, v, w, y) {
+    return a.afn.cljs$core$IFn$_invoke$arity$18 ? a.afn.cljs$core$IFn$_invoke$arity$18(b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u, v, w) : a.afn.call(null, b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u, v, w);
+  }, z = function(a, b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u, v, w, y) {
     a = this;
-    return a.afn.cljs$core$IFn$_invoke$arity$19 ? a.afn.cljs$core$IFn$_invoke$arity$19(b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u, v, w, y) : a.afn.call(null, b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u, v, w, y);
-  }, y = function(a, b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u, v, w, y, x) {
+    return a.afn.cljs$core$IFn$_invoke$arity$19 ? a.afn.cljs$core$IFn$_invoke$arity$19(b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u, v, w, y) : a.afn.call(null, b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u, v, w, y);
+  }, y = function(a, b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u, v, w, y, x) {
     a = this;
-    return a.afn.cljs$core$IFn$_invoke$arity$20 ? a.afn.cljs$core$IFn$_invoke$arity$20(b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u, v, w, y, x) : a.afn.call(null, b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u, v, w, y, x);
-  }, R = function(a, b, c, d, e, f, g, k, h, m, l, n, p, q, r, t, u, v, w, y, x, z) {
-    return cljs.core.apply.cljs$core$IFn$_invoke$arity$variadic(this.afn, b, c, d, e, cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([f, g, k, h, m, l, n, p, q, r, t, u, v, w, y, x, z], 0));
+    return a.afn.cljs$core$IFn$_invoke$arity$20 ? a.afn.cljs$core$IFn$_invoke$arity$20(b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u, v, w, y, x) : a.afn.call(null, b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u, v, w, y, x);
+  }, R = function(a, b, c, d, e, f, g, h, k, m, l, n, p, q, r, t, u, v, w, y, x, z) {
+    return cljs.core.apply.cljs$core$IFn$_invoke$arity$variadic(this.afn, b, c, d, e, cljs.core.prim_seq.cljs$core$IFn$_invoke$arity$2([f, g, h, k, m, l, n, p, q, r, t, u, v, w, y, x, z], 0));
   };
   a = function(a, C, D, E, A, B, F, H, I, J, K, G, N, P, Q, L, O, M, T, U, S, Y) {
     switch(arguments.length) {
@@ -32478,6 +32478,242 @@ cljs_node_io.core.copy.cljs$lang$applyTo = function(a) {
   c = cljs.core.next.call(null, c);
   return cljs_node_io.core.copy.cljs$core$IFn$_invoke$arity$variadic(b, a, c);
 };
+var clojure = {string:{}};
+clojure.string.seq_reverse = function(a) {
+  return cljs.core.reduce.call(null, cljs.core.conj, cljs.core.List.EMPTY, a);
+};
+clojure.string.re_surrogate_pair = RegExp("([\\uD800-\\uDBFF])([\\uDC00-\\uDFFF])", "g");
+clojure.string.reverse = function(a) {
+  return a.replace(clojure.string.re_surrogate_pair, "$2$1").split("").reverse().join("");
+};
+clojure.string.replace_all = function(a, b, c) {
+  var d = RegExp, e = b.source;
+  var f = cljs.core.truth_(b.ignoreCase) ? [cljs.core.str.cljs$core$IFn$_invoke$arity$1("g"), "i"].join("") : "g";
+  f = cljs.core.truth_(b.multiline) ? [cljs.core.str.cljs$core$IFn$_invoke$arity$1(f), "m"].join("") : f;
+  b = cljs.core.truth_(b.unicode) ? [cljs.core.str.cljs$core$IFn$_invoke$arity$1(f), "u"].join("") : f;
+  d = new d(e, b);
+  return a.replace(d, c);
+};
+clojure.string.replace_with = function(a) {
+  return function() {
+    var b = function(b) {
+      b = cljs.core.drop_last.call(null, 2, b);
+      return cljs.core._EQ_.call(null, cljs.core.count.call(null, b), 1) ? a.call(null, cljs.core.first.call(null, b)) : a.call(null, cljs.core.vec.call(null, b));
+    }, c = function(a) {
+      var c = null;
+      if (0 < arguments.length) {
+        c = 0;
+        for (var d = Array(arguments.length - 0); c < d.length;) {
+          d[c] = arguments[c + 0], ++c;
+        }
+        c = new cljs.core.IndexedSeq(d, 0, null);
+      }
+      return b.call(this, c);
+    };
+    c.cljs$lang$maxFixedArity = 0;
+    c.cljs$lang$applyTo = function(a) {
+      a = cljs.core.seq(a);
+      return b(a);
+    };
+    c.cljs$core$IFn$_invoke$arity$variadic = b;
+    return c;
+  }();
+};
+clojure.string.replace = function(a, b, c) {
+  if ("string" === typeof b) {
+    return a.replace(new RegExp(goog.string.regExpEscape(b), "g"), c);
+  }
+  if (b instanceof RegExp) {
+    return "string" === typeof c ? clojure.string.replace_all.call(null, a, b, c) : clojure.string.replace_all.call(null, a, b, clojure.string.replace_with.call(null, c));
+  }
+  throw ["Invalid match arg: ", cljs.core.str.cljs$core$IFn$_invoke$arity$1(b)].join("");
+};
+clojure.string.replace_first = function(a, b, c) {
+  return a.replace(b, c);
+};
+clojure.string.join = function(a) {
+  switch(arguments.length) {
+    case 1:
+      return clojure.string.join.cljs$core$IFn$_invoke$arity$1(arguments[0]);
+    case 2:
+      return clojure.string.join.cljs$core$IFn$_invoke$arity$2(arguments[0], arguments[1]);
+    default:
+      throw Error(["Invalid arity: ", cljs.core.str.cljs$core$IFn$_invoke$arity$1(arguments.length)].join(""));
+  }
+};
+clojure.string.join.cljs$core$IFn$_invoke$arity$1 = function(a) {
+  var b = new goog.string.StringBuffer;
+  for (a = cljs.core.seq.call(null, a);;) {
+    if (null != a) {
+      b = b.append("" + cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.first.call(null, a))), a = cljs.core.next.call(null, a);
+    } else {
+      return b.toString();
+    }
+  }
+};
+clojure.string.join.cljs$core$IFn$_invoke$arity$2 = function(a, b) {
+  for (var c = new goog.string.StringBuffer, d = cljs.core.seq.call(null, b);;) {
+    if (null != d) {
+      c.append("" + cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.first.call(null, d))), d = cljs.core.next.call(null, d), null != d && c.append(a);
+    } else {
+      return c.toString();
+    }
+  }
+};
+clojure.string.join.cljs$lang$maxFixedArity = 2;
+clojure.string.upper_case = function(a) {
+  return a.toUpperCase();
+};
+clojure.string.lower_case = function(a) {
+  return a.toLowerCase();
+};
+clojure.string.capitalize = function(a) {
+  return goog.string.capitalize(a);
+};
+clojure.string.pop_last_while_empty = function(a) {
+  for (;;) {
+    if ("" === cljs.core.peek.call(null, a)) {
+      a = cljs.core.pop.call(null, a);
+    } else {
+      return a;
+    }
+  }
+};
+clojure.string.discard_trailing_if_needed = function(a, b) {
+  return 0 === a && 1 < cljs.core.count.call(null, b) ? clojure.string.pop_last_while_empty.call(null, b) : b;
+};
+clojure.string.split_with_empty_regex = function(a, b) {
+  if (0 >= b || b >= 2 + cljs.core.count.call(null, a)) {
+    return cljs.core.conj.call(null, cljs.core.vec.call(null, cljs.core.cons.call(null, "", cljs.core.map.call(null, cljs.core.str, cljs.core.seq.call(null, a)))), "");
+  }
+  var c = cljs.core._EQ__EQ_;
+  if (cljs.core.truth_(c.call(null, 1, b))) {
+    return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [a], null);
+  }
+  if (cljs.core.truth_(c.call(null, 2, b))) {
+    return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["", a], null);
+  }
+  c = b - 2;
+  return cljs.core.conj.call(null, cljs.core.vec.call(null, cljs.core.cons.call(null, "", cljs.core.subvec.call(null, cljs.core.vec.call(null, cljs.core.map.call(null, cljs.core.str, cljs.core.seq.call(null, a))), 0, c))), cljs.core.subs.call(null, a, c));
+};
+clojure.string.split = function(a) {
+  switch(arguments.length) {
+    case 2:
+      return clojure.string.split.cljs$core$IFn$_invoke$arity$2(arguments[0], arguments[1]);
+    case 3:
+      return clojure.string.split.cljs$core$IFn$_invoke$arity$3(arguments[0], arguments[1], arguments[2]);
+    default:
+      throw Error(["Invalid arity: ", cljs.core.str.cljs$core$IFn$_invoke$arity$1(arguments.length)].join(""));
+  }
+};
+clojure.string.split.cljs$core$IFn$_invoke$arity$2 = function(a, b) {
+  return clojure.string.split.call(null, a, b, 0);
+};
+clojure.string.split.cljs$core$IFn$_invoke$arity$3 = function(a, b, c) {
+  return clojure.string.discard_trailing_if_needed.call(null, c, "/(?:)/" === "" + cljs.core.str.cljs$core$IFn$_invoke$arity$1(b) ? clojure.string.split_with_empty_regex.call(null, a, c) : 1 > c ? cljs.core.vec.call(null, ("" + cljs.core.str.cljs$core$IFn$_invoke$arity$1(a)).split(b)) : function() {
+    for (var d = a, e = c, f = cljs.core.PersistentVector.EMPTY;;) {
+      if (1 === e) {
+        return cljs.core.conj.call(null, f, d);
+      }
+      var g = cljs.core.re_find.call(null, b, d);
+      if (null != g) {
+        var h = d.indexOf(g);
+        g = d.substring(h + cljs.core.count.call(null, g));
+        --e;
+        f = cljs.core.conj.call(null, f, d.substring(0, h));
+        d = g;
+      } else {
+        return cljs.core.conj.call(null, f, d);
+      }
+    }
+  }());
+};
+clojure.string.split.cljs$lang$maxFixedArity = 3;
+clojure.string.split_lines = function(a) {
+  return clojure.string.split.call(null, a, /\n|\r\n/);
+};
+clojure.string.trim = function(a) {
+  return goog.string.trim(a);
+};
+clojure.string.triml = function(a) {
+  return goog.string.trimLeft(a);
+};
+clojure.string.trimr = function(a) {
+  return goog.string.trimRight(a);
+};
+clojure.string.trim_newline = function(a) {
+  for (var b = a.length;;) {
+    if (0 === b) {
+      return "";
+    }
+    var c = cljs.core.get.call(null, a, b - 1);
+    if ("\n" === c || "\r" === c) {
+      --b;
+    } else {
+      return a.substring(0, b);
+    }
+  }
+};
+clojure.string.blank_QMARK_ = function(a) {
+  return goog.string.isEmptySafe(a);
+};
+clojure.string.escape = function(a, b) {
+  for (var c = new goog.string.StringBuffer, d = a.length, e = 0;;) {
+    if (d === e) {
+      return c.toString();
+    }
+    var f = a.charAt(e), g = cljs.core.get.call(null, b, f);
+    null != g ? c.append("" + cljs.core.str.cljs$core$IFn$_invoke$arity$1(g)) : c.append(f);
+    e += 1;
+  }
+};
+clojure.string.index_of = function(a) {
+  switch(arguments.length) {
+    case 2:
+      return clojure.string.index_of.cljs$core$IFn$_invoke$arity$2(arguments[0], arguments[1]);
+    case 3:
+      return clojure.string.index_of.cljs$core$IFn$_invoke$arity$3(arguments[0], arguments[1], arguments[2]);
+    default:
+      throw Error(["Invalid arity: ", cljs.core.str.cljs$core$IFn$_invoke$arity$1(arguments.length)].join(""));
+  }
+};
+clojure.string.index_of.cljs$core$IFn$_invoke$arity$2 = function(a, b) {
+  var c = a.indexOf(b);
+  return 0 > c ? null : c;
+};
+clojure.string.index_of.cljs$core$IFn$_invoke$arity$3 = function(a, b, c) {
+  a = a.indexOf(b, c);
+  return 0 > a ? null : a;
+};
+clojure.string.index_of.cljs$lang$maxFixedArity = 3;
+clojure.string.last_index_of = function(a) {
+  switch(arguments.length) {
+    case 2:
+      return clojure.string.last_index_of.cljs$core$IFn$_invoke$arity$2(arguments[0], arguments[1]);
+    case 3:
+      return clojure.string.last_index_of.cljs$core$IFn$_invoke$arity$3(arguments[0], arguments[1], arguments[2]);
+    default:
+      throw Error(["Invalid arity: ", cljs.core.str.cljs$core$IFn$_invoke$arity$1(arguments.length)].join(""));
+  }
+};
+clojure.string.last_index_of.cljs$core$IFn$_invoke$arity$2 = function(a, b) {
+  var c = a.lastIndexOf(b);
+  return 0 > c ? null : c;
+};
+clojure.string.last_index_of.cljs$core$IFn$_invoke$arity$3 = function(a, b, c) {
+  a = a.lastIndexOf(b, c);
+  return 0 > a ? null : a;
+};
+clojure.string.last_index_of.cljs$lang$maxFixedArity = 3;
+clojure.string.starts_with_QMARK_ = function(a, b) {
+  return goog.string.startsWith(a, b);
+};
+clojure.string.ends_with_QMARK_ = function(a, b) {
+  return goog.string.endsWith(a, b);
+};
+clojure.string.includes_QMARK_ = function(a, b) {
+  return goog.string.contains(a, b);
+};
 var huginn = {core:{}};
 huginn.core.node$module$mqtt = require("mqtt");
 huginn.core.node$module$systeminformation = require("systeminformation");
@@ -32511,13 +32747,16 @@ huginn.core.client_id = function(a) {
 huginn.core.round_now = function() {
   return Date.now() / 1000 | 0;
 };
+huginn.core.clean_env_key = function(a) {
+  return cljs.core.truth_(a) ? (a = clojure.string.split.call(null, a, / /), clojure.string.join.call(null, a, "\n")) : null;
+};
 huginn.core.create_jwt = function(a) {
-  var b = null != a && (a.cljs$lang$protocol_mask$partition0$ & 64 || cljs.core.PROTOCOL_SENTINEL === a.cljs$core$ISeq$) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, c = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "projectId", "projectId", -1551013096)), d = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "tokenExpMins", "tokenExpMins", -1638711857));
-  a = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "privateKey", "privateKey", 1845961641));
-  var e = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "privateKeyFile", "privateKeyFile", 2040006267));
+  var b = null != a && (a.cljs$lang$protocol_mask$partition0$ & 64 || cljs.core.PROTOCOL_SENTINEL === a.cljs$core$ISeq$) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, c = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "projectId", "projectId", -1551013096)), d = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "tokenExpMins", "tokenExpMins", -1638711857)), e = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "privateKey", "privateKey", 1845961641));
+  a = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "privateKeyFile", "privateKeyFile", 2040006267));
   b = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "algorithm", "algorithm", 739262820));
   c = {iat:huginn.core.round_now.call(null), exp:60 * d + huginn.core.round_now.call(null), aud:c};
-  a = cljs.core.truth_(a) ? a : cljs_node_io.core.slurp.call(null, e);
+  e = huginn.core.clean_env_key.call(null, e);
+  a = cljs.core.truth_(e) ? e : cljs_node_io.core.slurp.call(null, a);
   return huginn.core.node$module$jsonwebtoken.sign.call(null, c, a, {algorithm:b});
 };
 huginn.core.connection_args = function(a) {

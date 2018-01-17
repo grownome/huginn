@@ -2,6 +2,7 @@
   (:require
    [promesa.core :as p]
    [cljs-node-io.core :as io]
+   [clojure.string :as st]
    [mqtt :as mqtt]
    [systeminformation :as si]
    [cljs.nodejs :as nodejs]
@@ -36,17 +37,22 @@
 (defn round-now []
   (int (/ (js/Date.now) 1000)))
 
+(defn clean-env-key
+  "becuase env vars don't get assinged with newlines in resin"
+  [private-key]
+  (when private-key
+    (let [split  (st/split private-key  #" ")
+          joined (st/join split "\n")]
+      joined)))
+
 (defn create-jwt
    [{:keys [projectId tokenExpMins privateKey privateKeyFile algorithm] :as opts}]
     (let [token
           #js {:iat (round-now)
                :exp (+ (* tokenExpMins 60) (round-now)) ;now + 20 min
                :aud projectId}
-          privKey (or privateKey (io/slurp privateKeyFile))]
+          privKey (or (clean-env-key privateKey) (io/slurp privateKeyFile))]
       (jwt/sign token privKey #js {:algorithm algorithm })))
-
-
-
 
 
 (defn connection-args
