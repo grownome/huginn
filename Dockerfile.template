@@ -22,7 +22,7 @@ RUN apt-get update -q &&\
     uv4l-webrtc$([ $(uname -m) = armv6l ] && echo -armv6) \
     vlc \
     wget \
-    leiningen
+    leiningen \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Move to app dir
