@@ -32748,15 +32748,23 @@ huginn.core.round_now = function() {
   return Date.now() / 1000 | 0;
 };
 huginn.core.clean_env_key = function(a) {
-  return cljs.core.truth_(a) ? (a = clojure.string.split.call(null, a, / /), clojure.string.join.call(null, a, "\n")) : null;
+  if (cljs.core.truth_(a)) {
+    var b = clojure.string.split.call(null, a, / /);
+    a = clojure.string.join.call(null, " ", cljs.core.take.call(null, 3, b));
+    var c = clojure.string.join.call(null, " ", cljs.core.take_last.call(null, 3, b));
+    b = cljs.core.drop_last.call(null, 3, cljs.core.drop.call(null, 3, b));
+    b = clojure.string.join.call(null, "\n", b);
+    return clojure.string.join.call(null, "\n", new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [a, b, c], null));
+  }
+  return null;
 };
 huginn.core.create_jwt = function(a) {
-  var b = null != a && (a.cljs$lang$protocol_mask$partition0$ & 64 || cljs.core.PROTOCOL_SENTINEL === a.cljs$core$ISeq$) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, c = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "projectId", "projectId", -1551013096)), d = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "tokenExpMins", "tokenExpMins", -1638711857)), e = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "privateKey", "privateKey", 1845961641));
-  a = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "privateKeyFile", "privateKeyFile", 2040006267));
+  var b = null != a && (a.cljs$lang$protocol_mask$partition0$ & 64 || cljs.core.PROTOCOL_SENTINEL === a.cljs$core$ISeq$) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, c = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "projectId", "projectId", -1551013096)), d = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "tokenExpMins", "tokenExpMins", -1638711857));
+  a = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "privateKey", "privateKey", 1845961641));
+  cljs.core.get.call(null, b, new cljs.core.Keyword(null, "privateKeyFile", "privateKeyFile", 2040006267));
   b = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "algorithm", "algorithm", 739262820));
   c = {iat:huginn.core.round_now.call(null), exp:60 * d + huginn.core.round_now.call(null), aud:c};
-  e = huginn.core.clean_env_key.call(null, e);
-  a = cljs.core.truth_(e) ? e : cljs_node_io.core.slurp.call(null, a);
+  a = huginn.core.clean_env_key.call(null, a);
   cljs.core.println.call(null, a);
   return huginn.core.node$module$jsonwebtoken.sign.call(null, c, a, {algorithm:b});
 };
@@ -32851,6 +32859,7 @@ huginn.core.publish_async = function(a, b) {
     };
   }(k, l, a, c, c, d, e, b, f, f, g, h));
 };
+cljs.core.println.call(null, "starting huginn");
 huginn.core.c = huginn.core.init_client.call(null, huginn.core.default_options);
 cljs.nodejscli = {};
 COMPILED && (goog.global = global);

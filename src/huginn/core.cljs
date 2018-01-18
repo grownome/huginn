@@ -42,8 +42,13 @@
   [private-key]
   (when private-key
     (let [split  (st/split private-key  #" ")
-          joined (st/join split "\n")]
-      joined)))
+          header (st/join " " (take 3 split))
+          footer (st/join " " (take-last 3 split))
+          body   (drop-last 3 (drop 3 split))
+          joined-body (st/join "\n" body)
+          joined-text (st/join "\n" [header joined-body footer])]
+joined-text
+      )))
 
 (defn create-jwt
    [{:keys [projectId tokenExpMins privateKey privateKeyFile algorithm] :as opts}]
@@ -51,8 +56,7 @@
           #js {:iat (round-now)
                :exp (+ (* tokenExpMins 60) (round-now)) ;now + 20 min
                :aud projectId}
-          privKey (or (clean-env-key privateKey) (io/slurp privateKeyFile))]
-      (println privKey)
+          privKey (clean-env-key privateKey)]
       (jwt/sign token privKey #js {:algorithm algorithm })))
 
 
@@ -144,5 +148,6 @@
                        (publish-async cconfig opts)))))))))
 
 
+(println "starting huginn")
 (def c (init-client default-options))
 
