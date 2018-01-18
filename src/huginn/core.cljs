@@ -102,7 +102,7 @@ joined-text
     (add-handlers client handlers)
     init))
 
-(defn topic-root
+(defn payload-root
   [{:keys [registryId deviceId] :as opts}]
   (str registryId "/" deviceId "-payload"))
 
@@ -118,21 +118,20 @@ joined-text
                (p/schedule wait #(resolve wait)))))
 
 (defn publish-cpu-data
-  [^MqttClient client topic qos data]
-  (when  (.-cores data)
-    (println "got cpu core data")
-    (let [cores (js->clj (.-cores data))]
-      (println cores)
-      (doall (map-indexed
-              (fn [index value]
-                (println "publishing " index ":" value)
-                (.publish client (str topic "-core-" index) (str value) qos)) cores))))
-  (when (.-main data)
-    (println "got max data: " (.-main data))
-    (.publish client (str topic "-core-main") (str (.-main data))))
-  (when (.-max data)
-    (println "got main data: " (.-max data))
-    (.publish client (str topic "-core-max") (str (.-max data)))))
+  [^MqttClient opts client topic qos data]
+  (let [pr (payload-root opts)]
+    (when  (.-cores data)
+      (let [cores (js->clj (.-cores data))]
+        (println cores)
+        (doall (map-indexed
+                (fn [index value]
+                  (.publish client  topic
+                            (str pr "-core-temp-" index "/" (str value)) qos))
+                cores))))
+    (when (.-main data)
+      (.publish client  topic (str pr "-core-temp-main/" (str (.-main data)))))
+    (when (.-max data)
+      (.publish client topic (str pr "-core-temp-max/" (str (.-max data)))))))
 
 (p/then (si/cpuTemperature)
         (fn [data]
@@ -149,11 +148,11 @@ joined-text
     (do
       (let [topic (mqtt-topic opts "events")
             qos #js {:qos 1}]
-        (println "Publishing message: ")
+        (println "Publishing message to: " topic)
         (p/chain (si/cpuTemperature)
-                 (partial publish-cpu-data client topic qos)
+                 (partial publish-cpu-data opts client topic qos)
                  (sleep-promise delayMs)
-                 (fn []
+                 (fn [& _] ;some number of args
                    (let [secs-from-issue (- (round-now) iat-time)]
                      (if (> secs-from-issue (* tokenExpMins 60))
                        (do

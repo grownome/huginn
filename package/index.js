@@ -32818,7 +32818,7 @@ huginn.core.init_client = function(a) {
   huginn.core.add_handlers.call(null, e, b);
   return c;
 };
-huginn.core.topic_root = function(a) {
+huginn.core.payload_root = function(a) {
   var b = null != a && (a.cljs$lang$protocol_mask$partition0$ & 64 || cljs.core.PROTOCOL_SENTINEL === a.cljs$core$ISeq$) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a;
   a = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "registryId", "registryId", -1767694006));
   b = cljs.core.get.call(null, b, new cljs.core.Keyword(null, "deviceId", "deviceId", 1909987208));
@@ -32836,20 +32836,19 @@ huginn.core.sleep_promise = function(a) {
     });
   });
 };
-huginn.core.publish_cpu_data = function(a, b, c, d) {
-  if (cljs.core.truth_(d.cores)) {
-    cljs.core.println.call(null, "got cpu core data");
-    var e = cljs.core.js__GT_clj.call(null, d.cores);
-    cljs.core.println.call(null, e);
-    cljs.core.doall.call(null, cljs.core.map_indexed.call(null, function(d) {
-      return function(d, e) {
-        cljs.core.println.call(null, "publishing ", d, ":", e);
-        return a.publish([cljs.core.str.cljs$core$IFn$_invoke$arity$1(b), "-core-", cljs.core.str.cljs$core$IFn$_invoke$arity$1(d)].join(""), "" + cljs.core.str.cljs$core$IFn$_invoke$arity$1(e), c);
+huginn.core.publish_cpu_data = function(a, b, c, d, e) {
+  a = huginn.core.payload_root.call(null, a);
+  if (cljs.core.truth_(e.cores)) {
+    var f = cljs.core.js__GT_clj.call(null, e.cores);
+    cljs.core.println.call(null, f);
+    cljs.core.doall.call(null, cljs.core.map_indexed.call(null, function(a, e) {
+      return function(a, f) {
+        return b.publish(c, [cljs.core.str.cljs$core$IFn$_invoke$arity$1(e), "-core-temp-", cljs.core.str.cljs$core$IFn$_invoke$arity$1(a), "/", cljs.core.str.cljs$core$IFn$_invoke$arity$1("" + cljs.core.str.cljs$core$IFn$_invoke$arity$1(f))].join(""), d);
       };
-    }(e), e));
+    }(f, a), f));
   }
-  cljs.core.truth_(d.main) && (cljs.core.println.call(null, "got max data: ", d.main), a.publish([cljs.core.str.cljs$core$IFn$_invoke$arity$1(b), "-core-main"].join(""), "" + cljs.core.str.cljs$core$IFn$_invoke$arity$1(d.main)));
-  return cljs.core.truth_(d.max) ? (cljs.core.println.call(null, "got main data: ", d.max), a.publish([cljs.core.str.cljs$core$IFn$_invoke$arity$1(b), "-core-max"].join(""), "" + cljs.core.str.cljs$core$IFn$_invoke$arity$1(d.max))) : null;
+  cljs.core.truth_(e.main) && b.publish(c, [cljs.core.str.cljs$core$IFn$_invoke$arity$1(a), "-core-temp-main/", cljs.core.str.cljs$core$IFn$_invoke$arity$1("" + cljs.core.str.cljs$core$IFn$_invoke$arity$1(e.main))].join(""));
+  return cljs.core.truth_(e.max) ? b.publish(c, [cljs.core.str.cljs$core$IFn$_invoke$arity$1(a), "-core-temp-max/", cljs.core.str.cljs$core$IFn$_invoke$arity$1("" + cljs.core.str.cljs$core$IFn$_invoke$arity$1(e.max))].join("")) : null;
 };
 promesa.core.then.call(null, huginn.core.node$module$systeminformation.cpuTemperature.call(null), function(a) {
   return cljs.core.println.call(null, a.max);
@@ -32862,11 +32861,30 @@ huginn.core.publish_async = function(a, b) {
     return d.end();
   }
   var k = huginn.core.mqtt_topic.call(null, f, "events"), l = {qos:1};
-  cljs.core.println.call(null, "Publishing message: ");
-  return promesa.core.chain.call(null, huginn.core.node$module$systeminformation.cpuTemperature.call(null), cljs.core.partial.call(null, huginn.core.publish_cpu_data, d, k, l), huginn.core.sleep_promise.call(null, h), function(a, b, c, d, e, f, g, h, k, l, z, y) {
+  cljs.core.println.call(null, "Publishing message to: ", k);
+  return promesa.core.chain.call(null, huginn.core.node$module$systeminformation.cpuTemperature.call(null), cljs.core.partial.call(null, huginn.core.publish_cpu_data, f, d, k, l), huginn.core.sleep_promise.call(null, h), function(a, b, c, d, e, f, g, h, k, l, z, y) {
     return function() {
-      return huginn.core.round_now.call(null) - g > 60 * z ? (cljs.core.println.call(null, ["\tRefreshing token after ", cljs.core.str.cljs$core$IFn$_invoke$arity$1(60), " seconds"].join("")), f.end(), cljs.core.truth_(cljs.core.deref.call(null, huginn.core.stop)) ? null : huginn.core.init_client.call(null, l)) : huginn.core.publish_async.call(null, e, l);
-    };
+      var a = function(a) {
+        return huginn.core.round_now.call(null) - g > 60 * z ? (cljs.core.println.call(null, ["\tRefreshing token after ", cljs.core.str.cljs$core$IFn$_invoke$arity$1(60), " seconds"].join("")), f.end(), cljs.core.truth_(cljs.core.deref.call(null, huginn.core.stop)) ? null : huginn.core.init_client.call(null, l)) : huginn.core.publish_async.call(null, e, l);
+      }, b = function(b) {
+        var c = null;
+        if (0 < arguments.length) {
+          c = 0;
+          for (var d = Array(arguments.length - 0); c < d.length;) {
+            d[c] = arguments[c + 0], ++c;
+          }
+          c = new cljs.core.IndexedSeq(d, 0, null);
+        }
+        return a.call(this, c);
+      };
+      b.cljs$lang$maxFixedArity = 0;
+      b.cljs$lang$applyTo = function(b) {
+        b = cljs.core.seq(b);
+        return a(b);
+      };
+      b.cljs$core$IFn$_invoke$arity$variadic = a;
+      return b;
+    }();
   }(k, l, a, c, c, d, e, b, f, f, g, h));
 };
 cljs.core.println.call(null, "starting huginn");
