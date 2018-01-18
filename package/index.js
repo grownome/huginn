@@ -32757,6 +32757,7 @@ huginn.core.create_jwt = function(a) {
   c = {iat:huginn.core.round_now.call(null), exp:60 * d + huginn.core.round_now.call(null), aud:c};
   e = huginn.core.clean_env_key.call(null, e);
   a = cljs.core.truth_(e) ? e : cljs_node_io.core.slurp.call(null, a);
+  cljs.core.println.call(null, a);
   return huginn.core.node$module$jsonwebtoken.sign.call(null, c, a, {algorithm:b});
 };
 huginn.core.connection_args = function(a) {
