@@ -6,7 +6,7 @@
   :main user
   :plugins [[lein-cljsbuild "1.1.7"]]
 
-;  :jvm-opts ["--add-modules" "java.xml.bind"]
+  :jvm-opts ["--add-modules" "java.xml.bind"]
   :source-paths ["dev" "src"]
   :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
   :cljsbuild {:builds [{:source-paths ["src"]
