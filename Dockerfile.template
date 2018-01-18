@@ -22,6 +22,7 @@ RUN apt-get update -q &&\
     uv4l-webrtc$([ $(uname -m) = armv6l ] && echo -armv6) \
     vlc \
     wget \
+    leiningen
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Move to app dir
@@ -39,7 +40,9 @@ RUN JOBS=MAX npm install --production --unsafe-perm && npm cache clean && rm -rf
 RUN npm link
 
 # Now copy our app
-COPY ./package /usr/src/app/package
+COPY ./ /usr/src/app/
+RUN lein cljsbuild once
+RUN apt-get remove leiningen && apt-get clean
 
 RUN systemctl disable uv4l_raspicam
 
