@@ -119,9 +119,25 @@ joined-text
 
 (defn publish-cpu-data
   [^MqttClient client topic qos data]
-  (let [[c1 c2] (js->clj (.-cores data))]
-    (.publish client (str topic "-core-1") (str c1) qos)
-    (.publish client (str topic "-core-2") (str c2) qos)))
+  (when  (.-cores data)
+    (println "got cpu core data")
+    (let [cores (js->clj (.-cores data))]
+      (println cores)
+      (doall (map-indexed
+              (fn [index value]
+                (println "publishing " index ":" value)
+                (.publish client (str topic "-core-" index) (str value) qos)) cores))))
+  (when (.-main data)
+    (println "got max data: " (.-main data))
+    (.publish client (str topic "-core-main") (str (.-main data))))
+  (when (.-max data)
+    (println "got main data: " (.-max data))
+    (.publish client (str topic "-core-max") (str (.-max data)))))
+
+(p/then (si/cpuTemperature)
+        (fn [data]
+          (println (.-max data))))
+
 
 (def stop (atom false))
 

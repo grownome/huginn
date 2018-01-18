@@ -32837,12 +32837,23 @@ huginn.core.sleep_promise = function(a) {
   });
 };
 huginn.core.publish_cpu_data = function(a, b, c, d) {
-  var e = cljs.core.js__GT_clj.call(null, d.cores);
-  d = cljs.core.nth.call(null, e, 0, null);
-  e = cljs.core.nth.call(null, e, 1, null);
-  a.publish([cljs.core.str.cljs$core$IFn$_invoke$arity$1(b), "-core-1"].join(""), "" + cljs.core.str.cljs$core$IFn$_invoke$arity$1(d), c);
-  return a.publish([cljs.core.str.cljs$core$IFn$_invoke$arity$1(b), "-core-2"].join(""), "" + cljs.core.str.cljs$core$IFn$_invoke$arity$1(e), c);
+  if (cljs.core.truth_(d.cores)) {
+    cljs.core.println.call(null, "got cpu core data");
+    var e = cljs.core.js__GT_clj.call(null, d.cores);
+    cljs.core.println.call(null, e);
+    cljs.core.doall.call(null, cljs.core.map_indexed.call(null, function(d) {
+      return function(d, e) {
+        cljs.core.println.call(null, "publishing ", d, ":", e);
+        return a.publish([cljs.core.str.cljs$core$IFn$_invoke$arity$1(b), "-core-", cljs.core.str.cljs$core$IFn$_invoke$arity$1(d)].join(""), "" + cljs.core.str.cljs$core$IFn$_invoke$arity$1(e), c);
+      };
+    }(e), e));
+  }
+  cljs.core.truth_(d.main) && (cljs.core.println.call(null, "got max data: ", d.main), a.publish([cljs.core.str.cljs$core$IFn$_invoke$arity$1(b), "-core-main"].join(""), "" + cljs.core.str.cljs$core$IFn$_invoke$arity$1(d.main)));
+  return cljs.core.truth_(d.max) ? (cljs.core.println.call(null, "got main data: ", d.max), a.publish([cljs.core.str.cljs$core$IFn$_invoke$arity$1(b), "-core-max"].join(""), "" + cljs.core.str.cljs$core$IFn$_invoke$arity$1(d.max))) : null;
 };
+promesa.core.then.call(null, huginn.core.node$module$systeminformation.cpuTemperature.call(null), function(a) {
+  return cljs.core.println.call(null, a.max);
+});
 huginn.core.stop = cljs.core.atom.call(null, !1);
 huginn.core.publish_async = function(a, b) {
   var c = null != a && (a.cljs$lang$protocol_mask$partition0$ & 64 || cljs.core.PROTOCOL_SENTINEL === a.cljs$core$ISeq$) ? cljs.core.apply.call(null, cljs.core.hash_map, a) : a, d = cljs.core.get.call(null, c, new cljs.core.Keyword(null, "client", "client", -1323448117)), e = cljs.core.get.call(null, c, new cljs.core.Keyword(null, "iat-time", "iat-time", 111865064)), f = null != b && (b.cljs$lang$protocol_mask$partition0$ & 64 || cljs.core.PROTOCOL_SENTINEL === b.cljs$core$ISeq$) ? cljs.core.apply.call(null, 
