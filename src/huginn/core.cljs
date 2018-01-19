@@ -8,9 +8,10 @@
 (nodejs/enable-util-print!)
 
 
-(defn -main []
+(defn -main [& args]
   (println "starting huginn")
- ; (def c (mqtt/ config/default-options))
+  (let [system (mqtt/system-function config/default-options)]))
 
-  )
 
+(print "test")
+(set! *main-cli-fn* -main)

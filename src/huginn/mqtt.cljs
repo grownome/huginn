@@ -24,7 +24,6 @@
 (defn client-handlers
   [success-fn fail send recv]
   {"connect" (fn [success]
-               (println "connected")
                (info "client connected")
                (if success
                  (do
@@ -36,7 +35,7 @@
    "close"   (fn [] (debug "client connection closed"))
    "error"   (fn [err] (error "error: " err))
    "message" (fn [topic message packet]
-               (spy [topic message packet])
+               (spy :debug [topic message packet])
                (a/>! recv {:topic topic
                            :message message
                            :packet packet}))})
@@ -86,7 +85,7 @@
         max (when (.-max data)
               {:payload (str pr "-core-temp-max/" (str (.-max data)))
                :ts (jw/round-now)})]
-    (concat main [max] [cores])))
+    (concat [main] [max] cores)))
 
 (def stop (atom false))
 
@@ -103,7 +102,7 @@
   "loops and refreshs the client atom every token experation"
   [client-atom {:keys [tokenExpMins delayMs] :as opts} send recv]
   (a/go-loop [wait (a/<! (a/timeout (* tokenExpMins 60)))]
-      (println (str "\tRefreshing token after " (* tokenExpMins 60)  " seconds"))
+    (info "\tRefreshing token after " (* tokenExpMins 60)  "ms")
       (.end @client-atom)
       (p/then (init-client opts send recv)
               (fn [client]
@@ -128,17 +127,17 @@
   [opts send t-chan]
   (a/go-loop []
     (let [teles (a/<! t-chan)
+          sleep (a/<! (a/timeout (:delayMs opts)))
           topic (mqtt-topic opts "events")
           qos #js {:qos 1}]
       (debug "Preparing to send telemetry")
       (spy :debug teles)
-      (doall
-       (into send
-             (mapcat  (fn [t]
-                        (-> teles
-                            (assoc :topic topic)
-                            (assoc :qos qos))) )
-             teles))
+      (a/onto-chan
+       send
+       (mapcat  (fn [t]
+                  (-> t
+                      (assoc :topic topic)
+                      (assoc :qos qos)) ) teles))
       (recur))))
 
 (defn watcher

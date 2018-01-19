@@ -17,14 +17,15 @@
                   "target"]
   :source-paths ["src"]
   :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
-  :cljsbuild {:builds [{:id "prod"
-                        :source-paths ["src" "test"]
+  :cljsbuild {:builds [
+                       {:id "prod"
+                        :source-paths ["src"]
                         :compiler {:optimizations :simple
                                    :install-deps true
                                    :main huginn.core
                                    :output-to "package/index.js"
                                    :target :nodejs
-                                   :output-dir "out"
+                                   :output-dir "out/prod"
                                    :npm-deps {"@google-cloud/storage" "1.5.2"
                                               "@google-cloud/pubsub" "0.13.2"
                                               :ava "0.22.0"
@@ -33,6 +34,24 @@
                                               :mqtt "2.15.0"
                                               :uuid "3.1.0"
                                               :yargs "8.0.2"}}}
+
+                       {:id "prod-adv"
+                        :source-paths ["src"]
+                        :compiler {:optimizations :advanced
+                                   :install-deps true
+                                   :main huginn.core
+                                   :output-to "package-adv/index.js"
+                                   :target :nodejs
+                                   :output-dir "out/prod-adv"
+                                   :npm-deps {"@google-cloud/storage" "1.5.2"
+                                              "@google-cloud/pubsub" "0.13.2"
+                                              :ava "0.22.0"
+                                              :systeminformation "3.33.0"
+                                              :jsonwebtoken "7.4.1"
+                                              :mqtt "2.15.0"
+                                              :uuid "3.1.0"
+                                              :yargs "8.0.2"}}}
+
 
                        {:id "dev"
                         :figwheel true
