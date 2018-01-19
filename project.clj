@@ -14,6 +14,9 @@
                    :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}}
   :jvm-opts ["--add-modules" "java.xml.bind"]
   :clean-targets ["server.js"
+                  "out"
+                  "package"
+                  "package-adv"
                   "target"]
   :source-paths ["src"]
   :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
