@@ -1,0 +1,16 @@
+Building ...
+java.lang.AssertionError: Assert failed: :source-map must be true or false when compiling with :optimizations :none but it is: "repl-out/index.js.map"
+(util/boolean? source-map)
+	at cljs.closure$check_source_map.invokeStatic(closure.clj:1941)
+	at cljs.closure$check_source_map.invoke(closure.clj:1914)
+	at cljs.closure$build.invokeStatic(closure.clj:2539)
+	at cljs.closure$build.invoke(closure.clj:2507)
+	at cljs.closure$watch$buildf__8405.invoke(closure.clj:2715)
+	at cljs.closure$watch.invokeStatic(closure.clj:2747)
+	at cljs.closure$watch.invoke(closure.clj:2691)
+	at cljs.repl$repl_STAR_$fn__8980$fn__8985.invoke(repl.cljc:910)
+	at clojure.core$binding_conveyor_fn$fn__5476.invoke(core.clj:2022)
+	at clojure.lang.AFn.run(AFn.java:22)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+
+Watching paths: /home/fode/src/huginn/src
