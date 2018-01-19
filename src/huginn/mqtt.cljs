@@ -129,8 +129,8 @@
 (defn tele-send
   [opts send t-chan]
   (a/go-loop []
-    (let [teles (a/<! t-chan)
-          sleep (a/<! (a/timeout (:delayMs opts)))
+    (let [sleep (a/<! (a/timeout (:delayMs opts)))
+          teles (a/<! t-chan)
           topic (mqtt-topic opts "events")
           qos #js {:qos 1}]
       (debug "Preparing to send telemetry")
