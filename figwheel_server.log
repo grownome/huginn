@@ -1,0 +1,20 @@
+[0mCompiling "target/js/compiled/huginn.js" from ["src" "test"]...[0m
+[36m----  Compiler Warning on   src/huginn/core.cljs   line:13  column:10  ----[0m
+
+  [1mWrong number of args (1) passed to huginn.mqtt/init-client[0m
+
+  [36m11[0m  [36m(defn -main [][0m
+  [36m12[0m  [36m  (println "starting huginn")[0m
+  [33m13[0m  [1m  (def c (mqtt/init-client config/default-options)))[0m
+  [0m  [0m  [33m         ^--- Wrong number of args (1) passed to huginn.mqtt/init-client[0m
+
+[36m----  Compiler Warning : Please see src/huginn/core.cljs  ----[0m
+[32mSuccessfully compiled "target/js/compiled/huginn.js" in 0.467 seconds.[0m
+notifying browser that file changed:  target/js/compiled/dev/goog/deps.js
+notifying browser that file changed:  target/js/compiled/dev/cljs_deps.js
+notifying browser that file changed:  target/js/compiled/dev/huginn/core.js
+[0mCompiling "target/js/compiled/huginn.js" from ["src"]...[0m
+[32mSuccessfully compiled "target/js/compiled/huginn.js" in 0.665 seconds.[0m
+notifying browser that file changed:  target/js/compiled/dev/goog/deps.js
+notifying browser that file changed:  target/js/compiled/dev/cljs_deps.js
+notifying browser that file changed:  target/js/compiled/dev/huginn/mqtt.js

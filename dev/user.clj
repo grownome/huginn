@@ -1,8 +1,14 @@
 (ns user
-  (:require [cemerick.piggieback :as pback]
-            [cljs.repl.node :as rn]))
+  (:require [figwheel-sidecar.repl-api :as f]))
 
+(defn fig-start
+  []
+  (f/start-figwheel!))
 
-(defn start-cljs-repl []
-  (pback/cljs-repl (rn/repl-env)))
+(defn fig-stop
+  []
+  (f/stop-figwheel!))
 
+(defn cljs-repl
+  []
+  (f/cljs-repl))
