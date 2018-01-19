@@ -6,6 +6,7 @@
   :main user
   :plugins [[lein-cljsbuild "1.1.7"]
             [lein-figwheel "0.5.13"]
+            [lein-kibit "0.1.6-beta2"]
             ]
 
   :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.13"]
