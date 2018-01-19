@@ -101,12 +101,16 @@
 (defn client-refresher
   "loops and refreshs the client atom every token experation"
   [client-atom {:keys [tokenExpMins delayMs] :as opts} send recv]
-  (a/go-loop [wait (a/<! (a/timeout (* tokenExpMins 60)))]
-    (info "\tRefreshing token after " (* tokenExpMins 60)  "ms")
-    (swap! client-atom #(.end %))
+  (a/go-loop []
+    (let [wait (a/<! (a/timeout (* tokenExpMins 60)))]
+      (info "\tRefreshing token after " (* tokenExpMins 60)  "ms")
+      (swap! client-atom #(.end %))
       (p/then (init-client opts send recv)
               (fn [client]
-                (reset! client-atom client)))))
+                (reset! client-atom client))))
+    (recur)
+
+    ))
 
 (defn tele-chan
   [opts]
