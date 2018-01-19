@@ -57,6 +57,25 @@
                                               :uuid "3.1.0"
                                               :yargs "8.0.2"}}}
 
+                       {:id "dev"
+                        :figwheel true
+                        :source-paths ["src"]
+                        :compiler {:optimizations :none
+                                   :install-deps true
+                                   :main huginn.core
+                                   :target :nodejs
+                                   :asset-path "target/js/compiled/dev"
+                                   :output-to "target/js/compiled/huginn.js"
+                                   :output-dir "target/js/compiled/dev"
+                                   :npm-deps {"@google-cloud/storage" "1.5.2"
+                                              "@google-cloud/pubsub" "0.13.2"
+                                              :ava "0.22.0"
+                                              :systeminformation "3.33.0"
+                                              :jsonwebtoken "7.4.1"
+                                              :mqtt "2.15.0"
+                                              :uuid "3.1.0"
+                                              :yargs "8.0.2"}
+                                   :pretty-print true}}
                        {:id "test"
                         :figwheel true
                         :source-paths ["src" "test"]
@@ -76,25 +95,7 @@
                                               :uuid "3.1.0"
                                               :yargs "8.0.2"}
                                    :pretty-print true}}
-                       {:id "dev"
-                        :figwheel true
-                        :source-paths ["src"]
-                        :compiler {:optimizations :none
-                                   :install-deps true
-                                   :main huginn.core
-                                   :target :nodejs
-                                   :asset-path "target/js/compiled/dev"
-                                   :output-to "target/js/compiled/huginn.js"
-                                   :output-dir "target/js/compiled/dev"
-                                   :npm-deps {"@google-cloud/storage" "1.5.2"
-                                              "@google-cloud/pubsub" "0.13.2"
-                                              :ava "0.22.0"
-                                              :systeminformation "3.33.0"
-                                              :jsonwebtoken "7.4.1"
-                                              :mqtt "2.15.0"
-                                              :uuid "3.1.0"
-                                              :yargs "8.0.2"}
-                                   :pretty-print true}}]}
+                       ]}
 
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [clj-time "0.14.2"]

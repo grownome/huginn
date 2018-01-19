@@ -9,7 +9,7 @@
    :privateKey js/process.env.PRIVATE_KEY
    :algorithm "RS256"
    :tokenExpMins 20
-   :delayMs (* 1000 60)
+   :delayMs (* 1000 10)
    :mqttBridgeHostname "mqtt.googleapis.com"
    :mqttBridgePort 8883
    :messageType "events"})

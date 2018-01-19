@@ -90,14 +90,16 @@
 (def stop (atom false))
 
 (defn publish-one
-  [^MqttClient client-atom {:keys [topic payload qos]}]
-  (.publish client-atom topic payload qos))
+  [^MqttClient client {:keys [topic payload qos] :as p}]
+  (spy p)
+  (spy (.publish client topic payload qos)))
 
 (defn publisher
   [client-atom send-chan]
-  (a/go-loop [to-send (a/<! send-chan)]
-    (publish-one @client-atom to-send)
-    (recur (a/<! send-chan))))
+  (a/go-loop []
+    (let [to-send (a/<! send-chan)]
+      (publish-one @client-atom  to-send)
+      (recur))))
 
 (defn client-refresher
   "loops and refreshs the client atom every token experation"
@@ -126,58 +128,38 @@
     out-chan))
 
 
-(defn tele-send
-  [opts send t-chan]
-  (a/go-loop []
-    (let [sleep (a/<! (a/timeout (:delayMs opts)))
-          teles (a/<! t-chan)
-          topic (mqtt-topic opts "events")
-          qos #js {:qos 1}]
-      (debug "Preparing to send telemetry")
-      (spy :debug teles)
-      (a/onto-chan
-       send
-       (mapcat  (fn [t]
-                  (-> t
-                      (assoc :topic topic)
-                      (assoc :qos qos)) ) teles))
-      (recur))))
-
-
-(defn state-send
-  [opts send t-chan]
+(defn sender
+  [topic opts send t-chan]
   (a/go-loop []
     (let [teles (a/<! t-chan)
-          sleep (a/<! (a/timeout (:delayMs opts)))
-          topic (mqtt-topic opts "state")
+          topic (mqtt-topic opts topic)
           qos #js {:qos 1}]
-      (debug "Preparing to send state")
+      (debug "Preparing to send " topic)
       (spy :debug teles)
       (a/onto-chan
        send
-       (mapcat  (fn [t]
+       (map  (fn [t]
                   (-> t
-                      (assoc :topic topic)
-                      (assoc :qos qos)) ) teles))
+                          (assoc :topic topic)
+                          (assoc :qos qos)) ) teles)
+       false)
+      (a/<! (a/timeout (:delayMs opts)))
       (recur))))
 
 
-(defn watcher
-  [kill-atom kill-fn]
-  (a/go-loop []
-    (if @kill-atom
-      (kill-fn)
-      (do
-        (a/<! (a/timeout 100))
-        (recur)))))
+(def state-send
+  (partial sender "state"))
+
+(def tele-send
+  (partial sender "events"))
 
 (defn clean-up
-  [{:keys [send-chan recv-chan telemetry-chan client-atom] :as system}]
+  [{:keys [send-chan recv-chan telemetry-chan state-chan client-atom] :as system}]
   (log "Killing system")
   (doall
    (map (fn [c] (a/close! c))
-        [send-chan recv-chan telemetry-chan]))
-  (.close @client-atom))
+        [send-chan recv-chan state-chan telemetry-chan]))
+  (.end @client-atom))
 
 (defn system-function
   "the heart of the system lies here.
@@ -197,8 +179,8 @@
 
   payloads must be prefixed with a string describing where the data came (payload-root opts) will generate this for you"
   [opts]
-  (let [send (a/chan (a/buffer 20))
-        recv (a/chan (a/buffer 20))
+  (let [send (a/chan)
+        recv (a/chan)
         kill (atom false)
         client-promise (init-client opts send recv)
         client-atom (atom nil)
