@@ -1,8 +1,12 @@
 /target
 /classes
 /checkouts
+/node_modules
+/.cljs_node_repl
+out
 pom.xml
 pom.xml.asc
+/.cljs-node-repl
 *.jar
 *.class
 /.lein-*

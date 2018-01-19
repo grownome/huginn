@@ -1,5 +1,6 @@
-FROM resin/%%RESIN_MACHINE_NAME%%-debian:jessie
+FROM resin/%%RESIN_MACHINE_NAME%%-node:6-slim
 
+RUN apt-get update -q && apt-get install curl
 # Install the UV4L PPA
 RUN curl -s http://www.linux-projects.org/listing/uv4l_repo/lrkey.asc | sudo apt-key add - &&\
   sed -i '1s;^;deb http://www.linux-projects.org/listing/uv4l_repo/raspbian/ jessie main\n;' /etc/apt/sources.list
@@ -21,50 +22,27 @@ RUN apt-get update -q &&\
     uv4l-webrtc$([ $(uname -m) = armv6l ] && echo -armv6) \
     vlc \
     wget \
-    leiningen \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
-
-
-ENV LEIN_VERSION=2.8.1
-ENV LEIN_INSTALL=/usr/local/bin/
-
-# Download the whole repo as an archive
-RUN mkdir -p $LEIN_INSTALL \
-  && wget -q https://raw.githubusercontent.com/technomancy/leiningen/$LEIN_VERSION/bin/lein-pkg \
-  && echo "Comparing lein-pkg checksum ..." \
-  && echo "019faa5f91a463bf9742c3634ee32fb3db8c47f0 *lein-pkg" | sha1sum -c - \
-  && mv lein-pkg $LEIN_INSTALL/lein \
-  && chmod 0755 $LEIN_INSTALL/lein \
-  && wget -q https://github.com/technomancy/leiningen/releases/download/$LEIN_VERSION/leiningen-$LEIN_VERSION-standalone.zip \
-  && wget -q https://github.com/technomancy/leiningen/releases/download/$LEIN_VERSION/leiningen-$LEIN_VERSION-standalone.zip.asc \
-  && gpg --keyserver pool.sks-keyservers.net --recv-key 2B72BF956E23DE5E830D50F6002AF007D1A7CC18 \
-  && echo "Verifying Jar file signature ..." \
-  && gpg --verify leiningen-$LEIN_VERSION-standalone.zip.asc \
-  && rm leiningen-$LEIN_VERSION-standalone.zip.asc \
-  && mkdir -p /usr/share/java \
-  && mv leiningen-$LEIN_VERSION-standalone.zip /usr/share/java/leiningen-$LEIN_VERSION-standalone.jar
-
-ENV PATH=$PATH:$LEIN_INSTALL
-ENV LEIN_ROOT 1
-
-# Install clojure 1.8.0 so users don't have to download it every time
-RUN echo '(defproject dummy "" :dependencies [[org.clojure/clojure "1.8.0"]])' > project.clj \
-  && lein deps && rm project.clj
 
 # Move to app dir
 WORKDIR /usr/src/app
+
 
 # Configure env vars
 ENV CONF_DIR=/data/config/ \
   INITSYSTEM=on
 
-# Copy over our project files
+# Copy package json first so that when other things change we don't 
+# reinstall deps
+COPY package.json package.json
 
-COPY ./ /usr/src/app
-# Disable uv4l_raspicam service which we'll manually start later
+RUN JOBS=MAX npm install --production --unsafe-perm && npm cache clean && rm -rf /tmp/*
+RUN npm link
+
+# Now copy our app
+COPY ./package /usr/src/app/package
 
 RUN systemctl disable uv4l_raspicam
-RUN lein deps
 
 # Start app
-CMD ["lein", "run"]
+CMD ["node", "package/index.js"]
