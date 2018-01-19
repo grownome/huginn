@@ -16,6 +16,7 @@
   :clean-targets ["server.js"
                   "out"
                   "package"
+                  "node_modules"
                   "package-adv"
                   "target"]
   :source-paths ["src"]
