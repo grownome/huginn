@@ -51,6 +51,8 @@ If you are using spacemacs:
 * `(fig-start)` to start the autocompiler (on every saved change)
 * `(cljs-repl)` to start the clojure script repl listener
 * `node target/js/compiled/huginn.js` run this in a terminal by your text editor. This starts up a node server that figwheel injects code into. This helps with performace, keeping you environment from falling apart if you evaluate something bad, and eventually will allow us to inject code on to running devices. Once everything start your repl should work.
+* `(figwheel-sidecar.repl-api/switch-to-build :dev)` will switch the build to dev or test in the clj repl
+
 
 ## Buliding it
 Use semaphore if you want to deploy it to the board. Just make a pull request and when it's merged it wil be automatically deployed to the devices.
