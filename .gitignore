@@ -3,6 +3,7 @@
 /checkouts
 /node_modules
 /.cljs_node_repl
+/.cljs_rhino_repl
 figwheel_server.log
 out
 pom.xml
