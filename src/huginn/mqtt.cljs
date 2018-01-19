@@ -96,7 +96,8 @@
 (defn publisher
   [client-atom send-chan]
   (a/go-loop [to-send (a/<! send-chan)]
-    (publish-one @client-atom to-send)))
+    (publish-one @client-atom to-send)
+    (recur (a/<! send-chan))))
 
 (defn client-refresher
   "loops and refreshs the client atom every token experation"

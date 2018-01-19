@@ -4,6 +4,8 @@
 /node_modules
 /.cljs_node_repl
 /.cljs_rhino_repl
+/package
+/package-adv
 figwheel_server.log
 out
 pom.xml
