@@ -70,7 +70,7 @@ To push to a single resin device with out going through the resin build process 
 
 
 ## If it's broken
-`rm -rf target` This will blow away your build cache and npm cache, so everything will
+`lein clean` This will blow away your build cache and npm cache, so everything will
 be downloaded again.
 
 ## License
