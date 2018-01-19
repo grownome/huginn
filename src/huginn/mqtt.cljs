@@ -103,7 +103,7 @@
   [client-atom {:keys [tokenExpMins delayMs] :as opts} send recv]
   (a/go-loop [wait (a/<! (a/timeout (* tokenExpMins 60)))]
     (info "\tRefreshing token after " (* tokenExpMins 60)  "ms")
-      (.end @client-atom)
+    (swap! client-atom #(.end %))
       (p/then (init-client opts send recv)
               (fn [client]
                 (reset! client-atom client)))))
@@ -140,6 +140,25 @@
                       (assoc :qos qos)) ) teles))
       (recur))))
 
+
+(defn state-send
+  [opts send t-chan]
+  (a/go-loop []
+    (let [teles (a/<! t-chan)
+          sleep (a/<! (a/timeout (:delayMs opts)))
+          topic (mqtt-topic opts "state")
+          qos #js {:qos 1}]
+      (debug "Preparing to send state")
+      (spy :debug teles)
+      (a/onto-chan
+       send
+       (mapcat  (fn [t]
+                  (-> t
+                      (assoc :topic topic)
+                      (assoc :qos qos)) ) teles))
+      (recur))))
+
+
 (defn watcher
   [kill-atom kill-fn]
   (a/go-loop []
@@ -158,13 +177,30 @@
   (.close @client-atom))
 
 (defn system-function
+  "the heart of the system lies here.
+  This function takes options (config/default-options works well)
+  It returns a map
+  This map has
+  :send-chan A channel you can use to directly send messages of mqtt, must be of the
+  form {:payload string? :qos #js {:qos #{0 1 2}} :topic (topics can be built with mqtt-topic)}
+  :recv-chan has items in the form of {:topic string? :message string? :packet buffer?}
+  :state-chan, send things of the form (coll-of {:payload string?}), onto the state channel
+  (google publishes these values to a differnt pubsub channel then device telemetry)
+  :telemetry-chan, sends (coll-of {:payload string?}), all the events in the collections
+  are sent in the same batch, the same is true for stat-chan.
+  :client-atom, contains the current version of the mqtt client. This is an atom so
+  that the client-refersher can refresh the authentication token and swap it.
+  this pattern also ensures only one client
+
+  payloads must be prefixed with a string describing where the data came (payload-root opts) will generate this for you"
   [opts]
   (let [send (a/chan (a/buffer 20))
         recv (a/chan (a/buffer 20))
         kill (atom false)
         client-promise (init-client opts send recv)
         client-atom (atom nil)
-        t-chan (tele-chan opts)]
+        t-chan (tele-chan opts)
+        state-chan (a/chan)]
     (p/then
      client-promise
      (fn [client]
@@ -172,8 +208,10 @@
        (client-refresher client-atom opts send recv)
        (publisher client-atom send)
        (tele-send opts send t-chan)
+       (state-send opts send state-chan)
        {:send-chan send
         :recv-chan recv
+        :state-chan state-chan
         :telemetry-chan t-chan
         :client-atom client-atom}))))
 
@@ -181,6 +219,7 @@
 ;(def system-promise (system-function config/default-options))
 
 (defn kill-it
+  "Feed the system promise to this and it will kill it"
   [system-promise]
   (p/then system-promise
           clean-up))

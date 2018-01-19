@@ -189,3 +189,23 @@ notifying browser that file changed:  target/js/compiled/dev/huginn/mqtt.js
 notifying browser that file changed:  target/js/compiled/dev/goog/deps.js
 notifying browser that file changed:  target/js/compiled/dev/cljs_deps.js
 notifying browser that file changed:  target/js/compiled/dev/huginn/mqtt.js
+[0mCompiling "target/js/compiled/huginn.js" from ["src"]...[0m
+[32mSuccessfully compiled "target/js/compiled/huginn.js" in 19.378 seconds.[0m
+notifying browser that file changed:  target/js/compiled/dev/cljs_deps.js
+notifying browser that file changed:  target/js/compiled/dev/huginn/mqtt.js
+[0mCompiling "target/js/compiled/huginn.js" from ["src"]...[0m
+[32mSuccessfully compiled "target/js/compiled/huginn.js" in 0.619 seconds.[0m
+notifying browser that file changed:  target/js/compiled/dev/cljs_deps.js
+notifying browser that file changed:  target/js/compiled/dev/huginn/mqtt.js
+[0mCompiling "target/js/compiled/huginn.js" from ["src"]...[0m
+[32mSuccessfully compiled "target/js/compiled/huginn.js" in 17.873 seconds.[0m
+notifying browser that file changed:  target/js/compiled/dev/cljs_deps.js
+notifying browser that file changed:  target/js/compiled/dev/huginn/mqtt.js
+[0mCompiling "target/js/compiled/huginn.js" from ["src"]...[0m
+[32mSuccessfully compiled "target/js/compiled/huginn.js" in 0.613 seconds.[0m
+notifying browser that file changed:  target/js/compiled/dev/cljs_deps.js
+notifying browser that file changed:  target/js/compiled/dev/huginn/mqtt.js
+[0mCompiling "target/js/compiled/huginn.js" from ["src"]...[0m
+[32mSuccessfully compiled "target/js/compiled/huginn.js" in 17.769 seconds.[0m
+notifying browser that file changed:  target/js/compiled/dev/cljs_deps.js
+notifying browser that file changed:  target/js/compiled/dev/huginn/mqtt.js
