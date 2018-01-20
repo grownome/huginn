@@ -35,7 +35,7 @@
   :cljsbuild {:builds [
                        {:id "prod"
                         :source-paths ["src"]
-                        :compiler {:optimizations :none
+                        :compiler {:optimizations :simple
                                    :install-deps true
                                    :main huginn.core
                                    :output-to "package/index.js"
