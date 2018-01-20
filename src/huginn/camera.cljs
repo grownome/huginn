@@ -69,7 +69,6 @@
                 img-packets (map #(hash-map :payload % :timestamp timestamp) img-buffers)
                 complete  (concat [header] img-packets)]
             (a/>! out complete)
-            (spy (:payload (first img-packets)))
             (debug "done xforming" complete)
             (recur)))))))
 
