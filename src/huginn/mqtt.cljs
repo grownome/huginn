@@ -139,7 +139,7 @@
           topic (mqtt-topic opts topic-name)
           qos #js {:qos 1}]
       (when (= "state" topic-name)
-        (debug "pushing state" [ teles topic]))
+        (debug "pushing state" [teles topic]))
       (a/onto-chan
        send
        (map  (fn [t]
@@ -182,7 +182,7 @@
 
   payloads must be prefixed with a string describing where the data came (payload-root opts) will generate this for you"
   [opts]
-  (let [send (a/chan (a/buffer 15))
+  (let [send (a/chan)
         recv (a/chan)
         kill (atom false)
         client-promise (init-client opts send recv)

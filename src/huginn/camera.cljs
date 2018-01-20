@@ -33,18 +33,6 @@
     (.on camera key hand)))
 
 
-(defn read-img-xform
-  [output-dir
-   {:keys [err timestamp filename]
-    :as img-res}]
-  (let [img-data (io/slurp (str output-dir "/" filename) {:encoding "base64"})
-        base64-img (c/encodeString img-data)
-        split-img  (partition 200000 img-data)
-        header    {:payload (str "split_image/" 3)}
-        img-packets (map #(hash-map :payload % :timestamp timestamp) split-img)
-        complete  (concat [header] img-packets)]
-    complete))
-
 (defn chunk-img
   [img chunk-size]
   (if (< chunk-size (.-length img))
