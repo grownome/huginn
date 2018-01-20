@@ -50,7 +50,7 @@
           tl (* 60 1000 60 5)} :as opts} ]
    (p/promise
     (fn [resolve reject]
-      (let [snap-chan (a/chan 0 (map read-img-xform))
+      (let [snap-chan (a/chan (a/buffer 1) (map read-img-xform))
             ^RaspiCam
             camera (r.
                     #js
