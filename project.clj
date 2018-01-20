@@ -1,3 +1,13 @@
+(def npm-deps {"@google-cloud/storage" "1.5.2"
+               "@google-cloud/pubsub" "0.13.2"
+               :ava "0.22.0"
+               :v4l2camera "1.0.4"
+               :systeminformation "3.33.0"
+               :jsonwebtoken "7.4.1"
+               :mqtt "2.15.0"
+               :uuid "3.1.0"
+               :yargs "8.0.2"})
+
 (defproject huginn "0.1.0-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
@@ -31,14 +41,7 @@
                                    :output-to "package/index.js"
                                    :target :nodejs
                                    :output-dir "out/prod"
-                                   :npm-deps {"@google-cloud/storage" "1.5.2"
-                                              "@google-cloud/pubsub" "0.13.2"
-                                              :ava "0.22.0"
-                                              :systeminformation "3.33.0"
-                                              :jsonwebtoken "7.4.1"
-                                              :mqtt "2.15.0"
-                                              :uuid "3.1.0"
-                                              :yargs "8.0.2"}}}
+                                   :npm-deps ~npm-deps}}
 
                        {:id "prod-adv"
                         :source-paths ["src"]
@@ -48,14 +51,7 @@
                                    :output-to "package-adv/index.js"
                                    :target :nodejs
                                    :output-dir "out/prod-adv"
-                                   :npm-deps {"@google-cloud/storage" "1.5.2"
-                                              "@google-cloud/pubsub" "0.13.2"
-                                              :ava "0.22.0"
-                                              :systeminformation "3.33.0"
-                                              :jsonwebtoken "7.4.1"
-                                              :mqtt "2.15.0"
-                                              :uuid "3.1.0"
-                                              :yargs "8.0.2"}}}
+                                   :npm-deps ~npm-deps}}
 
                        {:id "dev"
                         :figwheel true
@@ -67,14 +63,7 @@
                                    :asset-path "target/js/compiled/dev"
                                    :output-to "target/js/compiled/huginn.js"
                                    :output-dir "target/js/compiled/dev"
-                                   :npm-deps {"@google-cloud/storage" "1.5.2"
-                                              "@google-cloud/pubsub" "0.13.2"
-                                              :ava "0.22.0"
-                                              :systeminformation "3.33.0"
-                                              :jsonwebtoken "7.4.1"
-                                              :mqtt "2.15.0"
-                                              :uuid "3.1.0"
-                                              :yargs "8.0.2"}
+                                   :npm-deps ~npm-deps
                                    :pretty-print true}}
                        {:id "test"
                         :figwheel true
@@ -86,14 +75,7 @@
                                    :asset-path "target/js/compiled/test"
                                    :output-to "target/js/compiled/huginn-test.js"
                                    :output-dir "target/js/compiled/test"
-                                   :npm-deps {"@google-cloud/storage" "1.5.2"
-                                              "@google-cloud/pubsub" "0.13.2"
-                                              :ava "0.22.0"
-                                              :systeminformation "3.33.0"
-                                              :jsonwebtoken "7.4.1"
-                                              :mqtt "2.15.0"
-                                              :uuid "3.1.0"
-                                              :yargs "8.0.2"}
+                                   :npm-deps ~npm-deps
                                    :pretty-print true}}
                        ]}
 
