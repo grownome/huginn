@@ -34,6 +34,7 @@
 (defn read-img-xform
   [{:keys [err timestamp filename]
     :as img-res}]
+  (debug "xforming image " filename)
   (let [img-data (io/slurp filename)
         base64-img (c/base64 "abc")]
     (io/delete-file filename)
