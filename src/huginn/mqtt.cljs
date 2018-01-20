@@ -182,7 +182,7 @@
 
   payloads must be prefixed with a string describing where the data came (payload-root opts) will generate this for you"
   [opts]
-  (let [send (a/chan)
+  (let [send (a/chan (a/buffer 15))
         recv (a/chan)
         kill (atom false)
         client-promise (init-client opts send recv)

@@ -21,9 +21,10 @@
    "read" (fn [err timestamp filename]
                (spy :debug [err timestamp filename])
             (a/go
-              (a/>! read-chan {:err err
-                               :timestamp timestamp
-                               :filename filename})))})
+              (let []
+                (a/>! read-chan {:err err
+                                 :timestamp timestamp
+                                 :filename filename}))))})
 
 
 (defn add-handlers
@@ -36,14 +37,41 @@
   [output-dir
    {:keys [err timestamp filename]
     :as img-res}]
-  (debug "xforming image " filename)
-  (let [img-data (io/slurp (str output-dir "/" filename) {:encoding ""})
+  (let [img-data (io/slurp (str output-dir "/" filename) {:encoding "base64"})
         base64-img (c/encodeString img-data)
         split-img  (partition 200000 img-data)
-        header    {:payload (str "split_image/" (count img-data))}
+        header    {:payload (str "split_image/" 3)}
         img-packets (map #(hash-map :payload % :timestamp timestamp) split-img)
         complete  (concat [header] img-packets)]
     complete))
+
+(defn chunk-img
+  [img chunk-size]
+  (if (< chunk-size (.-length img))
+    [img]
+    (into []
+      (for [start (range 0 (.-length img) chunk-size)
+            :let [end (min (.-length img) (+ start chunk-size))]]
+        (into-array (array-chunk img start end))))))
+
+(defn read-imgs
+  [output-dir in out]
+  (a/go-loop []
+    (let [{:keys [err timestamp filename]
+           :as img-res} (a/<! in)]
+      (debug "xforming image " filename)
+      (let [[err img-data] (a/<! (io/aslurp (str output-dir "/" filename) {:encoding ""}))]
+        (if (or err (= filename ""))
+          (do (error "error reading image:" err " " filename)
+              (recur))
+          (let [img-buffers (chunk-img img-data  2500)
+                header    {:payload (str "split_image/" (count img-buffers))}
+                img-packets (map #(hash-map :payload % :timestamp timestamp) img-buffers)
+                complete  (concat [header] img-packets)]
+            (a/>! out complete)
+            (spy (:payload (first img-packets)))
+            (debug "done xforming" complete)
+            (recur)))))))
 
 (defn build-camera
   ([] (build-camera {}))
@@ -54,7 +82,8 @@
           tl (* 60 1000 )} :as opts} ]
    (p/promise
     (fn [resolve reject]
-      (let [snap-chan (a/chan (a/buffer 1) (map (partial read-img-xform output-dir)))
+      (let [snap-chan (a/chan)
+            data-chan (a/chan (a/buffer 1))
             ^RaspiCam
             camera (r.
                     #js
@@ -62,7 +91,8 @@
                      :mode mode
                      :encoding encoding
                      :tl tl})
-            output {:snap-chan snap-chan
+            output {:raw-chan snap-chan
+                    :snap-chan data-chan
                     :camera camera}
             handlers (cam-handlers
                       #(resolve output)
@@ -70,6 +100,7 @@
                         (map io/delete-file
                              (io/file-seq output-dir)))
                       snap-chan)]
+        (read-imgs output-dir snap-chan data-chan)
         (add-handlers camera handlers)
         (.start camera))))))
 
