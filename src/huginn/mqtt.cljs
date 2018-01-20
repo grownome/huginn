@@ -91,8 +91,7 @@
 
 (defn publish-one
   [^MqttClient client {:keys [topic payload qos] :as p}]
-  (spy p)
-  (spy (.publish client topic payload qos)))
+  (.publish client topic payload qos))
 
 (defn publisher
   [client-atom send-chan]
@@ -134,8 +133,6 @@
     (let [teles (a/<! t-chan)
           topic (mqtt-topic opts topic)
           qos #js {:qos 1}]
-      (debug "Preparing to send " topic)
-      (spy :debug teles)
       (a/onto-chan
        send
        (map  (fn [t]
@@ -145,7 +142,6 @@
        false)
       (a/<! (a/timeout (:delayMs opts)))
       (recur))))
-
 
 (def state-send
   (partial sender "state"))
