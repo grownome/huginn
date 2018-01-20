@@ -7,7 +7,7 @@
                    spy get-env]]
    [clojure.core.async :as a]
    [cljs-node-io.core :as io]
-   [goog.crypt :as c]
+   [goog.crypt.base64 :as c]
    [raspicam :as r]))
 
 (defn cam-handlers
@@ -20,9 +20,10 @@
    "exit"   (fn [err] (error "error: " err))
    "read" (fn [err timestamp filename]
                (spy :debug [err timestamp filename])
-               (a/>! read-chan {:err err
-                                :timestamp timestamp
-                                :filename filename}))})
+            (a/go
+              (a/>! read-chan {:err err
+                               :timestamp timestamp
+                               :filename filename})))})
 
 
 (defn add-handlers
@@ -32,14 +33,17 @@
 
 
 (defn read-img-xform
-  [{:keys [err timestamp filename]
+  [output-dir
+   {:keys [err timestamp filename]
     :as img-res}]
   (debug "xforming image " filename)
-  (let [img-data (io/slurp filename)
-        base64-img (c/base64 "abc")]
-    (io/delete-file filename)
-    {:img base64-img
-     :timestamp timestamp}))
+  (let [img-data (io/slurp (str output-dir "/" filename) {:encoding ""})
+        base64-img (c/encodeString img-data)
+        split-img  (partition 200000 img-data)
+        header    {:payload (str "split_image/" (count img-data))}
+        img-packets (map #(hash-map :payload % :timestamp timestamp) split-img)
+        complete  (concat [header] img-packets)]
+    complete))
 
 (defn build-camera
   ([] (build-camera {}))
@@ -47,10 +51,10 @@
      :or {output-dir "pics"
           mode "timelapse"
           encoding "jpg"
-          tl (* 60 1000 60 5)} :as opts} ]
+          tl (* 60 1000 )} :as opts} ]
    (p/promise
     (fn [resolve reject]
-      (let [snap-chan (a/chan (a/buffer 1) (map read-img-xform))
+      (let [snap-chan (a/chan (a/buffer 1) (map (partial read-img-xform output-dir)))
             ^RaspiCam
             camera (r.
                     #js
@@ -78,13 +82,16 @@
 
 (defn -start-mix-camera
   [{:keys [state-chan] :as system}]
-  (let [camera (build-camera)
+  (let [camera-p (build-camera)
         mixer (a/mix state-chan)]
-    (a/admix mixer (:snap-chan camera))
-    [(-> system
-         (assoc :camera (:camera camera))
-         (assoc :mixer mixer)
-         (assoc :snap-chan (:snap-chan camera)))]))
+    (p/then camera-p
+            (fn [{:keys [snap-chan camera]}]
+              (info "connecting camera to mixer")
+              (a/admix mixer snap-chan)
+              [(-> system
+                   (assoc :camera camera)
+                   (assoc :mixer mixer)
+                   (assoc :snap-chan snap-chan))]))))
 
 (defn start-mix-camera
   [system-promise]

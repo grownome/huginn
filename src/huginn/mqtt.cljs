@@ -133,11 +133,13 @@
 
 
 (defn sender
-  [topic opts send t-chan]
+  [topic-name opts send t-chan]
   (a/go-loop []
     (let [teles (a/<! t-chan)
-          topic (mqtt-topic opts topic)
+          topic (mqtt-topic opts topic-name)
           qos #js {:qos 1}]
+      (when (= "state" topic-name)
+        (debug "pushing state" [ teles topic]))
       (a/onto-chan
        send
        (map  (fn [t]

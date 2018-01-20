@@ -14,9 +14,11 @@
 (defn -main [& args]
   (println "starting huginn")
   (let [system (mqtt/system-function config/default-options)
-        s-with-cam (camera/start-mix-camera system)] 
+        s-with-cam (camera/start-mix-camera system)
+
+        ]
     (p/then s-with-cam
-     #(reset! system-atom %))))
+            #(reset! system-atom %))))
 
 
 (set! *main-cli-fn* -main)

@@ -24,6 +24,9 @@
                    :source-paths ["src" "dev"]
                    :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}}
   :jvm-opts ["--add-modules" "java.xml.bind"]
+
+  :figwheel {:server-ip "192.168.0.114"
+             }
   :clean-targets ["server.js"
                   "out"
                   "package"
@@ -43,18 +46,8 @@
                                    :output-dir "out/prod"
                                    :npm-deps ~npm-deps}}
 
-                       {:id "prod-adv"
-                        :source-paths ["src"]
-                        :compiler {:optimizations :advanced
-                                   :install-deps true
-                                   :main huginn.core
-                                   :output-to "package-adv/index.js"
-                                   :target :nodejs
-                                   :output-dir "out/prod-adv"
-                                   :npm-deps ~npm-deps}}
-
                        {:id "dev"
-                        :figwheel true
+                        :figwheel {:websocket-host :server-ip}
                         :source-paths ["src"]
                         :compiler {:optimizations :none
                                    :install-deps true
