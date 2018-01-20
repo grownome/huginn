@@ -1,7 +1,7 @@
 (def npm-deps {"@google-cloud/storage" "1.5.2"
                "@google-cloud/pubsub" "0.13.2"
                :ava "0.22.0"
-               :v4l2camera "1.0.4"
+               :raspicam "0.2.14"
                :systeminformation "3.33.0"
                :jsonwebtoken "7.4.1"
                :mqtt "2.15.0"
