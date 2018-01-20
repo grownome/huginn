@@ -1,27 +1,10 @@
 FROM resin/%%RESIN_MACHINE_NAME%%-node:6-slim
 
 RUN apt-get update -q && apt-get install curl
-# Install the UV4L PPA
-RUN curl -s http://www.linux-projects.org/listing/uv4l_repo/lrkey.asc | sudo apt-key add - &&\
-  sed -i '1s;^;deb http://www.linux-projects.org/listing/uv4l_repo/raspbian/ jessie main\n;' /etc/apt/sources.list
-
 # Install dependencies as well as the proper version of uv4l-webrtc
 RUN apt-get update -q &&\
   apt-get install -yq \
     libraspberrypi-bin \
-    uv4l \
-    uv4l-demos \
-    uv4l-dummy \
-    uv4l-mjpegstream \
-    uv4l-raspicam \
-    uv4l-raspicam-extras \
-    uv4l-raspidisp \
-    uv4l-server \
-    uv4l-uvc \
-    uv4l-xmpp-bridge \
-    uv4l-xscreen \
-    uv4l-webrtc$([ $(uname -m) = armv6l ] && echo -armv6) \
-    vlc \
     wget \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -43,7 +26,6 @@ RUN npm link
 # Now copy our app
 COPY ./package /usr/src/app/package
 
-RUN systemctl disable uv4l_raspicam
 
 # Start app
 CMD ["node", "package/index.js"]
