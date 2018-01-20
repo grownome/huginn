@@ -8,6 +8,7 @@ RUN curl -s http://www.linux-projects.org/listing/uv4l_repo/lrkey.asc | sudo apt
 # Install dependencies as well as the proper version of uv4l-webrtc
 RUN apt-get update -q &&\
   apt-get install -yq \
+    build-essentials \
     uv4l \
     uv4l-demos \
     uv4l-dummy \
