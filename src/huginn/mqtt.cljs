@@ -106,10 +106,15 @@
   (a/go-loop []
     (let [wait (a/<! (a/timeout (* tokenExpMins 1000 60)))]
       (info "\tRefreshing token after " (* tokenExpMins 1000 60)  "ms")
-      (swap! client-atom #(.end %))
-      (p/then (init-client opts send recv)
-              (fn [client]
-                (reset! client-atom client))))
+
+      (p/chain
+       (p/promise
+        (fn [resolve reject]
+          (swap! client-atom (fn [c] (.end c)
+                               (resolve)))))
+       #(init-client opts send recv)
+       (fn [client]
+         (reset! client-atom client))))
     (recur)))
 
 (defn tele-chan
