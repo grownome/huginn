@@ -144,7 +144,10 @@
           topic (mqtt-topic opts topic-name)
           qos #js {:qos 1}]
       (when (= "state" topic-name)
-        (debug "pushing state" topic))
+        (debug "pushing state" topic)
+        (spy (into [] (map (comp type :payload)) teles))
+
+        )
       (a/onto-chan
        send
        (map  (fn [t]

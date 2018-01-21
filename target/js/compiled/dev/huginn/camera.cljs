@@ -42,7 +42,7 @@
             :let [end (min (.-length img) (+ start chunk-size))]]
         (do
           (debug "at " [start end])
-          (into-array (array-chunk img start end)))))))
+          (js/Buffer. (into-array (array-chunk img start end))))))))
 
 (defn read-imgs
   [output-dir in out]
@@ -77,7 +77,7 @@
             ^RaspiCam
             camera (r.
                     #js
-                    {:output (str output-dir "/%d_img.jpg")
+                    {:output (str output-dir "/%04d_img.jpg")
                      :mode mode
                      :encoding encoding
                      :tl tl})
