@@ -56,7 +56,7 @@
               (recur))
           (let [img-buffers (chunk-img img-data  100000)
                 header    {:payload (str "split_image/" (count img-buffers))}
-                img-packets (map #(hash-map :payload % :timestamp timestamp) img-buffers)
+                img-packets (map #(hash-map :payload % :timestamp timestamp :subfolder "captures") img-buffers)
                 complete  (concat [header] img-packets)]
             (debug "trying to write img packet")
             (a/>! out complete)
