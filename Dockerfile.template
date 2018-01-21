@@ -24,7 +24,7 @@ RUN JOBS=MAX npm install --production --unsafe-perm && npm cache clean && rm -rf
 RUN npm link
 
 # Now copy our app
-COPY ./package /usr/src/app/package
+COPY ./target /usr/src/app/target
 
 
 # Start app
