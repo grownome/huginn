@@ -21,6 +21,10 @@
        "/registries/" registryId
        "/devices/" deviceId))
 
+(defn config-chan
+  [{:keys [deviceId] :as opts}]
+  (str "/devices/" deviceId "/config"))
+
 (defn client-handlers
   [success-fn fail send recv]
   {"connect" (fn [success]
@@ -58,6 +62,7 @@
    (fn [resolve reject]
      (let [{:keys [time client] :as init} (build-client opts)
            handlers (client-handlers #(resolve client) #(reject :client-fail) send recv)]
+       (.subscribe client (config-chan opts))
        (add-handlers client handlers)))))
 
 (defn payload-root

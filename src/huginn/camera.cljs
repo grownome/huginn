@@ -35,7 +35,7 @@
 
 (defn chunk-img
   [img chunk-size]
-  (if (< chunk-size (.-length img))
+  (if (< (.-length img) chunk-size)
     [img]
     (into []
       (for [start (range 0 (.-length img) chunk-size)
@@ -52,7 +52,7 @@
         (if (or err (= filename ""))
           (do (error "error reading image:" err " " filename)
               (recur))
-          (let [img-buffers (chunk-img img-data  2500)
+          (let [img-buffers (chunk-img img-data  250000)
                 header    {:payload (str "split_image/" (count img-buffers))}
                 img-packets (map #(hash-map :payload % :timestamp timestamp) img-buffers)
                 complete  (concat [header] img-packets)]
