@@ -11,13 +11,13 @@
    [raspicam :as r]))
 
 (defn cam-handlers
-  [success-fn stop-fn read-chan]
+  [success-fn stop-fn restart-fn read-chan ]
   {"start" (fn []
              (info "camera connected")
              (success-fn))
    "stop"   (fn [] (debug "camera stopping")
               (stop-fn))
-   "exit"   (fn [err] (error "error: " err))
+   "exit"   (fn [err] (restart-fn) (error "exit: " err))
    "read" (fn [err timestamp filename]
                (spy :debug [err timestamp filename])
             (a/go
@@ -54,7 +54,7 @@
         (if (or err (= filename ""))
           (do (error "error reading image:" err " " filename)
               (recur))
-          (let [img-buffers (chunk-img img-data  25000)
+          (let [img-buffers (chunk-img img-data  100000)
                 header    {:payload (str "split_image/" (count img-buffers))}
                 img-packets (map #(hash-map :payload % :timestamp timestamp) img-buffers)
                 complete  (concat [header] img-packets)]
@@ -69,7 +69,7 @@
      :or {output-dir "pics"
           mode "timelapse"
           encoding "jpg"
-          tl (* 60 1000 )} :as opts} ]
+          tl (* 60 1000 10)} :as opts} ]
    (p/promise
     (fn [resolve reject]
       (let [snap-chan (a/chan)
@@ -89,6 +89,7 @@
                       #(doall
                         (map io/delete-file
                              (io/file-seq output-dir)))
+                      #(.start camera)
                       snap-chan)]
         (read-imgs output-dir snap-chan data-chan)
         (add-handlers camera handlers)
@@ -96,15 +97,18 @@
 
 
 (defn cleanup-camera
-  [{:keys [camera snap-chan]}]
+  [{:keys [camera snap-chan] :as system}]
   (.stop camera)
-  (a/close! snap-chan))
+  (a/close! snap-chan)
+  (-> system
+      (dissoc :camera)
+      (dissoc :snap-chan)))
 
 
 (defn -start-mix-camera
-  [{:keys [state-chan] :as system}]
+  [{:keys [telemetry-chan] :as system}]
   (let [camera-p (build-camera)
-        mixer (a/mix state-chan)]
+        mixer (a/mix telemetry-chan)]
     (p/then camera-p
             (fn [{:keys [snap-chan camera]}]
               (info "connecting camera to mixer")

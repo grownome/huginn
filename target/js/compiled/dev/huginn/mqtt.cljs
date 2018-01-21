@@ -193,7 +193,7 @@
         client-promise (init-client opts send recv)
         client-atom (atom nil)
         t-chan (tele-chan opts)
-        state-chan (a/chan (a/buffer 1))]
+        state-chan (a/chan)]
     (p/then
      client-promise
      (fn [client]
