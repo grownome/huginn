@@ -39,7 +39,6 @@
    "close"   (fn [] (debug "client connection closed"))
    "error"   (fn [err] (error "error: " err))
    "message" (fn [topic message packet]
-               (spy :debug [topic message packet])
                (a/go
                  (a/>! recv {:topic topic
                              :message message
@@ -145,9 +144,7 @@
           qos #js {:qos 1}]
       (when (= "state" topic-name)
         (debug "pushing state" topic)
-        (spy (into [] (map (comp type :payload)) teles))
-
-        )
+        (spy (into [] (map (comp type :payload)) teles)))
       (a/onto-chan
        send
        (map  (fn [t]
