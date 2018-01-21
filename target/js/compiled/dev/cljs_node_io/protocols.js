@@ -15,14 +15,14 @@ cljs_node_io.protocols.as_file = (function cljs_node_io$protocols$as_file(x){
 if((!((x == null))) && (!((x.cljs_node_io$protocols$Coercions$as_file$arity$1 == null)))){
 return x.cljs_node_io$protocols$Coercions$as_file$arity$1(x);
 } else {
-var x__42145__auto__ = (((x == null))?null:x);
-var m__42146__auto__ = (cljs_node_io.protocols.as_file[goog.typeOf(x__42145__auto__)]);
-if(!((m__42146__auto__ == null))){
-return m__42146__auto__.call(null,x);
+var x__31605__auto__ = (((x == null))?null:x);
+var m__31606__auto__ = (cljs_node_io.protocols.as_file[goog.typeOf(x__31605__auto__)]);
+if(!((m__31606__auto__ == null))){
+return m__31606__auto__.call(null,x);
 } else {
-var m__42146__auto____$1 = (cljs_node_io.protocols.as_file["_"]);
-if(!((m__42146__auto____$1 == null))){
-return m__42146__auto____$1.call(null,x);
+var m__31606__auto____$1 = (cljs_node_io.protocols.as_file["_"]);
+if(!((m__31606__auto____$1 == null))){
+return m__31606__auto____$1.call(null,x);
 } else {
 throw cljs.core.missing_protocol.call(null,"Coercions.as-file",x);
 }
@@ -37,14 +37,14 @@ cljs_node_io.protocols.as_url = (function cljs_node_io$protocols$as_url(x){
 if((!((x == null))) && (!((x.cljs_node_io$protocols$Coercions$as_url$arity$1 == null)))){
 return x.cljs_node_io$protocols$Coercions$as_url$arity$1(x);
 } else {
-var x__42145__auto__ = (((x == null))?null:x);
-var m__42146__auto__ = (cljs_node_io.protocols.as_url[goog.typeOf(x__42145__auto__)]);
-if(!((m__42146__auto__ == null))){
-return m__42146__auto__.call(null,x);
+var x__31605__auto__ = (((x == null))?null:x);
+var m__31606__auto__ = (cljs_node_io.protocols.as_url[goog.typeOf(x__31605__auto__)]);
+if(!((m__31606__auto__ == null))){
+return m__31606__auto__.call(null,x);
 } else {
-var m__42146__auto____$1 = (cljs_node_io.protocols.as_url["_"]);
-if(!((m__42146__auto____$1 == null))){
-return m__42146__auto____$1.call(null,x);
+var m__31606__auto____$1 = (cljs_node_io.protocols.as_url["_"]);
+if(!((m__31606__auto____$1 == null))){
+return m__31606__auto____$1.call(null,x);
 } else {
 throw cljs.core.missing_protocol.call(null,"Coercions.as-url",x);
 }
@@ -71,14 +71,14 @@ cljs_node_io.protocols.make_reader = (function cljs_node_io$protocols$make_reade
 if((!((x == null))) && (!((x.cljs_node_io$protocols$IOFactory$make_reader$arity$2 == null)))){
 return x.cljs_node_io$protocols$IOFactory$make_reader$arity$2(x,opts);
 } else {
-var x__42145__auto__ = (((x == null))?null:x);
-var m__42146__auto__ = (cljs_node_io.protocols.make_reader[goog.typeOf(x__42145__auto__)]);
-if(!((m__42146__auto__ == null))){
-return m__42146__auto__.call(null,x,opts);
+var x__31605__auto__ = (((x == null))?null:x);
+var m__31606__auto__ = (cljs_node_io.protocols.make_reader[goog.typeOf(x__31605__auto__)]);
+if(!((m__31606__auto__ == null))){
+return m__31606__auto__.call(null,x,opts);
 } else {
-var m__42146__auto____$1 = (cljs_node_io.protocols.make_reader["_"]);
-if(!((m__42146__auto____$1 == null))){
-return m__42146__auto____$1.call(null,x,opts);
+var m__31606__auto____$1 = (cljs_node_io.protocols.make_reader["_"]);
+if(!((m__31606__auto____$1 == null))){
+return m__31606__auto____$1.call(null,x,opts);
 } else {
 throw cljs.core.missing_protocol.call(null,"IOFactory.make-reader",x);
 }
@@ -93,14 +93,14 @@ cljs_node_io.protocols.make_writer = (function cljs_node_io$protocols$make_write
 if((!((x == null))) && (!((x.cljs_node_io$protocols$IOFactory$make_writer$arity$2 == null)))){
 return x.cljs_node_io$protocols$IOFactory$make_writer$arity$2(x,opts);
 } else {
-var x__42145__auto__ = (((x == null))?null:x);
-var m__42146__auto__ = (cljs_node_io.protocols.make_writer[goog.typeOf(x__42145__auto__)]);
-if(!((m__42146__auto__ == null))){
-return m__42146__auto__.call(null,x,opts);
+var x__31605__auto__ = (((x == null))?null:x);
+var m__31606__auto__ = (cljs_node_io.protocols.make_writer[goog.typeOf(x__31605__auto__)]);
+if(!((m__31606__auto__ == null))){
+return m__31606__auto__.call(null,x,opts);
 } else {
-var m__42146__auto____$1 = (cljs_node_io.protocols.make_writer["_"]);
-if(!((m__42146__auto____$1 == null))){
-return m__42146__auto____$1.call(null,x,opts);
+var m__31606__auto____$1 = (cljs_node_io.protocols.make_writer["_"]);
+if(!((m__31606__auto____$1 == null))){
+return m__31606__auto____$1.call(null,x,opts);
 } else {
 throw cljs.core.missing_protocol.call(null,"IOFactory.make-writer",x);
 }
@@ -115,14 +115,14 @@ cljs_node_io.protocols.make_input_stream = (function cljs_node_io$protocols$make
 if((!((x == null))) && (!((x.cljs_node_io$protocols$IOFactory$make_input_stream$arity$2 == null)))){
 return x.cljs_node_io$protocols$IOFactory$make_input_stream$arity$2(x,opts);
 } else {
-var x__42145__auto__ = (((x == null))?null:x);
-var m__42146__auto__ = (cljs_node_io.protocols.make_input_stream[goog.typeOf(x__42145__auto__)]);
-if(!((m__42146__auto__ == null))){
-return m__42146__auto__.call(null,x,opts);
+var x__31605__auto__ = (((x == null))?null:x);
+var m__31606__auto__ = (cljs_node_io.protocols.make_input_stream[goog.typeOf(x__31605__auto__)]);
+if(!((m__31606__auto__ == null))){
+return m__31606__auto__.call(null,x,opts);
 } else {
-var m__42146__auto____$1 = (cljs_node_io.protocols.make_input_stream["_"]);
-if(!((m__42146__auto____$1 == null))){
-return m__42146__auto____$1.call(null,x,opts);
+var m__31606__auto____$1 = (cljs_node_io.protocols.make_input_stream["_"]);
+if(!((m__31606__auto____$1 == null))){
+return m__31606__auto____$1.call(null,x,opts);
 } else {
 throw cljs.core.missing_protocol.call(null,"IOFactory.make-input-stream",x);
 }
@@ -137,14 +137,14 @@ cljs_node_io.protocols.make_output_stream = (function cljs_node_io$protocols$mak
 if((!((x == null))) && (!((x.cljs_node_io$protocols$IOFactory$make_output_stream$arity$2 == null)))){
 return x.cljs_node_io$protocols$IOFactory$make_output_stream$arity$2(x,opts);
 } else {
-var x__42145__auto__ = (((x == null))?null:x);
-var m__42146__auto__ = (cljs_node_io.protocols.make_output_stream[goog.typeOf(x__42145__auto__)]);
-if(!((m__42146__auto__ == null))){
-return m__42146__auto__.call(null,x,opts);
+var x__31605__auto__ = (((x == null))?null:x);
+var m__31606__auto__ = (cljs_node_io.protocols.make_output_stream[goog.typeOf(x__31605__auto__)]);
+if(!((m__31606__auto__ == null))){
+return m__31606__auto__.call(null,x,opts);
 } else {
-var m__42146__auto____$1 = (cljs_node_io.protocols.make_output_stream["_"]);
-if(!((m__42146__auto____$1 == null))){
-return m__42146__auto____$1.call(null,x,opts);
+var m__31606__auto____$1 = (cljs_node_io.protocols.make_output_stream["_"]);
+if(!((m__31606__auto____$1 == null))){
+return m__31606__auto____$1.call(null,x,opts);
 } else {
 throw cljs.core.missing_protocol.call(null,"IOFactory.make-output-stream",x);
 }
@@ -181,4 +181,4 @@ cljs_node_io.protocols.IOutputStream = function(){};
 cljs_node_io.protocols.IChildProcess = function(){};
 
 
-//# sourceMappingURL=protocols.js.map?rel=1516433043513
+//# sourceMappingURL=protocols.js.map

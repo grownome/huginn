@@ -60,7 +60,7 @@
                 complete  (concat [header] img-packets)]
             (debug "trying to write img packet")
             (a/>! out complete)
-            (debug "done xforming" complete)
+            (debug "done xforming")
             (recur)))))))
 
 (defn build-camera

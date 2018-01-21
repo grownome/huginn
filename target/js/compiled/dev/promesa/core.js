@@ -107,37 +107,37 @@ return promesa.protocols._map.call(null,p,f);
  * Like then but accepts multiple parameters.
  */
 promesa.core.chain = (function promesa$core$chain(var_args){
-var args__42698__auto__ = [];
-var len__42691__auto___43934 = arguments.length;
-var i__42692__auto___43935 = (0);
+var args__32158__auto__ = [];
+var len__32151__auto___35229 = arguments.length;
+var i__32152__auto___35230 = (0);
 while(true){
-if((i__42692__auto___43935 < len__42691__auto___43934)){
-args__42698__auto__.push((arguments[i__42692__auto___43935]));
+if((i__32152__auto___35230 < len__32151__auto___35229)){
+args__32158__auto__.push((arguments[i__32152__auto___35230]));
 
-var G__43936 = (i__42692__auto___43935 + (1));
-i__42692__auto___43935 = G__43936;
+var G__35231 = (i__32152__auto___35230 + (1));
+i__32152__auto___35230 = G__35231;
 continue;
 } else {
 }
 break;
 }
 
-var argseq__42699__auto__ = ((((1) < args__42698__auto__.length))?(new cljs.core.IndexedSeq(args__42698__auto__.slice((1)),(0),null)):null);
-return promesa.core.chain.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),argseq__42699__auto__);
+var argseq__32159__auto__ = ((((1) < args__32158__auto__.length))?(new cljs.core.IndexedSeq(args__32158__auto__.slice((1)),(0),null)):null);
+return promesa.core.chain.cljs$core$IFn$_invoke$arity$variadic((arguments[(0)]),argseq__32159__auto__);
 });
 
 promesa.core.chain.cljs$core$IFn$_invoke$arity$variadic = (function (p,funcs){
-return cljs.core.reduce.call(null,(function (p1__43930_SHARP_,p2__43931_SHARP_){
-return promesa.core.then.call(null,p1__43930_SHARP_,p2__43931_SHARP_);
+return cljs.core.reduce.call(null,(function (p1__35225_SHARP_,p2__35226_SHARP_){
+return promesa.core.then.call(null,p1__35225_SHARP_,p2__35226_SHARP_);
 }),p,funcs);
 });
 
 promesa.core.chain.cljs$lang$maxFixedArity = (1);
 
-promesa.core.chain.cljs$lang$applyTo = (function (seq43932){
-var G__43933 = cljs.core.first.call(null,seq43932);
-var seq43932__$1 = cljs.core.next.call(null,seq43932);
-return promesa.core.chain.cljs$core$IFn$_invoke$arity$variadic(G__43933,seq43932__$1);
+promesa.core.chain.cljs$lang$applyTo = (function (seq35227){
+var G__35228 = cljs.core.first.call(null,seq35227);
+var seq35227__$1 = cljs.core.next.call(null,seq35227);
+return promesa.core.chain.cljs$core$IFn$_invoke$arity$variadic(G__35228,seq35227__$1);
 });
 
 promesa.core.branch = (function promesa$core$branch(p,success,failure){
@@ -147,8 +147,8 @@ return promesa.protocols._catch.call(null,promesa.protocols._map.call(null,p,suc
  * Catch all promise chain helper.
  */
 promesa.core.catch$ = (function promesa$core$catch(var_args){
-var G__43939 = arguments.length;
-switch (G__43939) {
+var G__35234 = arguments.length;
+switch (G__35234) {
 case 2:
 return promesa.core.catch$.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -168,8 +168,8 @@ return promesa.protocols._catch.call(null,p,f);
 });
 
 promesa.core.catch$.cljs$core$IFn$_invoke$arity$3 = (function (p,pred_or_type,f){
-var accept_QMARK_ = ((cljs.core.ifn_QMARK_.call(null,pred_or_type))?pred_or_type:(function (p1__43937_SHARP_){
-return (p1__43937_SHARP_ instanceof pred_or_type);
+var accept_QMARK_ = ((cljs.core.ifn_QMARK_.call(null,pred_or_type))?pred_or_type:(function (p1__35232_SHARP_){
+return (p1__35232_SHARP_ instanceof pred_or_type);
 }));
 return promesa.protocols._catch.call(null,p,((function (accept_QMARK_){
 return (function (e){
@@ -188,8 +188,8 @@ promesa.core.catch$.cljs$lang$maxFixedArity = 3;
  * Same as `catch` but with parameters inverted.
  */
 promesa.core.error = (function promesa$core$error(var_args){
-var G__43942 = arguments.length;
-switch (G__43942) {
+var G__35237 = arguments.length;
+switch (G__35237) {
 case 2:
 return promesa.core.error.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -276,34 +276,34 @@ return promesa.protocols._cancelled_QMARK_.call(null,v);
  */
 promesa.core.promisify = (function promesa$core$promisify(callable){
 return (function() { 
-var G__43945__delegate = function (args){
+var G__35240__delegate = function (args){
 return promesa.core.promise.call(null,(function (resolve,reject){
 var args__$1 = cljs.core.conj.call(null,cljs.core.vec.call(null,args),resolve);
 try{return cljs.core.apply.call(null,callable,args__$1);
-}catch (e43944){if((e43944 instanceof Error)){
-var e = e43944;
+}catch (e35239){if((e35239 instanceof Error)){
+var e = e35239;
 return reject.call(null,e);
 } else {
-throw e43944;
+throw e35239;
 
 }
 }}));
 };
-var G__43945 = function (var_args){
+var G__35240 = function (var_args){
 var args = null;
 if (arguments.length > 0) {
-var G__43946__i = 0, G__43946__a = new Array(arguments.length -  0);
-while (G__43946__i < G__43946__a.length) {G__43946__a[G__43946__i] = arguments[G__43946__i + 0]; ++G__43946__i;}
-  args = new cljs.core.IndexedSeq(G__43946__a,0,null);
+var G__35241__i = 0, G__35241__a = new Array(arguments.length -  0);
+while (G__35241__i < G__35241__a.length) {G__35241__a[G__35241__i] = arguments[G__35241__i + 0]; ++G__35241__i;}
+  args = new cljs.core.IndexedSeq(G__35241__a,0,null);
 } 
-return G__43945__delegate.call(this,args);};
-G__43945.cljs$lang$maxFixedArity = 0;
-G__43945.cljs$lang$applyTo = (function (arglist__43947){
-var args = cljs.core.seq(arglist__43947);
-return G__43945__delegate(args);
+return G__35240__delegate.call(this,args);};
+G__35240.cljs$lang$maxFixedArity = 0;
+G__35240.cljs$lang$applyTo = (function (arglist__35242){
+var args = cljs.core.seq(arglist__35242);
+return G__35240__delegate(args);
 });
-G__43945.cljs$core$IFn$_invoke$arity$variadic = G__43945__delegate;
-return G__43945;
+G__35240.cljs$core$IFn$_invoke$arity$variadic = G__35240__delegate;
+return G__35240;
 })()
 ;
 });
@@ -315,8 +315,8 @@ return G__43945;
  *   with a TimeoutError
  */
 promesa.core.timeout = (function promesa$core$timeout(var_args){
-var G__43949 = arguments.length;
-switch (G__43949) {
+var G__35244 = arguments.length;
+switch (G__35244) {
 case 2:
 return promesa.core.timeout.cljs$core$IFn$_invoke$arity$2((arguments[(0)]),(arguments[(1)]));
 
@@ -348,8 +348,8 @@ promesa.core.timeout.cljs$lang$maxFixedArity = 3;
  *   time is reached.
  */
 promesa.core.delay = (function promesa$core$delay(var_args){
-var G__43952 = arguments.length;
-switch (G__43952) {
+var G__35247 = arguments.length;
+switch (G__35247) {
 case 1:
 return promesa.core.delay.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -389,23 +389,23 @@ return resolve.call(null,callback.call(null));
 }));
 });
 promesa.core.await$ = (function promesa$core$await(var_args){
-var args__42698__auto__ = [];
-var len__42691__auto___43955 = arguments.length;
-var i__42692__auto___43956 = (0);
+var args__32158__auto__ = [];
+var len__32151__auto___35250 = arguments.length;
+var i__32152__auto___35251 = (0);
 while(true){
-if((i__42692__auto___43956 < len__42691__auto___43955)){
-args__42698__auto__.push((arguments[i__42692__auto___43956]));
+if((i__32152__auto___35251 < len__32151__auto___35250)){
+args__32158__auto__.push((arguments[i__32152__auto___35251]));
 
-var G__43957 = (i__42692__auto___43956 + (1));
-i__42692__auto___43956 = G__43957;
+var G__35252 = (i__32152__auto___35251 + (1));
+i__32152__auto___35251 = G__35252;
 continue;
 } else {
 }
 break;
 }
 
-var argseq__42699__auto__ = ((((0) < args__42698__auto__.length))?(new cljs.core.IndexedSeq(args__42698__auto__.slice((0)),(0),null)):null);
-return promesa.core.await$.cljs$core$IFn$_invoke$arity$variadic(argseq__42699__auto__);
+var argseq__32159__auto__ = ((((0) < args__32158__auto__.length))?(new cljs.core.IndexedSeq(args__32158__auto__.slice((0)),(0),null)):null);
+return promesa.core.await$.cljs$core$IFn$_invoke$arity$variadic(argseq__32159__auto__);
 });
 
 promesa.core.await$.cljs$core$IFn$_invoke$arity$variadic = (function (args){
@@ -414,9 +414,9 @@ throw cljs.core.ex_info.call(null,"Should be only used in alet macro.",cljs.core
 
 promesa.core.await$.cljs$lang$maxFixedArity = (0);
 
-promesa.core.await$.cljs$lang$applyTo = (function (seq43954){
-return promesa.core.await$.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq.call(null,seq43954));
+promesa.core.await$.cljs$lang$applyTo = (function (seq35249){
+return promesa.core.await$.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq.call(null,seq35249));
 });
 
 
-//# sourceMappingURL=core.js.map?rel=1516433041753
+//# sourceMappingURL=core.js.map

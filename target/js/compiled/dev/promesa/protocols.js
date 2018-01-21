@@ -15,14 +15,14 @@ promesa.protocols._map = (function promesa$protocols$_map(_,callback){
 if((!((_ == null))) && (!((_.promesa$protocols$IPromise$_map$arity$2 == null)))){
 return _.promesa$protocols$IPromise$_map$arity$2(_,callback);
 } else {
-var x__42145__auto__ = (((_ == null))?null:_);
-var m__42146__auto__ = (promesa.protocols._map[goog.typeOf(x__42145__auto__)]);
-if(!((m__42146__auto__ == null))){
-return m__42146__auto__.call(null,_,callback);
+var x__31605__auto__ = (((_ == null))?null:_);
+var m__31606__auto__ = (promesa.protocols._map[goog.typeOf(x__31605__auto__)]);
+if(!((m__31606__auto__ == null))){
+return m__31606__auto__.call(null,_,callback);
 } else {
-var m__42146__auto____$1 = (promesa.protocols._map["_"]);
-if(!((m__42146__auto____$1 == null))){
-return m__42146__auto____$1.call(null,_,callback);
+var m__31606__auto____$1 = (promesa.protocols._map["_"]);
+if(!((m__31606__auto____$1 == null))){
+return m__31606__auto____$1.call(null,_,callback);
 } else {
 throw cljs.core.missing_protocol.call(null,"IPromise.-map",_);
 }
@@ -37,14 +37,14 @@ promesa.protocols._bind = (function promesa$protocols$_bind(_,callback){
 if((!((_ == null))) && (!((_.promesa$protocols$IPromise$_bind$arity$2 == null)))){
 return _.promesa$protocols$IPromise$_bind$arity$2(_,callback);
 } else {
-var x__42145__auto__ = (((_ == null))?null:_);
-var m__42146__auto__ = (promesa.protocols._bind[goog.typeOf(x__42145__auto__)]);
-if(!((m__42146__auto__ == null))){
-return m__42146__auto__.call(null,_,callback);
+var x__31605__auto__ = (((_ == null))?null:_);
+var m__31606__auto__ = (promesa.protocols._bind[goog.typeOf(x__31605__auto__)]);
+if(!((m__31606__auto__ == null))){
+return m__31606__auto__.call(null,_,callback);
 } else {
-var m__42146__auto____$1 = (promesa.protocols._bind["_"]);
-if(!((m__42146__auto____$1 == null))){
-return m__42146__auto____$1.call(null,_,callback);
+var m__31606__auto____$1 = (promesa.protocols._bind["_"]);
+if(!((m__31606__auto____$1 == null))){
+return m__31606__auto____$1.call(null,_,callback);
 } else {
 throw cljs.core.missing_protocol.call(null,"IPromise.-bind",_);
 }
@@ -59,14 +59,14 @@ promesa.protocols._catch = (function promesa$protocols$_catch(_,callback){
 if((!((_ == null))) && (!((_.promesa$protocols$IPromise$_catch$arity$2 == null)))){
 return _.promesa$protocols$IPromise$_catch$arity$2(_,callback);
 } else {
-var x__42145__auto__ = (((_ == null))?null:_);
-var m__42146__auto__ = (promesa.protocols._catch[goog.typeOf(x__42145__auto__)]);
-if(!((m__42146__auto__ == null))){
-return m__42146__auto__.call(null,_,callback);
+var x__31605__auto__ = (((_ == null))?null:_);
+var m__31606__auto__ = (promesa.protocols._catch[goog.typeOf(x__31605__auto__)]);
+if(!((m__31606__auto__ == null))){
+return m__31606__auto__.call(null,_,callback);
 } else {
-var m__42146__auto____$1 = (promesa.protocols._catch["_"]);
-if(!((m__42146__auto____$1 == null))){
-return m__42146__auto____$1.call(null,_,callback);
+var m__31606__auto____$1 = (promesa.protocols._catch["_"]);
+if(!((m__31606__auto____$1 == null))){
+return m__31606__auto____$1.call(null,_,callback);
 } else {
 throw cljs.core.missing_protocol.call(null,"IPromise.-catch",_);
 }
@@ -88,14 +88,14 @@ promesa.protocols._extract = (function promesa$protocols$_extract(_){
 if((!((_ == null))) && (!((_.promesa$protocols$IState$_extract$arity$1 == null)))){
 return _.promesa$protocols$IState$_extract$arity$1(_);
 } else {
-var x__42145__auto__ = (((_ == null))?null:_);
-var m__42146__auto__ = (promesa.protocols._extract[goog.typeOf(x__42145__auto__)]);
-if(!((m__42146__auto__ == null))){
-return m__42146__auto__.call(null,_);
+var x__31605__auto__ = (((_ == null))?null:_);
+var m__31606__auto__ = (promesa.protocols._extract[goog.typeOf(x__31605__auto__)]);
+if(!((m__31606__auto__ == null))){
+return m__31606__auto__.call(null,_);
 } else {
-var m__42146__auto____$1 = (promesa.protocols._extract["_"]);
-if(!((m__42146__auto____$1 == null))){
-return m__42146__auto____$1.call(null,_);
+var m__31606__auto____$1 = (promesa.protocols._extract["_"]);
+if(!((m__31606__auto____$1 == null))){
+return m__31606__auto____$1.call(null,_);
 } else {
 throw cljs.core.missing_protocol.call(null,"IState.-extract",_);
 }
@@ -110,14 +110,14 @@ promesa.protocols._resolved_QMARK_ = (function promesa$protocols$_resolved_QMARK
 if((!((_ == null))) && (!((_.promesa$protocols$IState$_resolved_QMARK_$arity$1 == null)))){
 return _.promesa$protocols$IState$_resolved_QMARK_$arity$1(_);
 } else {
-var x__42145__auto__ = (((_ == null))?null:_);
-var m__42146__auto__ = (promesa.protocols._resolved_QMARK_[goog.typeOf(x__42145__auto__)]);
-if(!((m__42146__auto__ == null))){
-return m__42146__auto__.call(null,_);
+var x__31605__auto__ = (((_ == null))?null:_);
+var m__31606__auto__ = (promesa.protocols._resolved_QMARK_[goog.typeOf(x__31605__auto__)]);
+if(!((m__31606__auto__ == null))){
+return m__31606__auto__.call(null,_);
 } else {
-var m__42146__auto____$1 = (promesa.protocols._resolved_QMARK_["_"]);
-if(!((m__42146__auto____$1 == null))){
-return m__42146__auto____$1.call(null,_);
+var m__31606__auto____$1 = (promesa.protocols._resolved_QMARK_["_"]);
+if(!((m__31606__auto____$1 == null))){
+return m__31606__auto____$1.call(null,_);
 } else {
 throw cljs.core.missing_protocol.call(null,"IState.-resolved?",_);
 }
@@ -132,14 +132,14 @@ promesa.protocols._rejected_QMARK_ = (function promesa$protocols$_rejected_QMARK
 if((!((_ == null))) && (!((_.promesa$protocols$IState$_rejected_QMARK_$arity$1 == null)))){
 return _.promesa$protocols$IState$_rejected_QMARK_$arity$1(_);
 } else {
-var x__42145__auto__ = (((_ == null))?null:_);
-var m__42146__auto__ = (promesa.protocols._rejected_QMARK_[goog.typeOf(x__42145__auto__)]);
-if(!((m__42146__auto__ == null))){
-return m__42146__auto__.call(null,_);
+var x__31605__auto__ = (((_ == null))?null:_);
+var m__31606__auto__ = (promesa.protocols._rejected_QMARK_[goog.typeOf(x__31605__auto__)]);
+if(!((m__31606__auto__ == null))){
+return m__31606__auto__.call(null,_);
 } else {
-var m__42146__auto____$1 = (promesa.protocols._rejected_QMARK_["_"]);
-if(!((m__42146__auto____$1 == null))){
-return m__42146__auto____$1.call(null,_);
+var m__31606__auto____$1 = (promesa.protocols._rejected_QMARK_["_"]);
+if(!((m__31606__auto____$1 == null))){
+return m__31606__auto____$1.call(null,_);
 } else {
 throw cljs.core.missing_protocol.call(null,"IState.-rejected?",_);
 }
@@ -154,14 +154,14 @@ promesa.protocols._pending_QMARK_ = (function promesa$protocols$_pending_QMARK_(
 if((!((_ == null))) && (!((_.promesa$protocols$IState$_pending_QMARK_$arity$1 == null)))){
 return _.promesa$protocols$IState$_pending_QMARK_$arity$1(_);
 } else {
-var x__42145__auto__ = (((_ == null))?null:_);
-var m__42146__auto__ = (promesa.protocols._pending_QMARK_[goog.typeOf(x__42145__auto__)]);
-if(!((m__42146__auto__ == null))){
-return m__42146__auto__.call(null,_);
+var x__31605__auto__ = (((_ == null))?null:_);
+var m__31606__auto__ = (promesa.protocols._pending_QMARK_[goog.typeOf(x__31605__auto__)]);
+if(!((m__31606__auto__ == null))){
+return m__31606__auto__.call(null,_);
 } else {
-var m__42146__auto____$1 = (promesa.protocols._pending_QMARK_["_"]);
-if(!((m__42146__auto____$1 == null))){
-return m__42146__auto____$1.call(null,_);
+var m__31606__auto____$1 = (promesa.protocols._pending_QMARK_["_"]);
+if(!((m__31606__auto____$1 == null))){
+return m__31606__auto____$1.call(null,_);
 } else {
 throw cljs.core.missing_protocol.call(null,"IState.-pending?",_);
 }
@@ -183,14 +183,14 @@ promesa.protocols._promise = (function promesa$protocols$_promise(_){
 if((!((_ == null))) && (!((_.promesa$protocols$IPromiseFactory$_promise$arity$1 == null)))){
 return _.promesa$protocols$IPromiseFactory$_promise$arity$1(_);
 } else {
-var x__42145__auto__ = (((_ == null))?null:_);
-var m__42146__auto__ = (promesa.protocols._promise[goog.typeOf(x__42145__auto__)]);
-if(!((m__42146__auto__ == null))){
-return m__42146__auto__.call(null,_);
+var x__31605__auto__ = (((_ == null))?null:_);
+var m__31606__auto__ = (promesa.protocols._promise[goog.typeOf(x__31605__auto__)]);
+if(!((m__31606__auto__ == null))){
+return m__31606__auto__.call(null,_);
 } else {
-var m__42146__auto____$1 = (promesa.protocols._promise["_"]);
-if(!((m__42146__auto____$1 == null))){
-return m__42146__auto____$1.call(null,_);
+var m__31606__auto____$1 = (promesa.protocols._promise["_"]);
+if(!((m__31606__auto____$1 == null))){
+return m__31606__auto____$1.call(null,_);
 } else {
 throw cljs.core.missing_protocol.call(null,"IPromiseFactory.-promise",_);
 }
@@ -209,14 +209,14 @@ promesa.protocols._cancel = (function promesa$protocols$_cancel(_){
 if((!((_ == null))) && (!((_.promesa$protocols$ICancellable$_cancel$arity$1 == null)))){
 return _.promesa$protocols$ICancellable$_cancel$arity$1(_);
 } else {
-var x__42145__auto__ = (((_ == null))?null:_);
-var m__42146__auto__ = (promesa.protocols._cancel[goog.typeOf(x__42145__auto__)]);
-if(!((m__42146__auto__ == null))){
-return m__42146__auto__.call(null,_);
+var x__31605__auto__ = (((_ == null))?null:_);
+var m__31606__auto__ = (promesa.protocols._cancel[goog.typeOf(x__31605__auto__)]);
+if(!((m__31606__auto__ == null))){
+return m__31606__auto__.call(null,_);
 } else {
-var m__42146__auto____$1 = (promesa.protocols._cancel["_"]);
-if(!((m__42146__auto____$1 == null))){
-return m__42146__auto____$1.call(null,_);
+var m__31606__auto____$1 = (promesa.protocols._cancel["_"]);
+if(!((m__31606__auto____$1 == null))){
+return m__31606__auto____$1.call(null,_);
 } else {
 throw cljs.core.missing_protocol.call(null,"ICancellable.-cancel",_);
 }
@@ -228,14 +228,14 @@ promesa.protocols._cancelled_QMARK_ = (function promesa$protocols$_cancelled_QMA
 if((!((_ == null))) && (!((_.promesa$protocols$ICancellable$_cancelled_QMARK_$arity$1 == null)))){
 return _.promesa$protocols$ICancellable$_cancelled_QMARK_$arity$1(_);
 } else {
-var x__42145__auto__ = (((_ == null))?null:_);
-var m__42146__auto__ = (promesa.protocols._cancelled_QMARK_[goog.typeOf(x__42145__auto__)]);
-if(!((m__42146__auto__ == null))){
-return m__42146__auto__.call(null,_);
+var x__31605__auto__ = (((_ == null))?null:_);
+var m__31606__auto__ = (promesa.protocols._cancelled_QMARK_[goog.typeOf(x__31605__auto__)]);
+if(!((m__31606__auto__ == null))){
+return m__31606__auto__.call(null,_);
 } else {
-var m__42146__auto____$1 = (promesa.protocols._cancelled_QMARK_["_"]);
-if(!((m__42146__auto____$1 == null))){
-return m__42146__auto____$1.call(null,_);
+var m__31606__auto____$1 = (promesa.protocols._cancelled_QMARK_["_"]);
+if(!((m__31606__auto____$1 == null))){
+return m__31606__auto____$1.call(null,_);
 } else {
 throw cljs.core.missing_protocol.call(null,"ICancellable.-cancelled?",_);
 }
@@ -257,14 +257,14 @@ promesa.protocols._schedule = (function promesa$protocols$_schedule(_,ms,func){
 if((!((_ == null))) && (!((_.promesa$protocols$IScheduler$_schedule$arity$3 == null)))){
 return _.promesa$protocols$IScheduler$_schedule$arity$3(_,ms,func);
 } else {
-var x__42145__auto__ = (((_ == null))?null:_);
-var m__42146__auto__ = (promesa.protocols._schedule[goog.typeOf(x__42145__auto__)]);
-if(!((m__42146__auto__ == null))){
-return m__42146__auto__.call(null,_,ms,func);
+var x__31605__auto__ = (((_ == null))?null:_);
+var m__31606__auto__ = (promesa.protocols._schedule[goog.typeOf(x__31605__auto__)]);
+if(!((m__31606__auto__ == null))){
+return m__31606__auto__.call(null,_,ms,func);
 } else {
-var m__42146__auto____$1 = (promesa.protocols._schedule["_"]);
-if(!((m__42146__auto____$1 == null))){
-return m__42146__auto____$1.call(null,_,ms,func);
+var m__31606__auto____$1 = (promesa.protocols._schedule["_"]);
+if(!((m__31606__auto____$1 == null))){
+return m__31606__auto____$1.call(null,_,ms,func);
 } else {
 throw cljs.core.missing_protocol.call(null,"IScheduler.-schedule",_);
 }
@@ -273,4 +273,4 @@ throw cljs.core.missing_protocol.call(null,"IScheduler.-schedule",_);
 });
 
 
-//# sourceMappingURL=protocols.js.map?rel=1516433041579
+//# sourceMappingURL=protocols.js.map

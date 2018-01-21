@@ -12,40 +12,40 @@ cljs_node_io.streams.stream = require("stream");
  * @return {!stream.Readable}
  */
 cljs_node_io.streams.input_IOF_BANG_ = (function cljs_node_io$streams$input_IOF_BANG_(streamobj){
-var x47217 = streamobj;
-x47217.cljs_node_io$protocols$IInputStream$ = cljs.core.PROTOCOL_SENTINEL;
+var x38512 = streamobj;
+x38512.cljs_node_io$protocols$IInputStream$ = cljs.core.PROTOCOL_SENTINEL;
 
-x47217.cljs_node_io$protocols$IOFactory$ = cljs.core.PROTOCOL_SENTINEL;
+x38512.cljs_node_io$protocols$IOFactory$ = cljs.core.PROTOCOL_SENTINEL;
 
-x47217.cljs_node_io$protocols$IOFactory$make_reader$arity$2 = ((function (x47217){
+x38512.cljs_node_io$protocols$IOFactory$make_reader$arity$2 = ((function (x38512){
 return (function (this$,opts){
 var this$__$1 = this;
 return this$__$1;
-});})(x47217))
+});})(x38512))
 ;
 
-x47217.cljs_node_io$protocols$IOFactory$make_input_stream$arity$2 = ((function (x47217){
+x38512.cljs_node_io$protocols$IOFactory$make_input_stream$arity$2 = ((function (x38512){
 return (function (this$,_){
 var this$__$1 = this;
 return this$__$1;
-});})(x47217))
+});})(x38512))
 ;
 
-x47217.cljs_node_io$protocols$IOFactory$make_writer$arity$2 = ((function (x47217){
+x38512.cljs_node_io$protocols$IOFactory$make_writer$arity$2 = ((function (x38512){
 return (function (this$,_){
 var this$__$1 = this;
 throw (new Error(["ILLEGAL ARGUMENT: Cannot open <",cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.pr_str.call(null,this$__$1)),"> as an OutputStream."].join('')));
-});})(x47217))
+});})(x38512))
 ;
 
-x47217.cljs_node_io$protocols$IOFactory$make_output_stream$arity$2 = ((function (x47217){
+x38512.cljs_node_io$protocols$IOFactory$make_output_stream$arity$2 = ((function (x38512){
 return (function (this$,_){
 var this$__$1 = this;
 throw (new Error(["ILLEGAL ARGUMENT: Cannot open <",cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.pr_str.call(null,this$__$1)),"> as an OutputStream."].join('')));
-});})(x47217))
+});})(x38512))
 ;
 
-return x47217;
+return x38512;
 });
 /**
  * adds IOFactory output impls that just defer back to the stream or throw as appropriate
@@ -53,40 +53,40 @@ return x47217;
  * @return {!stream.Writable}
  */
 cljs_node_io.streams.output_IOF_BANG_ = (function cljs_node_io$streams$output_IOF_BANG_(streamobj){
-var x47218 = streamobj;
-x47218.cljs_node_io$protocols$IOutputStream$ = cljs.core.PROTOCOL_SENTINEL;
+var x38513 = streamobj;
+x38513.cljs_node_io$protocols$IOutputStream$ = cljs.core.PROTOCOL_SENTINEL;
 
-x47218.cljs_node_io$protocols$IOFactory$ = cljs.core.PROTOCOL_SENTINEL;
+x38513.cljs_node_io$protocols$IOFactory$ = cljs.core.PROTOCOL_SENTINEL;
 
-x47218.cljs_node_io$protocols$IOFactory$make_reader$arity$2 = ((function (x47218){
+x38513.cljs_node_io$protocols$IOFactory$make_reader$arity$2 = ((function (x38513){
 return (function (this$,_){
 var this$__$1 = this;
 throw (new Error(["ILLEGAL ARGUMENT: Cannot open <",cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.pr_str.call(null,this$__$1)),"> as an InputStream."].join('')));
-});})(x47218))
+});})(x38513))
 ;
 
-x47218.cljs_node_io$protocols$IOFactory$make_input_stream$arity$2 = ((function (x47218){
+x38513.cljs_node_io$protocols$IOFactory$make_input_stream$arity$2 = ((function (x38513){
 return (function (this$,_){
 var this$__$1 = this;
 throw (new Error(["ILLEGAL ARGUMENT: Cannot open <",cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.pr_str.call(null,this$__$1)),"> as an InputStream."].join('')));
-});})(x47218))
+});})(x38513))
 ;
 
-x47218.cljs_node_io$protocols$IOFactory$make_writer$arity$2 = ((function (x47218){
+x38513.cljs_node_io$protocols$IOFactory$make_writer$arity$2 = ((function (x38513){
 return (function (this$,_){
 var this$__$1 = this;
 return this$__$1;
-});})(x47218))
+});})(x38513))
 ;
 
-x47218.cljs_node_io$protocols$IOFactory$make_output_stream$arity$2 = ((function (x47218){
+x38513.cljs_node_io$protocols$IOFactory$make_output_stream$arity$2 = ((function (x38513){
 return (function (this$,_){
 var this$__$1 = this;
 return this$__$1;
-});})(x47218))
+});})(x38513))
 ;
 
-return x47218;
+return x38513;
 });
 /**
  * defer back to the stream in all cases
@@ -94,42 +94,42 @@ return x47218;
  * @return {!stream.Duplex}
  */
 cljs_node_io.streams.duplex_IOF_BANG_ = (function cljs_node_io$streams$duplex_IOF_BANG_(streamobj){
-var x47219 = streamobj;
-x47219.cljs_node_io$protocols$IInputStream$ = cljs.core.PROTOCOL_SENTINEL;
+var x38514 = streamobj;
+x38514.cljs_node_io$protocols$IInputStream$ = cljs.core.PROTOCOL_SENTINEL;
 
-x47219.cljs_node_io$protocols$IOutputStream$ = cljs.core.PROTOCOL_SENTINEL;
+x38514.cljs_node_io$protocols$IOutputStream$ = cljs.core.PROTOCOL_SENTINEL;
 
-x47219.cljs_node_io$protocols$IOFactory$ = cljs.core.PROTOCOL_SENTINEL;
+x38514.cljs_node_io$protocols$IOFactory$ = cljs.core.PROTOCOL_SENTINEL;
 
-x47219.cljs_node_io$protocols$IOFactory$make_reader$arity$2 = ((function (x47219){
+x38514.cljs_node_io$protocols$IOFactory$make_reader$arity$2 = ((function (x38514){
 return (function (this$,_){
 var this$__$1 = this;
 return this$__$1;
-});})(x47219))
+});})(x38514))
 ;
 
-x47219.cljs_node_io$protocols$IOFactory$make_input_stream$arity$2 = ((function (x47219){
+x38514.cljs_node_io$protocols$IOFactory$make_input_stream$arity$2 = ((function (x38514){
 return (function (this$,_){
 var this$__$1 = this;
 return this$__$1;
-});})(x47219))
+});})(x38514))
 ;
 
-x47219.cljs_node_io$protocols$IOFactory$make_writer$arity$2 = ((function (x47219){
+x38514.cljs_node_io$protocols$IOFactory$make_writer$arity$2 = ((function (x38514){
 return (function (this$,_){
 var this$__$1 = this;
 return this$__$1;
-});})(x47219))
+});})(x38514))
 ;
 
-x47219.cljs_node_io$protocols$IOFactory$make_output_stream$arity$2 = ((function (x47219){
+x38514.cljs_node_io$protocols$IOFactory$make_output_stream$arity$2 = ((function (x38514){
 return (function (this$,_){
 var this$__$1 = this;
 return this$__$1;
-});})(x47219))
+});})(x38514))
 ;
 
-return x47219;
+return x38514;
 });
 /**
  * @param {!IMap} opts
@@ -217,8 +217,8 @@ return cljs_node_io.streams.duplex_IOF_BANG_.call(null,(new cljs_node_io.streams
  * @return {!stream.Readable}
  */
 cljs_node_io.streams.BufferReadStream = (function cljs_node_io$streams$BufferReadStream(var_args){
-var G__47221 = arguments.length;
-switch (G__47221) {
+var G__38516 = arguments.length;
+switch (G__38516) {
 case 1:
 return cljs_node_io.streams.BufferReadStream.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -271,8 +271,8 @@ cljs_node_io.streams.BufferReadStream.cljs$lang$maxFixedArity = 2;
  * @return {!stream.Writable}
  */
 cljs_node_io.streams.BufferWriteStream = (function cljs_node_io$streams$BufferWriteStream(var_args){
-var G__47224 = arguments.length;
-switch (G__47224) {
+var G__38519 = arguments.length;
+switch (G__38519) {
 case 1:
 return cljs_node_io.streams.BufferWriteStream.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -311,8 +311,8 @@ cljs.core.reset_BANG_.call(null,buf,b);
 return cb.call(null,b);
 });})(data,buf,write,strm,_))
 );
-var x47225 = cljs_node_io.streams.output_IOF_BANG_.call(null,strm);
-x47225.toString = ((function (x47225,data,buf,write,strm,_,___$1){
+var x38520 = cljs_node_io.streams.output_IOF_BANG_.call(null,strm);
+x38520.toString = ((function (x38520,data,buf,write,strm,_,___$1){
 return (function (){
 var ___$2 = this;
 if(cljs.core.truth_(cljs.core.deref.call(null,buf))){
@@ -320,17 +320,17 @@ return cljs.core.deref.call(null,buf).toString();
 } else {
 return null;
 }
-});})(x47225,data,buf,write,strm,_,___$1))
+});})(x38520,data,buf,write,strm,_,___$1))
 ;
 
-x47225.toBuffer = ((function (x47225,data,buf,write,strm,_,___$1){
+x38520.toBuffer = ((function (x38520,data,buf,write,strm,_,___$1){
 return (function (){
 var ___$2 = this;
 return cljs.core.deref.call(null,buf);
-});})(x47225,data,buf,write,strm,_,___$1))
+});})(x38520,data,buf,write,strm,_,___$1))
 ;
 
-return x47225;
+return x38520;
 });
 
 cljs_node_io.streams.BufferWriteStream.cljs$lang$maxFixedArity = 2;
@@ -356,9 +356,9 @@ return null;
 if(typeof f === 'string'){
 return f;
 } else {
-if((function (){var or__41412__auto__ = ((!((f == null)))?(((false) || ((cljs.core.PROTOCOL_SENTINEL === f.cljs_node_io$protocols$IFile$)))?true:false):false);
-if(or__41412__auto__){
-return or__41412__auto__;
+if((function (){var or__30872__auto__ = ((!((f == null)))?(((false) || ((cljs.core.PROTOCOL_SENTINEL === f.cljs_node_io$protocols$IFile$)))?true:false):false);
+if(or__30872__auto__){
+return or__30872__auto__;
 } else {
 return cljs.core._EQ_.call(null,goog.Uri,cljs.core.type.call(null,f));
 }
@@ -377,79 +377,79 @@ throw (new TypeError(["Unrecognized path configuration passed to File",cljs.core
  * @return {!stream.Readable}
  */
 cljs_node_io.streams.FileInputStream_STAR_ = (function cljs_node_io$streams$FileInputStream_STAR_(src,opts){
-var map__47229 = opts;
-var map__47229__$1 = ((((!((map__47229 == null)))?((((map__47229.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47229.cljs$core$ISeq$)))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__47229):map__47229);
-var flags = cljs.core.get.call(null,map__47229__$1,new cljs.core.Keyword(null,"flags","flags",1775418075));
-var encoding = cljs.core.get.call(null,map__47229__$1,new cljs.core.Keyword(null,"encoding","encoding",1728578272));
-var fd = cljs.core.get.call(null,map__47229__$1,new cljs.core.Keyword(null,"fd","fd",-1524403000));
-var mode = cljs.core.get.call(null,map__47229__$1,new cljs.core.Keyword(null,"mode","mode",654403691));
-var autoClose_QMARK_ = cljs.core.get.call(null,map__47229__$1,new cljs.core.Keyword(null,"autoClose?","autoClose?",375814080));
-var options = ({"encoding": (function (){var or__41412__auto__ = encoding;
-if(cljs.core.truth_(or__41412__auto__)){
-return or__41412__auto__;
+var map__38524 = opts;
+var map__38524__$1 = ((((!((map__38524 == null)))?((((map__38524.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__38524.cljs$core$ISeq$)))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__38524):map__38524);
+var flags = cljs.core.get.call(null,map__38524__$1,new cljs.core.Keyword(null,"flags","flags",1775418075));
+var encoding = cljs.core.get.call(null,map__38524__$1,new cljs.core.Keyword(null,"encoding","encoding",1728578272));
+var fd = cljs.core.get.call(null,map__38524__$1,new cljs.core.Keyword(null,"fd","fd",-1524403000));
+var mode = cljs.core.get.call(null,map__38524__$1,new cljs.core.Keyword(null,"mode","mode",654403691));
+var autoClose_QMARK_ = cljs.core.get.call(null,map__38524__$1,new cljs.core.Keyword(null,"autoClose?","autoClose?",375814080));
+var options = ({"encoding": (function (){var or__30872__auto__ = encoding;
+if(cljs.core.truth_(or__30872__auto__)){
+return or__30872__auto__;
 } else {
 return null;
 }
-})(), "flags": (function (){var or__41412__auto__ = flags;
-if(cljs.core.truth_(or__41412__auto__)){
-return or__41412__auto__;
+})(), "flags": (function (){var or__30872__auto__ = flags;
+if(cljs.core.truth_(or__30872__auto__)){
+return or__30872__auto__;
 } else {
 return "r";
 }
-})(), "fd": (function (){var or__41412__auto__ = fd;
-if(cljs.core.truth_(or__41412__auto__)){
-return or__41412__auto__;
+})(), "fd": (function (){var or__30872__auto__ = fd;
+if(cljs.core.truth_(or__30872__auto__)){
+return or__30872__auto__;
 } else {
 return null;
 }
-})(), "mode": (function (){var or__41412__auto__ = mode;
-if(cljs.core.truth_(or__41412__auto__)){
-return or__41412__auto__;
+})(), "mode": (function (){var or__30872__auto__ = mode;
+if(cljs.core.truth_(or__30872__auto__)){
+return or__30872__auto__;
 } else {
 return (438);
 }
-})(), "autoClose": (function (){var or__41412__auto__ = autoClose_QMARK_;
-if(cljs.core.truth_(or__41412__auto__)){
-return or__41412__auto__;
+})(), "autoClose": (function (){var or__30872__auto__ = autoClose_QMARK_;
+if(cljs.core.truth_(or__30872__auto__)){
+return or__30872__auto__;
 } else {
 return true;
 }
 })()});
 var filestreamobj = cljs_node_io.streams.fs.createReadStream(src,options);
 var filedesc = cljs.core.atom.call(null,null);
-var _ = filestreamobj.on("open",((function (map__47229,map__47229__$1,flags,encoding,fd,mode,autoClose_QMARK_,options,filestreamobj,filedesc){
+var _ = filestreamobj.on("open",((function (map__38524,map__38524__$1,flags,encoding,fd,mode,autoClose_QMARK_,options,filestreamobj,filedesc){
 return (function (fd__$1){
 return cljs.core.reset_BANG_.call(null,filedesc,fd__$1);
-});})(map__47229,map__47229__$1,flags,encoding,fd,mode,autoClose_QMARK_,options,filestreamobj,filedesc))
+});})(map__38524,map__38524__$1,flags,encoding,fd,mode,autoClose_QMARK_,options,filestreamobj,filedesc))
 );
-var x47231_47232 = filestreamobj;
-x47231_47232.cljs_node_io$protocols$IInputStream$ = cljs.core.PROTOCOL_SENTINEL;
+var x38526_38527 = filestreamobj;
+x38526_38527.cljs_node_io$protocols$IInputStream$ = cljs.core.PROTOCOL_SENTINEL;
 
-x47231_47232.cljs$core$IEquiv$ = cljs.core.PROTOCOL_SENTINEL;
+x38526_38527.cljs$core$IEquiv$ = cljs.core.PROTOCOL_SENTINEL;
 
-x47231_47232.cljs$core$IEquiv$_equiv$arity$2 = ((function (x47231_47232,map__47229,map__47229__$1,flags,encoding,fd,mode,autoClose_QMARK_,options,filestreamobj,filedesc,_){
+x38526_38527.cljs$core$IEquiv$_equiv$arity$2 = ((function (x38526_38527,map__38524,map__38524__$1,flags,encoding,fd,mode,autoClose_QMARK_,options,filestreamobj,filedesc,_){
 return (function (this$,that){
 var this$__$1 = this;
 return (cljs.core._EQ_.call(null,cljs.core.type.call(null,this$__$1),cljs.core.type.call(null,that))) && (cljs.core._EQ_.call(null,this$__$1.path,that.path));
-});})(x47231_47232,map__47229,map__47229__$1,flags,encoding,fd,mode,autoClose_QMARK_,options,filestreamobj,filedesc,_))
+});})(x38526_38527,map__38524,map__38524__$1,flags,encoding,fd,mode,autoClose_QMARK_,options,filestreamobj,filedesc,_))
 ;
 
-x47231_47232.cljs$core$IPrintWithWriter$ = cljs.core.PROTOCOL_SENTINEL;
+x38526_38527.cljs$core$IPrintWithWriter$ = cljs.core.PROTOCOL_SENTINEL;
 
-x47231_47232.cljs$core$IPrintWithWriter$_pr_writer$arity$3 = ((function (x47231_47232,map__47229,map__47229__$1,flags,encoding,fd,mode,autoClose_QMARK_,options,filestreamobj,filedesc,_){
+x38526_38527.cljs$core$IPrintWithWriter$_pr_writer$arity$3 = ((function (x38526_38527,map__38524,map__38524__$1,flags,encoding,fd,mode,autoClose_QMARK_,options,filestreamobj,filedesc,_){
 return (function (this$,writer,opts__$1){
 var this$__$1 = this;
 cljs.core._write.call(null,writer,"#object [FileInputStream");
 
 return cljs.core._write.call(null,writer,["  ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(this$__$1.path),"]"].join(''));
-});})(x47231_47232,map__47229,map__47229__$1,flags,encoding,fd,mode,autoClose_QMARK_,options,filestreamobj,filedesc,_))
+});})(x38526_38527,map__38524,map__38524__$1,flags,encoding,fd,mode,autoClose_QMARK_,options,filestreamobj,filedesc,_))
 ;
 
-x47231_47232.getFd = ((function (x47231_47232,map__47229,map__47229__$1,flags,encoding,fd,mode,autoClose_QMARK_,options,filestreamobj,filedesc,_){
+x38526_38527.getFd = ((function (x38526_38527,map__38524,map__38524__$1,flags,encoding,fd,mode,autoClose_QMARK_,options,filestreamobj,filedesc,_){
 return (function (){
 var ___$1 = this;
 return cljs.core.deref.call(null,filedesc);
-});})(x47231_47232,map__47229,map__47229__$1,flags,encoding,fd,mode,autoClose_QMARK_,options,filestreamobj,filedesc,_))
+});})(x38526_38527,map__38524,map__38524__$1,flags,encoding,fd,mode,autoClose_QMARK_,options,filestreamobj,filedesc,_))
 ;
 
 
@@ -459,8 +459,8 @@ return cljs_node_io.streams.input_IOF_BANG_.call(null,filestreamobj);
  * @return {!stream.Readable}
  */
 cljs_node_io.streams.FileInputStream = (function cljs_node_io$streams$FileInputStream(var_args){
-var G__47234 = arguments.length;
-switch (G__47234) {
+var G__38529 = arguments.length;
+switch (G__38529) {
 case 1:
 return cljs_node_io.streams.FileInputStream.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -491,22 +491,22 @@ cljs_node_io.streams.FileInputStream.cljs$lang$maxFixedArity = 2;
  * @return {!stream.Writable}
  */
 cljs_node_io.streams.FileOutputStream_STAR_ = (function cljs_node_io$streams$FileOutputStream_STAR_(target,opts){
-var map__47236 = opts;
-var map__47236__$1 = ((((!((map__47236 == null)))?((((map__47236.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__47236.cljs$core$ISeq$)))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__47236):map__47236);
-var append = cljs.core.get.call(null,map__47236__$1,new cljs.core.Keyword(null,"append","append",-291298229));
-var flags = cljs.core.get.call(null,map__47236__$1,new cljs.core.Keyword(null,"flags","flags",1775418075));
-var encoding = cljs.core.get.call(null,map__47236__$1,new cljs.core.Keyword(null,"encoding","encoding",1728578272));
-var mode = cljs.core.get.call(null,map__47236__$1,new cljs.core.Keyword(null,"mode","mode",654403691));
-var fd = cljs.core.get.call(null,map__47236__$1,new cljs.core.Keyword(null,"fd","fd",-1524403000));
-var options = ({"defaultEncoding": (function (){var or__41412__auto__ = encoding;
-if(cljs.core.truth_(or__41412__auto__)){
-return or__41412__auto__;
+var map__38531 = opts;
+var map__38531__$1 = ((((!((map__38531 == null)))?((((map__38531.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__38531.cljs$core$ISeq$)))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__38531):map__38531);
+var append = cljs.core.get.call(null,map__38531__$1,new cljs.core.Keyword(null,"append","append",-291298229));
+var flags = cljs.core.get.call(null,map__38531__$1,new cljs.core.Keyword(null,"flags","flags",1775418075));
+var encoding = cljs.core.get.call(null,map__38531__$1,new cljs.core.Keyword(null,"encoding","encoding",1728578272));
+var mode = cljs.core.get.call(null,map__38531__$1,new cljs.core.Keyword(null,"mode","mode",654403691));
+var fd = cljs.core.get.call(null,map__38531__$1,new cljs.core.Keyword(null,"fd","fd",-1524403000));
+var options = ({"defaultEncoding": (function (){var or__30872__auto__ = encoding;
+if(cljs.core.truth_(or__30872__auto__)){
+return or__30872__auto__;
 } else {
 return "utf8";
 }
-})(), "flags": (function (){var or__41412__auto__ = flags;
-if(cljs.core.truth_(or__41412__auto__)){
-return or__41412__auto__;
+})(), "flags": (function (){var or__30872__auto__ = flags;
+if(cljs.core.truth_(or__30872__auto__)){
+return or__30872__auto__;
 } else {
 if(cljs.core.truth_(append)){
 return "a";
@@ -514,54 +514,54 @@ return "a";
 return "w";
 }
 }
-})(), "fd": (function (){var or__41412__auto__ = fd;
-if(cljs.core.truth_(or__41412__auto__)){
-return or__41412__auto__;
+})(), "fd": (function (){var or__30872__auto__ = fd;
+if(cljs.core.truth_(or__30872__auto__)){
+return or__30872__auto__;
 } else {
 return null;
 }
-})(), "mode": (function (){var or__41412__auto__ = mode;
-if(cljs.core.truth_(or__41412__auto__)){
-return or__41412__auto__;
+})(), "mode": (function (){var or__30872__auto__ = mode;
+if(cljs.core.truth_(or__30872__auto__)){
+return or__30872__auto__;
 } else {
 return (438);
 }
 })()});
 var filestreamobj = cljs_node_io.streams.fs.createWriteStream(target,options);
 var filedesc = cljs.core.atom.call(null,null);
-var _ = filestreamobj.on("open",((function (map__47236,map__47236__$1,append,flags,encoding,mode,fd,options,filestreamobj,filedesc){
+var _ = filestreamobj.on("open",((function (map__38531,map__38531__$1,append,flags,encoding,mode,fd,options,filestreamobj,filedesc){
 return (function (fd__$1){
 return cljs.core.reset_BANG_.call(null,filedesc,fd__$1);
-});})(map__47236,map__47236__$1,append,flags,encoding,mode,fd,options,filestreamobj,filedesc))
+});})(map__38531,map__38531__$1,append,flags,encoding,mode,fd,options,filestreamobj,filedesc))
 );
-var x47238_47239 = filestreamobj;
-x47238_47239.cljs_node_io$protocols$IOutputStream$ = cljs.core.PROTOCOL_SENTINEL;
+var x38533_38534 = filestreamobj;
+x38533_38534.cljs_node_io$protocols$IOutputStream$ = cljs.core.PROTOCOL_SENTINEL;
 
-x47238_47239.cljs$core$IEquiv$ = cljs.core.PROTOCOL_SENTINEL;
+x38533_38534.cljs$core$IEquiv$ = cljs.core.PROTOCOL_SENTINEL;
 
-x47238_47239.cljs$core$IEquiv$_equiv$arity$2 = ((function (x47238_47239,map__47236,map__47236__$1,append,flags,encoding,mode,fd,options,filestreamobj,filedesc,_){
+x38533_38534.cljs$core$IEquiv$_equiv$arity$2 = ((function (x38533_38534,map__38531,map__38531__$1,append,flags,encoding,mode,fd,options,filestreamobj,filedesc,_){
 return (function (this$,that){
 var this$__$1 = this;
 return (cljs.core._EQ_.call(null,cljs.core.type.call(null,this$__$1),cljs.core.type.call(null,that))) && (cljs.core._EQ_.call(null,this$__$1.path,that.path));
-});})(x47238_47239,map__47236,map__47236__$1,append,flags,encoding,mode,fd,options,filestreamobj,filedesc,_))
+});})(x38533_38534,map__38531,map__38531__$1,append,flags,encoding,mode,fd,options,filestreamobj,filedesc,_))
 ;
 
-x47238_47239.cljs$core$IPrintWithWriter$ = cljs.core.PROTOCOL_SENTINEL;
+x38533_38534.cljs$core$IPrintWithWriter$ = cljs.core.PROTOCOL_SENTINEL;
 
-x47238_47239.cljs$core$IPrintWithWriter$_pr_writer$arity$3 = ((function (x47238_47239,map__47236,map__47236__$1,append,flags,encoding,mode,fd,options,filestreamobj,filedesc,_){
+x38533_38534.cljs$core$IPrintWithWriter$_pr_writer$arity$3 = ((function (x38533_38534,map__38531,map__38531__$1,append,flags,encoding,mode,fd,options,filestreamobj,filedesc,_){
 return (function (this$,writer,opts__$1){
 var this$__$1 = this;
 cljs.core._write.call(null,writer,"#object [FileOutputStream");
 
 return cljs.core._write.call(null,writer,["  ",cljs.core.str.cljs$core$IFn$_invoke$arity$1(this$__$1.path),"]"].join(''));
-});})(x47238_47239,map__47236,map__47236__$1,append,flags,encoding,mode,fd,options,filestreamobj,filedesc,_))
+});})(x38533_38534,map__38531,map__38531__$1,append,flags,encoding,mode,fd,options,filestreamobj,filedesc,_))
 ;
 
-x47238_47239.getFd = ((function (x47238_47239,map__47236,map__47236__$1,append,flags,encoding,mode,fd,options,filestreamobj,filedesc,_){
+x38533_38534.getFd = ((function (x38533_38534,map__38531,map__38531__$1,append,flags,encoding,mode,fd,options,filestreamobj,filedesc,_){
 return (function (){
 var ___$1 = this;
 return cljs.core.deref.call(null,filedesc);
-});})(x47238_47239,map__47236,map__47236__$1,append,flags,encoding,mode,fd,options,filestreamobj,filedesc,_))
+});})(x38533_38534,map__38531,map__38531__$1,append,flags,encoding,mode,fd,options,filestreamobj,filedesc,_))
 ;
 
 
@@ -571,8 +571,8 @@ return cljs_node_io.streams.output_IOF_BANG_.call(null,filestreamobj);
  * @return {!stream.Writable}
  */
 cljs_node_io.streams.FileOutputStream = (function cljs_node_io$streams$FileOutputStream(var_args){
-var G__47241 = arguments.length;
-switch (G__47241) {
+var G__38536 = arguments.length;
+switch (G__38536) {
 case 1:
 return cljs_node_io.streams.FileOutputStream.cljs$core$IFn$_invoke$arity$1((arguments[(0)]));
 
@@ -598,4 +598,4 @@ return cljs_node_io.streams.FileOutputStream_STAR_.call(null,cljs_node_io.stream
 cljs_node_io.streams.FileOutputStream.cljs$lang$maxFixedArity = 2;
 
 
-//# sourceMappingURL=streams.js.map?rel=1516433043611
+//# sourceMappingURL=streams.js.map

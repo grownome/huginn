@@ -9,8 +9,8 @@ promesa.impl.Promise.prototype.promesa$protocols$IPromise$ = cljs.core.PROTOCOL_
 promesa.impl.Promise.prototype.promesa$protocols$IPromise$_map$arity$2 = (function (it,cb){
 var it__$1 = this;
 return it__$1.then(((function (it__$1){
-return (function (p1__43915_SHARP_){
-return cb.call(null,p1__43915_SHARP_);
+return (function (p1__35210_SHARP_){
+return cb.call(null,p1__35210_SHARP_);
 });})(it__$1))
 );
 });
@@ -18,8 +18,8 @@ return cb.call(null,p1__43915_SHARP_);
 promesa.impl.Promise.prototype.promesa$protocols$IPromise$_bind$arity$2 = (function (it,cb){
 var it__$1 = this;
 return it__$1.then(((function (it__$1){
-return (function (p1__43916_SHARP_){
-return cb.call(null,p1__43916_SHARP_);
+return (function (p1__35211_SHARP_){
+return cb.call(null,p1__35211_SHARP_);
 });})(it__$1))
 );
 });
@@ -27,8 +27,8 @@ return cb.call(null,p1__43916_SHARP_);
 promesa.impl.Promise.prototype.promesa$protocols$IPromise$_catch$arity$2 = (function (it,cb){
 var it__$1 = this;
 return it__$1.caught(((function (it__$1){
-return (function (p1__43917_SHARP_){
-return cb.call(null,p1__43917_SHARP_);
+return (function (p1__35212_SHARP_){
+return cb.call(null,p1__35212_SHARP_);
 });})(it__$1))
 );
 });
@@ -137,4 +137,4 @@ var p__$1 = this;
 return cljs.core._write.call(null,writer,promesa.impl.promise__GT_str.call(null,p__$1));
 });
 
-//# sourceMappingURL=impl.js.map?rel=1516433041640
+//# sourceMappingURL=impl.js.map
