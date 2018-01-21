@@ -52,7 +52,7 @@
         (if (or err (= filename ""))
           (do (error "error reading image:" err " " filename)
               (recur))
-          (let [img-buffers (chunk-img img-data  250000)
+          (let [img-buffers (chunk-img img-data  25000)
                 header    {:payload (str "split_image/" (count img-buffers))}
                 img-packets (map #(hash-map :payload % :timestamp timestamp) img-buffers)
                 complete  (concat [header] img-packets)]
