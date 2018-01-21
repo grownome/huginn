@@ -28,4 +28,4 @@ COPY ./package /usr/src/app/package
 
 
 # Start app
-CMD ["node", "package/index.js"]
+CMD ["node","--inspect=0.0.0.0:9229", "target/js/compiled/huginn.js"]

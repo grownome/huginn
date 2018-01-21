@@ -145,7 +145,7 @@
           topic (mqtt-topic opts topic-name)
           qos #js {:qos 1}]
       (when (= "state" topic-name)
-        (debug "pushing state" [teles topic]))
+        (debug "pushing state" topic))
       (a/onto-chan
        send
        (map  (fn [t]
@@ -194,7 +194,7 @@
         client-promise (init-client opts send recv)
         client-atom (atom nil)
         t-chan (tele-chan opts)
-        state-chan (a/chan)]
+        state-chan (a/chan (a/buffer 1))]
     (p/then
      client-promise
      (fn [client]

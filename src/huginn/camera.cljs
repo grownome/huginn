@@ -40,7 +40,9 @@
     (into []
       (for [start (range 0 (.-length img) chunk-size)
             :let [end (min (.-length img) (+ start chunk-size))]]
-        (into-array (array-chunk img start end))))))
+        (do
+          (debug "at " [start end])
+          (into-array (array-chunk img start end)))))))
 
 (defn read-imgs
   [output-dir in out]
@@ -56,6 +58,7 @@
                 header    {:payload (str "split_image/" (count img-buffers))}
                 img-packets (map #(hash-map :payload % :timestamp timestamp) img-buffers)
                 complete  (concat [header] img-packets)]
+            (debug "trying to write img packet")
             (a/>! out complete)
             (debug "done xforming" complete)
             (recur)))))))
@@ -70,7 +73,7 @@
    (p/promise
     (fn [resolve reject]
       (let [snap-chan (a/chan)
-            data-chan (a/chan (a/buffer 1))
+            data-chan (a/chan)
             ^RaspiCam
             camera (r.
                     #js
