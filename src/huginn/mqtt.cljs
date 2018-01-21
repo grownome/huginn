@@ -40,9 +40,10 @@
    "error"   (fn [err] (error "error: " err))
    "message" (fn [topic message packet]
                (spy :debug [topic message packet])
-               (a/>! recv {:topic topic
-                           :message message
-                           :packet packet}))})
+               (a/go
+                 (a/>! recv {:topic topic
+                             :message message
+                             :packet packet})))})
 
 (defn add-handlers
   [client handlers]
