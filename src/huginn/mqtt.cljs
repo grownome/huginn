@@ -82,13 +82,16 @@
         cores (map-indexed
                (fn [index value]
                  {:payload (str pr "-core-temp-" index "/" (str value))
+                  :subfolder (str "metrics/core-temp-" index)
                   :ts (jw/round-now)})
                cores-raw)
         main (when (.-main data)
                {:payload (str pr "-core-temp-main/" (str (.-main data)))
+                :subfolder "metrics/core-temp-main"
                 :ts (jw/round-now)})
         max (when (.-max data)
               {:payload (str pr "-core-temp-max/" (str (.-max data)))
+               :subfolder "metrics/core-temp-max"
                :ts (jw/round-now)})]
     (concat [main] [max] cores)))
 
@@ -147,10 +150,11 @@
         (spy (into [] (map (comp type :payload)) teles)))
       (a/onto-chan
        send
-       (map  (fn [t]
-                  (-> t
-                          (assoc :topic topic)
-                          (assoc :qos qos)) ) teles)
+       (map  (fn [{:keys [subfolder] :as t}]
+               (let [my-topic (if subfolder (str topic "/" subfolder) topic)]
+                 (-> t
+                     (assoc :topic my-topic)
+                     (assoc :qos qos))) ) teles)
        false)
       (a/<! (a/timeout (:delayMs opts)))
       (recur))))
