@@ -112,7 +112,6 @@
   (a/go-loop []
     (let [wait (a/<! (a/timeout (* tokenExpMins 1000 60)))]
       (info "\tRefreshing token after " (* tokenExpMins 1000 60)  "ms")
-
       (p/chain
        (p/promise
         (fn [resolve reject]

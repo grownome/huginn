@@ -28,4 +28,4 @@ COPY ./target /usr/src/app/target
 
 
 # Start app
-CMD ["node","--inspect=0.0.0.0:9229", "target/js/compiled/huginn.js"]
+CMD ["node", "target/js/compiled/huginn.js"]
