@@ -80,6 +80,18 @@ Eventually figwheel will auto build tests for us... but until then
 `lein doo node test once` If you just want it to run once.
 
 
+## pushing locally
+`lein cljsbuild auto prod` in terminal 1
+when the build is finished and you want to push to the device do
+`resin sync --skip-gitignore` this will ask for what device you want to push to.
+`resin logs -t`
+
+## if your stuck
+You can change the dockerfile.template CMD line (the bottom)
+to have "--inspect", "IP_ADDRESS_DEVICE:9229" after "node"
+then you can use about:inspect in chrome to connect to it.
+Just make sure you remove it before mergeing to master because it's really really slow.
+
 ## Resin
 To push to a single resin device with out going through the resin build process (by pushing to resin.io)
 `lein cljsbuild prod once && resin sync` This will build a release then resin will grab it and copy just that file onto the device that you select.
