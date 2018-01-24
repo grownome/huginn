@@ -1,3 +1,13 @@
+(def npm-deps {"@google-cloud/storage" "1.5.2"
+               "@google-cloud/pubsub" "0.13.2"
+               :ava "0.22.0"
+               :raspicam "0.2.14"
+               :systeminformation "3.33.0"
+               :jsonwebtoken "7.4.1"
+               :mqtt "2.15.0"
+               :uuid "3.1.0"
+               :yargs "8.0.2"})
+
 (defproject huginn "0.1.0-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
@@ -14,6 +24,9 @@
                    :source-paths ["src" "dev"]
                    :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}}
   :jvm-opts ["--add-modules" "java.xml.bind"]
+
+  :figwheel {:server-ip "192.168.0.114"
+             }
   :clean-targets ["server.js"
                   "out"
                   "package"
@@ -31,34 +44,10 @@
                                    :output-to "package/index.js"
                                    :target :nodejs
                                    :output-dir "out/prod"
-                                   :npm-deps {"@google-cloud/storage" "1.5.2"
-                                              "@google-cloud/pubsub" "0.13.2"
-                                              :ava "0.22.0"
-                                              :systeminformation "3.33.0"
-                                              :jsonwebtoken "7.4.1"
-                                              :mqtt "2.15.0"
-                                              :uuid "3.1.0"
-                                              :yargs "8.0.2"}}}
-
-                       {:id "prod-adv"
-                        :source-paths ["src"]
-                        :compiler {:optimizations :advanced
-                                   :install-deps true
-                                   :main huginn.core
-                                   :output-to "package-adv/index.js"
-                                   :target :nodejs
-                                   :output-dir "out/prod-adv"
-                                   :npm-deps {"@google-cloud/storage" "1.5.2"
-                                              "@google-cloud/pubsub" "0.13.2"
-                                              :ava "0.22.0"
-                                              :systeminformation "3.33.0"
-                                              :jsonwebtoken "7.4.1"
-                                              :mqtt "2.15.0"
-                                              :uuid "3.1.0"
-                                              :yargs "8.0.2"}}}
+                                   :npm-deps ~npm-deps}}
 
                        {:id "dev"
-                        :figwheel true
+                        :figwheel {:websocket-host :server-ip}
                         :source-paths ["src"]
                         :compiler {:optimizations :none
                                    :install-deps true
@@ -67,14 +56,7 @@
                                    :asset-path "target/js/compiled/dev"
                                    :output-to "target/js/compiled/huginn.js"
                                    :output-dir "target/js/compiled/dev"
-                                   :npm-deps {"@google-cloud/storage" "1.5.2"
-                                              "@google-cloud/pubsub" "0.13.2"
-                                              :ava "0.22.0"
-                                              :systeminformation "3.33.0"
-                                              :jsonwebtoken "7.4.1"
-                                              :mqtt "2.15.0"
-                                              :uuid "3.1.0"
-                                              :yargs "8.0.2"}
+                                   :npm-deps ~npm-deps
                                    :pretty-print true}}
                        {:id "test"
                         :figwheel true
@@ -86,14 +68,7 @@
                                    :asset-path "target/js/compiled/test"
                                    :output-to "target/js/compiled/huginn-test.js"
                                    :output-dir "target/js/compiled/test"
-                                   :npm-deps {"@google-cloud/storage" "1.5.2"
-                                              "@google-cloud/pubsub" "0.13.2"
-                                              :ava "0.22.0"
-                                              :systeminformation "3.33.0"
-                                              :jsonwebtoken "7.4.1"
-                                              :mqtt "2.15.0"
-                                              :uuid "3.1.0"
-                                              :yargs "8.0.2"}
+                                   :npm-deps ~npm-deps
                                    :pretty-print true}}
                        ]}
 

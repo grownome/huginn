@@ -44,6 +44,15 @@ Once it has main control of the program is drivien by `huginn.mqtt/system-functi
 
 the idea is that you can use the response from system-function to do all of your work, no need to digg around the mqtt api... hopefully.
 
+After doing some reading on the docs. 
+Tele-chan (or the events topic) is for what your device *is* doing
+State-chan (or the state topic) is for what your device *thinks* it should be doing
+Config (on the recv channel) is for google cloud to communicate with the device about 
+what it should be doing.
+
+Google IOT offers tools to compare you state with previous states as the config changes
+and seems to silently fail if you put binary data on to the state channel.
+
 
 ## Getting it to run
 If you are using spacemacs:
