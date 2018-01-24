@@ -69,6 +69,11 @@ Use semaphore if you want to deploy it to the board. Just make a pull request an
 If you want to do a build locally use
 `lein cljsbuild once prod`
 
+To push to resin, after you have run  the build command and  checked in the result to git 
+you want to run
+
+`git push resin YOUR_BRANCH_NAME:master`
+
 ## Running tests
 Eventually figwheel will auto build tests for us... but until then
 `lein doo node test auto` if you want it to run in the background testing every time you change something
