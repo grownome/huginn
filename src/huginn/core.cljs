@@ -1,10 +1,12 @@
 (ns huginn.core
   (:require
    [huginn.config :as config]
-   [cljs.nodejs :as nodejs]
+   [huginn.mqtt :as mqtt]
    [huginn.camera :as camera]
+   [huginn.sensors :as sensor]
+   [cljs.nodejs :as nodejs]
    [promesa.core :as p]
-   [huginn.mqtt :as mqtt]))
+   ))
 
 
 (nodejs/enable-util-print!)
@@ -15,8 +17,7 @@
   (println "starting huginn")
   (let [system (mqtt/system-function config/default-options)
         s-with-cam (camera/start-mix-camera system)
-
-        ]
+        s-with-humididty (sensor/start-mix-sensor "humidity" 17)]
     (p/then s-with-cam
             #(reset! system-atom %))))
 
