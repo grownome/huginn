@@ -5,7 +5,7 @@ RUN apt-get update -q && apt-get install curl
 RUN apt-get update -q &&\
   apt-get install -yq \
     gcc \
-    python2 \ 
+    python \ 
     make \ 
     libraspberrypi-bin \
     wget \
