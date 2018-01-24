@@ -17,7 +17,7 @@
   (println "starting huginn")
   (let [system (mqtt/system-function config/default-options)
         s-with-cam (camera/start-mix-camera system)
-        s-with-humididty (sensor/start-mix-sensor "humidity" 17)]
+        s-with-humididty (sensor/start-mix-sensor s-with-cam "humidity" 17)]
     (p/then s-with-cam
             #(reset! system-atom %))))
 

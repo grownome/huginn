@@ -40,15 +40,14 @@
 
 (defn cleanup-sensor
   [{:keys [sensor-chan] :as system}]
-  (.stop camera)
   (a/close! sensor-chan)
   (-> system
       (dissoc :sensor-chan)))
 
 
 (defn -start-mix-sensor
-  [{:keys [telemetry-chan] :as system}]
-  (let [sensor-chan (build-sensor)
+  [sensor-name sensor-gpio {:keys [telemetry-chan] :as system} ]
+  (let [sensor-chan (sensor-chan sensor-name sensor-gpio)
         mixer (a/mix telemetry-chan)]
             (fn [{:keys [snap-chan camera]}]
               (info "connecting sensor to mixer")
@@ -57,6 +56,6 @@
                    (assoc :mixer mixer)
                    (assoc :sensor-chan snap-chan))])))
 
-(defn start-mix-camera
+(defn start-mix-sensor
   [system-promise sensor-name sensor-gpio]
-  (p/then system-promise -start-mix-sensor))
+  (p/then system-promise (partial -start-mix-sensor sensor-name sensor-gpio)))
