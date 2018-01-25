@@ -26,7 +26,8 @@
       (p/chain
        (p/promise
         (fn [resolve reject]
-          (s/setup gpio-channel s/DIR_IN (fn [err] (if (not err) (resolve) (reject err))))))
+          (s/setup gpio-channel s/DIR_IN (fn [err] (when err (reject err))))
+          (resolve nil)))
        (p/promise
         (fn [resolve reject]
           (s/read gpio-channel (fn [err value] (if err (reject err) (resolve value))))))
