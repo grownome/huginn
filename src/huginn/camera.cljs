@@ -58,11 +58,10 @@
                 img-packets (map-indexed
                              #(hash-map :payload %1
                                         :timestamp timestamp
-                                        :subfolder
-                                        (str "captures/"
-                                             (rand-int 100000)
-                                             "/"
-                                             %2)) img-buffers)
+                                        :subfolder (str "captures/"
+                                                        (rand-int 100000)
+                                                        "/"
+                                                        %2)) img-buffers)
                 complete  (concat [header] img-packets)]
             (debug "trying to write img packet")
             (a/>! out complete)

@@ -7,7 +7,6 @@
                    spy get-env]]
    [clojure.core.async :as a]
    [cljs-node-io.core :as io]
-   [goog.crypt.base64 :as c]
    [raspicam :as r]))
 
 (defn cam-handlers
@@ -56,7 +55,13 @@
               (recur))
           (let [img-buffers (chunk-img img-data  100000)
                 header    {:payload (str "split_image/" (count img-buffers))}
-                img-packets (map #(hash-map :payload % :timestamp timestamp :subfolder "captures") img-buffers)
+                img-packets (map-indexed
+                             #(hash-map :payload %1
+                                        :timestamp timestamp
+                                        :subfolder (str "captures/"
+                                                        (rand-int 100000)
+                                                        "/"
+                                                        %2)) img-buffers)
                 complete  (concat [header] img-packets)]
             (debug "trying to write img packet")
             (a/>! out complete)
