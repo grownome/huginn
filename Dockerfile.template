@@ -6,6 +6,7 @@ RUN apt-get update -q &&\
   apt-get install -yq \
     pigpio \
     gcc    \
+    binutils \
     make   \
     libraspberrypi-bin \
     wget \
