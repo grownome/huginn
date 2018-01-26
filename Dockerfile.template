@@ -4,14 +4,21 @@ RUN apt-get update -q && apt-get install curl
 # Install dependencies as well as the proper version of uv4l-webrtc
 RUN apt-get update -q &&\
   apt-get install -yq \
-    gcc \
-    g++ \
-    python \ 
-    make \ 
+    pigpio \
+    gcc    \
+    make   \
     libraspberrypi-bin \
     wget \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+RUN cd /root &&\
+ wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.55.tar.gz  &&\
+ tar zxvf bcm2835-1.55.tar.gz &&\
+ cd bcm2835-1.55 &&\
+ ./configure     &&\
+ make            &&\
+ sudo make check  &&\
+ sudo make install  &&\
 # Move to app dir
 WORKDIR /usr/src/app
 
@@ -24,6 +31,7 @@ ENV CONF_DIR=/data/config/ \
 # reinstall deps
 COPY package.json package.json
 
+RUN npm install -g node-gyp
 RUN JOBS=MAX npm install --production --unsafe-perm && npm cache clean && rm -rf /tmp/*
 RUN npm link
 

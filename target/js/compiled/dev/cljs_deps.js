@@ -37,7 +37,7 @@ goog.addDependency("../cljs_node_io/fs.js", ['cljs_node_io.fs'], ['cljs.core', '
 goog.addDependency("../cljs_node_io/file.js", ['cljs_node_io.file'], ['cljs_node_io.fs', 'cljs_node_io.streams', 'goog.Uri', 'cljs.core', 'cljs_node_io.protocols']);
 goog.addDependency("../cljs_node_io/core.js", ['cljs_node_io.core'], ['cljs_node_io.streams', 'cljs_node_io.file', 'goog.Uri', 'cljs.core', 'cljs.core.async', 'goog.string.StringBuffer', 'cljs.core.async.impl.protocols', 'cljs_node_io.protocols']);
 goog.addDependency("../huginn/camera.js", ['huginn.camera'], ['promesa.core', 'cljs.core', 'goog.crypt.base64', 'cljs.core.async', 'cljs_node_io.core', 'taoensso.timbre']);
-goog.addDependency("../38CD243.js", ['cljs.nodejs'], ['cljs.core']);
+goog.addDependency("../E0ADDA9.js", ['cljs.nodejs'], ['cljs.core']);
 goog.addDependency("../huginn/jwt.js", ['huginn.jwt'], ['promesa.core', 'cljs.core', 'cljs.nodejs', 'cljs_node_io.core', 'clojure.string']);
 goog.addDependency("../huginn/mqtt.js", ['huginn.mqtt'], ['promesa.core', 'huginn.config', 'cljs.core', 'cljs.core.async', 'cljs.nodejs', 'huginn.jwt', 'taoensso.timbre', 'clojure.string']);
 goog.addDependency("../huginn/core.js", ['huginn.core'], ['huginn.sensors', 'promesa.core', 'huginn.config', 'cljs.core', 'huginn.camera', 'cljs.nodejs', 'huginn.mqtt']);

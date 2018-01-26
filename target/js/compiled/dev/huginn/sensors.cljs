@@ -21,23 +21,28 @@
   taken from rpi-gpio readem "
   [sensor-name gpio-channel]
   (let [temp-chan (a/chan)
-        out-chan (a/chan (map build-sensor-packet))]
+        out-chan (a/chan)]
     (a/go-loop []
       (p/chain
        (p/promise
         (fn [resolve reject]
           (info "setting up sensor port " sensor-name " " gpio-channel)
-          (s/setup gpio-channel s/DIR_IN (fn [err] (when (spy err) (reject err))))
-          (info "probably done setting up sensor")
-          (resolve nil)))
-       (p/promise
-        (fn [resolve reject]
-          (s/read gpio-channel (fn [err value]
-                                 (spy [err value])
-                                 (if err (reject err) (resolve value))))))
+          (spy s/DIR_IN)
+          (spy (js-keys s))
+          (.on s  "export" (fn [ready] (resolve ready)))
+          (s/setup gpio-channel  (fn [err] (when (spy err) (reject err))))))
+       (fn [val]
+         (info "trying to read")
+         (s/read gpio-channel (fn [err value]
+                                (spy [err value])
+                                (if err (p/rejected err) (p/resolved value))))
+
+
+         )
+
        (fn [vs] (a/go (a/>! temp-chan vs))))
       (let [v (a/<! temp-chan)]
-        (a/>! out-chan v)
+        (a/>! out-chan [{:payload v :subfolder sensor-name}])
         (recur)))
     out-chan))
 

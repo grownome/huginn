@@ -11,14 +11,14 @@ cljs.nodejs.enable_util_print_BANG_.call(null);
 huginn.core.system_atom = cljs.core.atom.call(null,null);
 huginn.core._main = (function huginn$core$_main(var_args){
 var args__32158__auto__ = [];
-var len__32151__auto___37086 = arguments.length;
-var i__32152__auto___37087 = (0);
+var len__32151__auto___38842 = arguments.length;
+var i__32152__auto___38843 = (0);
 while(true){
-if((i__32152__auto___37087 < len__32151__auto___37086)){
-args__32158__auto__.push((arguments[i__32152__auto___37087]));
+if((i__32152__auto___38843 < len__32151__auto___38842)){
+args__32158__auto__.push((arguments[i__32152__auto___38843]));
 
-var G__37088 = (i__32152__auto___37087 + (1));
-i__32152__auto___37087 = G__37088;
+var G__38844 = (i__32152__auto___38843 + (1));
+i__32152__auto___38843 = G__38844;
 continue;
 } else {
 }
@@ -33,19 +33,18 @@ huginn.core._main.cljs$core$IFn$_invoke$arity$variadic = (function (args){
 cljs.core.println.call(null,"starting huginn");
 
 var system = huginn.mqtt.system_function.call(null,huginn.config.default_options);
-var s_with_cam = huginn.camera.start_mix_camera.call(null,system);
-var s_with_humididty = huginn.sensors.start_mix_sensor.call(null,s_with_cam,"humidity",(17));
-return promesa.core.then.call(null,s_with_cam,((function (system,s_with_cam,s_with_humididty){
-return (function (p1__37084_SHARP_){
-return cljs.core.reset_BANG_.call(null,huginn.core.system_atom,p1__37084_SHARP_);
-});})(system,s_with_cam,s_with_humididty))
+var s_with_humididty = huginn.sensors.start_mix_sensor.call(null,system,"humidity",(17));
+return promesa.core.then.call(null,s_with_humididty,((function (system,s_with_humididty){
+return (function (p1__38840_SHARP_){
+return cljs.core.reset_BANG_.call(null,huginn.core.system_atom,p1__38840_SHARP_);
+});})(system,s_with_humididty))
 );
 });
 
 huginn.core._main.cljs$lang$maxFixedArity = (0);
 
-huginn.core._main.cljs$lang$applyTo = (function (seq37085){
-return huginn.core._main.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq.call(null,seq37085));
+huginn.core._main.cljs$lang$applyTo = (function (seq38841){
+return huginn.core._main.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq.call(null,seq38841));
 });
 
 cljs.core._STAR_main_cli_fn_STAR_ = huginn.core._main;

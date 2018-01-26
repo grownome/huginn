@@ -6,7 +6,8 @@
                :jsonwebtoken "7.4.1"
                :mqtt "2.15.0"
                :uuid "3.1.0"
-               :rpi-gpio "0.9.1"
+               :node-dht-sensor "0.0.33"
+               :pigpio "0.6.4"
                :yargs "8.0.2"})
 
 (defproject huginn "0.1.0-SNAPSHOT"
