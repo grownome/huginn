@@ -63,7 +63,7 @@
                                          :subfolder (str "captures/"
                                                          rand-id
                                                          "/"
-                                                         (count img-buffers)
+                                                         (- (count img-buffers) 1)
                                                          "/"
                                                          index))) img-buffers)
                 complete  (concat [header] img-packets)]
