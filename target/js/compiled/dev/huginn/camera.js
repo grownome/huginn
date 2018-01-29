@@ -8,38 +8,38 @@ goog.require('cljs_node_io.core');
 huginn.camera.node$module$raspicam = require('raspicam');
 huginn.camera.cam_handlers = (function huginn$camera$cam_handlers(success_fn,stop_fn,restart_fn,read_chan){
 return new cljs.core.PersistentArrayMap(null, 4, ["start",(function (){
-taoensso.timbre._log_BANG_.call(null,taoensso.timbre._STAR_config_STAR_,new cljs.core.Keyword(null,"info","info",-317069002),"huginn.camera","/tmp/form-init10132147799520081220.clj",15,new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.Keyword(null,"auto","auto",-566279492),(new cljs.core.Delay((function (){
+taoensso.timbre._log_BANG_.call(null,taoensso.timbre._STAR_config_STAR_,new cljs.core.Keyword(null,"info","info",-317069002),"huginn.camera","/tmp/form-init3898094783055401493.clj",15,new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.Keyword(null,"auto","auto",-566279492),(new cljs.core.Delay((function (){
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, ["camera connected"], null);
-}),null)),null,-737592366);
+}),null)),null,1837971951);
 
 return success_fn.call(null);
 }),"stop",(function (){
-taoensso.timbre._log_BANG_.call(null,taoensso.timbre._STAR_config_STAR_,new cljs.core.Keyword(null,"debug","debug",-1608172596),"huginn.camera","/tmp/form-init10132147799520081220.clj",17,new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.Keyword(null,"auto","auto",-566279492),(new cljs.core.Delay((function (){
+taoensso.timbre._log_BANG_.call(null,taoensso.timbre._STAR_config_STAR_,new cljs.core.Keyword(null,"debug","debug",-1608172596),"huginn.camera","/tmp/form-init3898094783055401493.clj",17,new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.Keyword(null,"auto","auto",-566279492),(new cljs.core.Delay((function (){
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, ["camera stopping"], null);
-}),null)),null,1888907943);
+}),null)),null,755148391);
 
 return stop_fn.call(null);
 }),"exit",(function (err){
 restart_fn.call(null);
 
-return taoensso.timbre._log_BANG_.call(null,taoensso.timbre._STAR_config_STAR_,new cljs.core.Keyword(null,"error","error",-978969032),"huginn.camera","/tmp/form-init10132147799520081220.clj",19,new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.Keyword(null,"auto","auto",-566279492),(new cljs.core.Delay((function (){
+return taoensso.timbre._log_BANG_.call(null,taoensso.timbre._STAR_config_STAR_,new cljs.core.Keyword(null,"error","error",-978969032),"huginn.camera","/tmp/form-init3898094783055401493.clj",19,new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.Keyword(null,"auto","auto",-566279492),(new cljs.core.Delay((function (){
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["exit: ",err], null);
-}),null)),null,1765812389);
+}),null)),null,-993433685);
 }),"read",(function (err,timestamp,filename){
 try{var result__35585__auto___37043 = new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [err,timestamp,filename], null);
-taoensso.timbre._log_BANG_.call(null,taoensso.timbre._STAR_config_STAR_,new cljs.core.Keyword(null,"debug","debug",-1608172596),"huginn.camera","/tmp/form-init10132147799520081220.clj",21,new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.Keyword(null,"auto","auto",-566279492),(new cljs.core.Delay(((function (result__35585__auto___37043){
+taoensso.timbre._log_BANG_.call(null,taoensso.timbre._STAR_config_STAR_,new cljs.core.Keyword(null,"debug","debug",-1608172596),"huginn.camera","/tmp/form-init3898094783055401493.clj",21,new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.Keyword(null,"auto","auto",-566279492),(new cljs.core.Delay(((function (result__35585__auto___37043){
 return (function (){
 return new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentVector(null, 3, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"err","err",-448925678,null),new cljs.core.Symbol(null,"timestamp","timestamp",-2074956798,null),new cljs.core.Symbol(null,"filename","filename",211690744,null)], null),"=>",result__35585__auto___37043], null);
 });})(result__35585__auto___37043))
-,null)),null,-1322845826);
+,null)),null,671763070);
 
 }catch (e37030){if((e37030 instanceof Error)){
 var e__35547__auto___37044 = e37030;
-taoensso.timbre._log_BANG_.call(null,taoensso.timbre._STAR_config_STAR_,new cljs.core.Keyword(null,"error","error",-978969032),"huginn.camera","/tmp/form-init10132147799520081220.clj",21,new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.Keyword(null,"auto","auto",-566279492),(new cljs.core.Delay(((function (e__35547__auto___37044){
+taoensso.timbre._log_BANG_.call(null,taoensso.timbre._STAR_config_STAR_,new cljs.core.Keyword(null,"error","error",-978969032),"huginn.camera","/tmp/form-init3898094783055401493.clj",21,new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.Keyword(null,"auto","auto",-566279492),(new cljs.core.Delay(((function (e__35547__auto___37044){
 return (function (){
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [e__35547__auto___37044], null);
 });})(e__35547__auto___37044))
-,null)),null,1259893926);
+,null)),null,-698993785);
 
 throw e__35547__auto___37044;
 } else {
@@ -226,11 +226,11 @@ var y__31232__auto__ = (start + chunk_size);
 return ((x__31231__auto__ < y__31232__auto__) ? x__31231__auto__ : y__31232__auto__);
 })();
 cljs.core.chunk_append.call(null,b__37072,(function (){
-taoensso.timbre._log_BANG_.call(null,taoensso.timbre._STAR_config_STAR_,new cljs.core.Keyword(null,"debug","debug",-1608172596),"huginn.camera","/tmp/form-init10132147799520081220.clj",43,new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.Keyword(null,"auto","auto",-566279492),(new cljs.core.Delay(((function (i__37071,end,start,c__31752__auto__,size__31753__auto__,b__37072,s__37070__$2,temp__5457__auto__){
+taoensso.timbre._log_BANG_.call(null,taoensso.timbre._STAR_config_STAR_,new cljs.core.Keyword(null,"debug","debug",-1608172596),"huginn.camera","/tmp/form-init3898094783055401493.clj",43,new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.Keyword(null,"auto","auto",-566279492),(new cljs.core.Delay(((function (i__37071,end,start,c__31752__auto__,size__31753__auto__,b__37072,s__37070__$2,temp__5457__auto__){
 return (function (){
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["at ",new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [start,end], null)], null);
 });})(i__37071,end,start,c__31752__auto__,size__31753__auto__,b__37072,s__37070__$2,temp__5457__auto__))
-,null)),null,-157756675);
+,null)),null,-974069945);
 
 return (new Buffer(cljs.core.into_array.call(null,cljs.core.array_chunk.call(null,img,start,end))));
 })()
@@ -256,11 +256,11 @@ var y__31232__auto__ = (start + chunk_size);
 return ((x__31231__auto__ < y__31232__auto__) ? x__31231__auto__ : y__31232__auto__);
 })();
 return cljs.core.cons.call(null,(function (){
-taoensso.timbre._log_BANG_.call(null,taoensso.timbre._STAR_config_STAR_,new cljs.core.Keyword(null,"debug","debug",-1608172596),"huginn.camera","/tmp/form-init10132147799520081220.clj",43,new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.Keyword(null,"auto","auto",-566279492),(new cljs.core.Delay(((function (end,start,s__37070__$2,temp__5457__auto__){
+taoensso.timbre._log_BANG_.call(null,taoensso.timbre._STAR_config_STAR_,new cljs.core.Keyword(null,"debug","debug",-1608172596),"huginn.camera","/tmp/form-init3898094783055401493.clj",43,new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.Keyword(null,"auto","auto",-566279492),(new cljs.core.Delay(((function (end,start,s__37070__$2,temp__5457__auto__){
 return (function (){
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, ["at ",new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [start,end], null)], null);
 });})(end,start,s__37070__$2,temp__5457__auto__))
-,null)),null,-858112207);
+,null)),null,1094397199);
 
 return (new Buffer(cljs.core.into_array.call(null,cljs.core.array_chunk.call(null,img,start,end))));
 })()
@@ -385,7 +385,7 @@ return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMP
 ;})(complete,vec__37105,timestamp,img_buffers,map__37075,img_data,err,img_packets,header,filename,img_res,rand_id,inst_37136,inst_37134,inst_37114,inst_37140,inst_37128,inst_37115,inst_37101,inst_37129,inst_37116,inst_37098,inst_37100,inst_37145,state_val_37156,c__36917__auto__))
 })();
 var inst_37147 = (new cljs.core.Delay(inst_37146,null));
-var inst_37148 = taoensso.timbre._log_BANG_.call(null,taoensso.timbre._STAR_config_STAR_,new cljs.core.Keyword(null,"debug","debug",-1608172596),"huginn.camera","/tmp/form-init10132147799520081220.clj",70,new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.Keyword(null,"auto","auto",-566279492),inst_37147,null,-1757674814);
+var inst_37148 = taoensso.timbre._log_BANG_.call(null,taoensso.timbre._STAR_config_STAR_,new cljs.core.Keyword(null,"debug","debug",-1608172596),"huginn.camera","/tmp/form-init3898094783055401493.clj",72,new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.Keyword(null,"auto","auto",-566279492),inst_37147,null,201981475);
 var state_37155__$1 = (function (){var statearr_37165 = state_37155;
 (statearr_37165[(19)] = inst_37148);
 
@@ -421,7 +421,7 @@ return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMP
 ;})(map__37075,img_res,err,timestamp,filename,inst_37101,inst_37098,inst_37100,inst_37098__$1,inst_37099,inst_37100__$1,inst_37101__$1,state_val_37156,c__36917__auto__))
 })();
 var inst_37103 = (new cljs.core.Delay(inst_37102,null));
-var inst_37104 = taoensso.timbre._log_BANG_.call(null,taoensso.timbre._STAR_config_STAR_,new cljs.core.Keyword(null,"debug","debug",-1608172596),"huginn.camera","/tmp/form-init10132147799520081220.clj",51,new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.Keyword(null,"auto","auto",-566279492),inst_37103,null,1412991613);
+var inst_37104 = taoensso.timbre._log_BANG_.call(null,taoensso.timbre._STAR_config_STAR_,new cljs.core.Keyword(null,"debug","debug",-1608172596),"huginn.camera","/tmp/form-init3898094783055401493.clj",51,new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.Keyword(null,"auto","auto",-566279492),inst_37103,null,-2075828940);
 var inst_37108 = [cljs.core.str.cljs$core$IFn$_invoke$arity$1(output_dir),"/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(inst_37101__$1)].join('');
 var inst_37109 = [new cljs.core.Keyword(null,"encoding","encoding",1728578272)];
 var inst_37110 = [""];
@@ -516,7 +516,7 @@ var img_res = inst_37098;
 var rand_id = inst_37129__$1;
 return ((function (vec__37105,timestamp,img_buffers,map__37075,img_data,err,header,filename,img_res,rand_id,inst_37136,inst_37134,inst_37114,inst_37140,inst_37128,inst_37115,inst_37101,inst_37129,inst_37116,inst_37098,inst_37100,inst_37128__$1,inst_37129__$1,inst_37130,inst_37131,inst_37132,inst_37133,inst_37134__$1,state_val_37156,c__36917__auto__){
 return (function (index,payload){
-return cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"payload","payload",-383036092),new cljs.core.Keyword(null,"timestamp","timestamp",579478971),new cljs.core.Keyword(null,"subfolder","subfolder",1044158439)],[payload,timestamp,["captures/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(rand_id),"/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(index)].join('')]);
+return cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"payload","payload",-383036092),new cljs.core.Keyword(null,"timestamp","timestamp",579478971),new cljs.core.Keyword(null,"subfolder","subfolder",1044158439)],[payload,timestamp,["captures/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(rand_id),"/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.count.call(null,img_buffers)),"/",cljs.core.str.cljs$core$IFn$_invoke$arity$1(index)].join('')]);
 });
 ;})(vec__37105,timestamp,img_buffers,map__37075,img_data,err,header,filename,img_res,rand_id,inst_37136,inst_37134,inst_37114,inst_37140,inst_37128,inst_37115,inst_37101,inst_37129,inst_37116,inst_37098,inst_37100,inst_37128__$1,inst_37129__$1,inst_37130,inst_37131,inst_37132,inst_37133,inst_37134__$1,state_val_37156,c__36917__auto__))
 })();
@@ -544,7 +544,7 @@ return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMP
 ;})(complete,vec__37105,timestamp,img_buffers,map__37075,img_data,err,img_packets,header,filename,img_res,rand_id,inst_37136,inst_37134,inst_37114,inst_37140,inst_37128,inst_37115,inst_37101,inst_37129,inst_37116,inst_37098,inst_37100,inst_37128__$1,inst_37129__$1,inst_37130,inst_37131,inst_37132,inst_37133,inst_37134__$1,inst_37135,inst_37136__$1,inst_37137,inst_37138,inst_37139,inst_37140__$1,state_val_37156,c__36917__auto__))
 })();
 var inst_37142 = (new cljs.core.Delay(inst_37141,null));
-var inst_37143 = taoensso.timbre._log_BANG_.call(null,taoensso.timbre._STAR_config_STAR_,new cljs.core.Keyword(null,"debug","debug",-1608172596),"huginn.camera","/tmp/form-init10132147799520081220.clj",68,new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.Keyword(null,"auto","auto",-566279492),inst_37142,null,2075422822);
+var inst_37143 = taoensso.timbre._log_BANG_.call(null,taoensso.timbre._STAR_config_STAR_,new cljs.core.Keyword(null,"debug","debug",-1608172596),"huginn.camera","/tmp/form-init3898094783055401493.clj",70,new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.Keyword(null,"auto","auto",-566279492),inst_37142,null,-2117368015);
 var state_37155__$1 = (function (){var statearr_37172 = state_37155;
 (statearr_37172[(9)] = inst_37136__$1);
 
@@ -675,7 +675,7 @@ return new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMP
 ;})(map__37075,img_res,err,timestamp,filename,vec__37105,img_data,inst_37114,inst_37115,inst_37101,inst_37116,inst_37098,inst_37100,state_val_37156,c__36917__auto__))
 })();
 var inst_37124 = (new cljs.core.Delay(inst_37123,null));
-var inst_37125 = taoensso.timbre._log_BANG_.call(null,taoensso.timbre._STAR_config_STAR_,new cljs.core.Keyword(null,"error","error",-978969032),"huginn.camera","/tmp/form-init10132147799520081220.clj",54,new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.Keyword(null,"auto","auto",-566279492),inst_37124,null,1640617207);
+var inst_37125 = taoensso.timbre._log_BANG_.call(null,taoensso.timbre._STAR_config_STAR_,new cljs.core.Keyword(null,"error","error",-978969032),"huginn.camera","/tmp/form-init3898094783055401493.clj",54,new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.Keyword(null,"auto","auto",-566279492),inst_37124,null,1069392139);
 var state_37155__$1 = (function (){var statearr_37182 = state_37155;
 (statearr_37182[(23)] = inst_37125);
 
@@ -879,11 +879,11 @@ var map__37226 = p__37225;
 var map__37226__$1 = ((((!((map__37226 == null)))?((((map__37226.cljs$lang$protocol_mask$partition0$ & (64))) || ((cljs.core.PROTOCOL_SENTINEL === map__37226.cljs$core$ISeq$)))?true:false):false))?cljs.core.apply.call(null,cljs.core.hash_map,map__37226):map__37226);
 var snap_chan = cljs.core.get.call(null,map__37226__$1,new cljs.core.Keyword(null,"snap-chan","snap-chan",1438169063));
 var camera = cljs.core.get.call(null,map__37226__$1,new cljs.core.Keyword(null,"camera","camera",-1190348585));
-taoensso.timbre._log_BANG_.call(null,taoensso.timbre._STAR_config_STAR_,new cljs.core.Keyword(null,"info","info",-317069002),"huginn.camera","/tmp/form-init10132147799520081220.clj",121,new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.Keyword(null,"auto","auto",-566279492),(new cljs.core.Delay(((function (map__37226,map__37226__$1,snap_chan,camera,camera_p,mixer,map__37223,map__37223__$1,system,telemetry_chan){
+taoensso.timbre._log_BANG_.call(null,taoensso.timbre._STAR_config_STAR_,new cljs.core.Keyword(null,"info","info",-317069002),"huginn.camera","/tmp/form-init3898094783055401493.clj",123,new cljs.core.Keyword(null,"p","p",151049309),new cljs.core.Keyword(null,"auto","auto",-566279492),(new cljs.core.Delay(((function (map__37226,map__37226__$1,snap_chan,camera,camera_p,mixer,map__37223,map__37223__$1,system,telemetry_chan){
 return (function (){
 return new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, ["connecting camera to mixer"], null);
 });})(map__37226,map__37226__$1,snap_chan,camera,camera_p,mixer,map__37223,map__37223__$1,system,telemetry_chan))
-,null)),null,-1458676458);
+,null)),null,1556916337);
 
 cljs.core.async.admix.call(null,mixer,snap_chan);
 
