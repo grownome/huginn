@@ -54,13 +54,14 @@
           (do (error "error reading image:" err " " filename)
               (recur))
           (let [img-buffers (chunk-img img-data  100000)
+                rand-id (rand-int 100000)
                 header    {:payload (str "split_image/" (count img-buffers))}
                 img-packets (map-indexed
                              (fn [index payload]
                                (hash-map :payload payload
                                          :timestamp timestamp
                                          :subfolder (str "captures/"
-                                                         (rand-int 100000)
+                                                         rand-id
                                                          "/"
                                                          index))) img-buffers)
                 complete  (concat [header] img-packets)]

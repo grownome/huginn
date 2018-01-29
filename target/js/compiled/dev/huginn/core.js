@@ -10,14 +10,14 @@ cljs.nodejs.enable_util_print_BANG_.call(null);
 huginn.core.system_atom = cljs.core.atom.call(null,null);
 huginn.core._main = (function huginn$core$_main(var_args){
 var args__32158__auto__ = [];
-var len__32151__auto___37231 = arguments.length;
-var i__32152__auto___37232 = (0);
+var len__32151__auto___37232 = arguments.length;
+var i__32152__auto___37233 = (0);
 while(true){
-if((i__32152__auto___37232 < len__32151__auto___37231)){
-args__32158__auto__.push((arguments[i__32152__auto___37232]));
+if((i__32152__auto___37233 < len__32151__auto___37232)){
+args__32158__auto__.push((arguments[i__32152__auto___37233]));
 
-var G__37233 = (i__32152__auto___37232 + (1));
-i__32152__auto___37232 = G__37233;
+var G__37234 = (i__32152__auto___37233 + (1));
+i__32152__auto___37233 = G__37234;
 continue;
 } else {
 }
@@ -34,16 +34,16 @@ cljs.core.println.call(null,"starting huginn");
 var system = huginn.mqtt.system_function.call(null,huginn.config.default_options);
 var s_with_cam = huginn.camera.start_mix_camera.call(null,system);
 return promesa.core.then.call(null,s_with_cam,((function (system,s_with_cam){
-return (function (p1__37229_SHARP_){
-return cljs.core.reset_BANG_.call(null,huginn.core.system_atom,p1__37229_SHARP_);
+return (function (p1__37230_SHARP_){
+return cljs.core.reset_BANG_.call(null,huginn.core.system_atom,p1__37230_SHARP_);
 });})(system,s_with_cam))
 );
 });
 
 huginn.core._main.cljs$lang$maxFixedArity = (0);
 
-huginn.core._main.cljs$lang$applyTo = (function (seq37230){
-return huginn.core._main.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq.call(null,seq37230));
+huginn.core._main.cljs$lang$applyTo = (function (seq37231){
+return huginn.core._main.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq.call(null,seq37231));
 });
 
 cljs.core._STAR_main_cli_fn_STAR_ = huginn.core._main;
