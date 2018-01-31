@@ -1,4 +1,5 @@
 { :dependencies [[org.clojure/clojurescript "1.9.946"]
+                 [org.clojure/clojure "1.9.0"]
                  [cljs-node-io "0.5.0"]
                  [funcool/promesa "1.9.0"]
                  [org.clojure/core.async "0.4.474"]
@@ -12,9 +13,7 @@
                                    :install-deps true
                                    :main huginn.core/main
                                    :target :node-script
-                                   :asset-path "target/js/compiled/dev"
                                    :output-to "target/js/compiled/huginn.js"
-                                   :output-dir "target/js/compiled/dev"
                                    :npm-deps 
                                    {"@google-cloud/storage" "1.5.2"
                                      "@google-cloud/pubsub" "0.13.2"
