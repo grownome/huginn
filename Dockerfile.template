@@ -65,9 +65,7 @@ RUN echo '(defproject dummy "" :dependencies [[org.clojure/clojure "1.8.0"]])' >
   && lein deps && rm project.clj
 COPY ./  /usr/src/app/
 RUN cat shadow-cljs.edn
-RUN shadow-cljs check dev
-RUN shadow-cljs npm-deps dev
-RUN shadow-cljs compile dev
+RUN lein cljsbuild once dev
 
 # Start app
 CMD ["node", "target/js/compiled/huginn.js"]
