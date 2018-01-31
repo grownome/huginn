@@ -61,10 +61,10 @@ RUN JOBS=MAX npm install --production --unsafe-perm && npm cache clean --force &
 RUN mkdir home
 ENV HOME=/home/
 # Now copy our app
-RUN echo '(defproject dummy "" :dependencies [[org.clojure/clojure "1.8.0"]])' > project.clj \
-  && lein deps && rm project.clj
+
+COPY ./project.clj  /usr/src/app/project.clj
+RUN lein deps
 COPY ./  /usr/src/app/
-RUN cat shadow-cljs.edn
 RUN lein cljsbuild once dev
 
 # Start app

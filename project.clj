@@ -1,6 +1,4 @@
-(def npm-deps {"@google-cloud/storage" "1.5.2"
-               "@google-cloud/pubsub" "0.13.2"
-               :ava "0.22.0"
+(def npm-deps {:ava "0.22.0"
                :raspicam "0.2.14"
                :systeminformation "3.33.0"
                :jsonwebtoken "7.4.1"
@@ -25,8 +23,6 @@
                    :source-paths ["src" "dev"]
                    :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}}
 
-  :figwheel {:server-ip "192.168.0.114"
-             }
   :clean-targets ["server.js"
                   "out"
                   "package"
@@ -50,7 +46,7 @@
                         :figwheel {:websocket-host :server-ip}
                         :source-paths ["src"]
                         :compiler {:optimizations :none
-                                   :install-deps false
+                                   :install-deps true 
                                    :main huginn.core
                                    :target :nodejs
                                    :asset-path "target/js/compiled/dev"
