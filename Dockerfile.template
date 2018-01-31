@@ -14,9 +14,9 @@ RUN apt-get update -q &&\
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN cd /root &&\
- wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.55.tar.gz  &&\
- tar zxvf bcm2835-1.55.tar.gz &&\
- cd bcm2835-1.55 &&\
+ wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.38.tar.gz  &&\
+ tar zxvf bcm2835-1.38.tar.gz &&\
+ cd bcm2835-1.38 &&\
  ./configure     &&\
  make            &&\
  make check  &&\
