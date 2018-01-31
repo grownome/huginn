@@ -6,7 +6,9 @@
                    logf tracef debugf infof warnf errorf fatalf reportf
                    spy get-env]]
    [clojure.core.async :as a]
-   ["node-dht-sensor" :as s]))
+   [ :as s]))
+
+(def s (js/require "node-dht-sensor"))
 
 (defn build-sensor-packet
   [sensor-name  sensor-reading]
@@ -23,7 +25,7 @@
   [gpio-channel]
   (let [out-chan (a/chan)]
     (a/go-loop []
-      (s/read 11 gpio-channel (fn [err temperature humidity]
+      (.read s 11 gpio-channel (fn [err temperature humidity]
                      (if err
                        (throw err)
                        (a/>! out-chan
