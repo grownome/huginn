@@ -25,11 +25,11 @@
   [gpio-channel]
   (let [out-chan (a/chan)]
     (a/go-loop []
-      (.read s 11 gpio-channel (fn [err temperature humidity]
+      (.read s 11 gpio-channel (fn [err temp humidity]
                      (if err
                        (throw err)
                        (a/>! out-chan
-                             [{:payload temprature
+                             [{:payload temp
                                :subfolder "metrics/temprature"}
                               {:payload humidity
                                :subfolder "metrics/humidity"}]))))
