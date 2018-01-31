@@ -32,13 +32,11 @@ ENV CONF_DIR=/data/config/ \
 # reinstall deps
 COPY package.json package.json
 
-RUN npm install -g node-gyp
+RUN npm install -g node-gyp shadow-cljs
 RUN JOBS=MAX npm install --production --unsafe-perm && npm cache clean && rm -rf /tmp/*
-RUN npm link
-
 # Now copy our app
-COPY ./target /usr/src/app/target
-
+COPY ./  /usr/src/app/
+RUN shadow-cljs build dev
 
 # Start app
 CMD ["node", "target/js/compiled/huginn.js"]

@@ -44,15 +44,15 @@
 
 
 (defn -start-mix-sensor
-  [sensor-name sensor-gpio {:keys [telemetry-chan] :as system} ]
-  (let [sensor-chan (sensor-chan sensor-name sensor-gpio)
+  [sensor-gpio {:keys [telemetry-chan] :as system} ]
+  (let [s-chan (sensor-chan sensor-gpio)
         mixer (a/mix telemetry-chan)]
               (info "connecting sensor to mixer")
-              (a/admix mixer sensor-chan)
+              (a/admix mixer s-chan)
               [(-> system
                    (assoc :mixer mixer)
-                   (assoc :sensor-chan sensor-chan))]))
+                   (assoc :sensor-chan s-chan))]))
 
 (defn start-mix-sensor
-  [system-promise sensor-name sensor-gpio]
-  (p/then system-promise (partial -start-mix-sensor sensor-name sensor-gpio)))
+  [system-promise sensor-gpio]
+  (p/then system-promise (partial -start-mix-sensor sensor-gpio)))

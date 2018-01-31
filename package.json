@@ -12,5 +12,8 @@
     "systeminformation": "^3.33.0",
     "uuid": "^3.1.0",
     "yargs": "^8.0.2"
+  },
+  "devDependencies": {
+    "shadow-cljs": "^2.0.147"
   }
 }

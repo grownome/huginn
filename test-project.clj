@@ -7,7 +7,6 @@
                :mqtt "2.15.0"
                :uuid "3.1.0"
                :node-dht-sensor "0.0.33"
-               :pigpio "0.6.4"
                :yargs "8.0.2"})
 
 (defproject huginn "0.1.0-SNAPSHOT"
@@ -52,7 +51,7 @@
                         :figwheel {:websocket-host :server-ip}
                         :source-paths ["src"]
                         :compiler {:optimizations :none
-                                   :install-deps true
+                                   :install-deps false
                                    :main huginn.core
                                    :target :nodejs
                                    :asset-path "target/js/compiled/dev"
