@@ -6,7 +6,7 @@
                    logf tracef debugf infof warnf errorf fatalf reportf
                    spy get-env]]
    [clojure.core.async :as a]
-   [node-dht-sensor :as s]))
+   ["node-dht-sensor" :as s]))
 
 (defn build-sensor-packet
   [sensor-name  sensor-reading]
