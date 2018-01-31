@@ -19,7 +19,6 @@ RUN cd /root &&\
  cd bcm2835-1.38 &&\
  ./configure     &&\
  make            &&\
- make check  &&\
  make install  &&\
 # Move to app dir
 WORKDIR /usr/src/app
