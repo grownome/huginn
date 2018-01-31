@@ -59,6 +59,8 @@ COPY package.json package.json
 RUN npm install -g node-gyp shadow-cljs 
 RUN JOBS=MAX npm install --production --unsafe-perm && npm cache clean --force && rm -rf /tmp/*
 # Now copy our app
+RUN echo '(defproject dummy "" :dependencies [[org.clojure/clojure "1.8.0"]])' > project.clj \
+  && lein deps && rm project.clj
 COPY ./  /usr/src/app/
 RUN shadow-cljs check dev
 RUN shadow-cljs npm-deps dev
