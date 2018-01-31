@@ -10,9 +10,9 @@
 
  :source-paths ["src" "dev"]
  :builds  {:dev {:optimizations :none
-                                   :install-deps true
-                                   :main huginn.core/main
-                                   :target :node-script
+                    :install-deps true
+                          :main huginn.core/main
+                                 :target :node-script
                                    :output-to "target/js/compiled/huginn.js"
                                    :npm-deps 
                                    {"@google-cloud/storage" "1.5.2"

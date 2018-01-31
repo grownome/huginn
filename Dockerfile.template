@@ -38,7 +38,7 @@ RUN npm install -g node-gyp shadow-cljs
 RUN JOBS=MAX npm install --production --unsafe-perm && npm cache clean && rm -rf /tmp/*
 # Now copy our app
 COPY ./  /usr/src/app/
-RUN shadow-cljs build dev
+RUN shadow-cljs complie dev
 
 # Start app
 CMD ["node", "target/js/compiled/huginn.js"]
