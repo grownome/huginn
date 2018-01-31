@@ -24,7 +24,6 @@
                                   [com.cemerick/piggieback "0.2.2"]]
                    :source-paths ["src" "dev"]
                    :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}}
-  :jvm-opts ["--add-modules" "java.xml.bind"]
 
   :figwheel {:server-ip "192.168.0.114"
              }
