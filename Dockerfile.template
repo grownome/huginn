@@ -64,6 +64,7 @@ ENV HOME=/home/
 RUN echo '(defproject dummy "" :dependencies [[org.clojure/clojure "1.8.0"]])' > project.clj \
   && lein deps && rm project.clj
 COPY ./  /usr/src/app/
+RUN cat shadow-cljs.end
 RUN shadow-cljs check dev
 RUN shadow-cljs npm-deps dev
 RUN shadow-cljs compile dev
