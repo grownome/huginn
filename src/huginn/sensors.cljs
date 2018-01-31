@@ -6,7 +6,7 @@
                    logf tracef debugf infof warnf errorf fatalf reportf
                    spy get-env]]
    [clojure.core.async :as a]
-   [ :as s]))
+   ))
 
 (def s (js/require "node-dht-sensor"))
 
