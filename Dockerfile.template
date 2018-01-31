@@ -7,6 +7,7 @@ RUN apt-get update -q &&\
     pigpio \
     gcc    \
     build-essential \ 
+    oracle-java8-jdk \
     binutils \
     make   \
     libraspberrypi-bin \
