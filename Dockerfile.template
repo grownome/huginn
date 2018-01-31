@@ -39,6 +39,10 @@ RUN npm install shadow-cljs
 RUN JOBS=MAX npm install --production --unsafe-perm && npm cache clean && rm -rf /tmp/*
 # Now copy our app
 RUN npm install -g shadow-cljs
+RUN curl -O https://download.clojure.org/install/linux-install-1.9.0.315.sh &&\
+chmod +x linux-install-1.9.0.315.sh &&\
+sudo ./linux-install-1.9.0.315.sh
+
 COPY ./  /usr/src/app/
 RUN shadow-cljs check dev
 RUN shadow-cljs npm-deps dev
