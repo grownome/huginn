@@ -5,8 +5,7 @@
     :refer-macros [log  trace  debug  info  warn  error  fatal  report
                    logf tracef debugf infof warnf errorf fatalf reportf
                    spy get-env]]
-   [clojure.core.async :as a]
-   ))
+   [clojure.core.async :as a]))
 
 (def s (js/require "node-dht-sensor"))
 
