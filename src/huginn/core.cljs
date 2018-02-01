@@ -19,7 +19,7 @@
         s-with-cam (camera/start-mix-camera system)]
     (p/chain
      (p/all [s-with-humididty s-with-cam])
-     (reduce merge)
+     (partial reduce merge )
      #(reset! system-atom %))))
 
 
