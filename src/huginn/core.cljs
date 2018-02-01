@@ -17,8 +17,9 @@
   (let [system (mqtt/system-function config/default-options)
         s-with-humididty (sensor/start-mix-sensor system 17)
         s-with-cam (camera/start-mix-camera system)]
-    (p/then
-     (p/all [s-with-humididty s-with-cam] (reduce merge vals))
+    (p/chain
+     (p/all [s-with-humididty s-with-cam])
+     (reduce merge)
      #(reset! system-atom %))))
 
 
