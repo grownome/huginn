@@ -5,9 +5,9 @@
     :refer-macros [log  trace  debug  info  warn  error  fatal  report
                    logf tracef debugf infof warnf errorf fatalf reportf
                    spy get-env]]
+   [node-dht-sensor :as s]
    [clojure.core.async :as a]))
 
-(def s (js/require "node-dht-sensor"))
 
 (defn build-sensor-packet
   [sensor-name  sensor-reading]
@@ -24,7 +24,7 @@
   [gpio-channel]
   (let [out-chan (a/chan)]
     (a/go-loop []
-      (.read s 11 gpio-channel (fn [err temp humidity]
+      (s/read 11 gpio-channel (fn [err temp humidity]
                      (if err
                        (throw err)
                        (a/>! out-chan
