@@ -54,6 +54,7 @@
                                    :output-dir "target/js/compiled/dev"
                                    :npm-deps ~npm-deps
                                    :pretty-print true}}
+
                        {:id "test"
                         :figwheel true
                         :source-paths ["src" "test"]
