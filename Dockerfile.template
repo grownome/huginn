@@ -65,4 +65,4 @@ RUN lein deps
 COPY ./  /usr/src/app/
 RUN lein cljsbuild once dev
 # Start app
-CMD ["node", "/usr/src/app/target/js/compiled/huginn.js"]
+CMD ["npm", "start"]
