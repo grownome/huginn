@@ -56,7 +56,7 @@ ENV CONF_DIR=/data/config/ \
 # reinstall deps
 COPY package.json package.json
 
-RUN npm install -g node-gyp shadow-cljs 
+RUN npm install -g node-gyp
 RUN JOBS=MAX npm install --production --unsafe-perm 
 RUN npm link
 # Now copy our app
