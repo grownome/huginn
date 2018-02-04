@@ -57,7 +57,7 @@ ENV CONF_DIR=/data/config/ \
 COPY package.json package.json
 
 RUN npm install -g node-gyp
-RUN JOBS=MAX npm install --production --unsafe-perm 
+RUN JOBS=MAX npm install --dht_verbose=true --unsafe-perm 
 RUN npm link
 # Now copy our app
 
