@@ -46,7 +46,7 @@
                         :figwheel {:websocket-host :server-ip}
                         :source-paths ["src"]
                         :compiler {:optimizations :none
-                                   :install-deps true 
+                                   :install-deps false
                                    :main huginn.core
                                    :target :nodejs
                                    :asset-path "target/js/compiled/dev"

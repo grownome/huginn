@@ -24,9 +24,12 @@
   [gpio-channel]
   (let [out-chan (a/chan)]
     (a/go-loop []
-      (.read s 11 gpio-channel (fn [err temp humidity]
+      (debug s)
+      (.read s 11 gpio-channel
+             (fn [err temp humidity]
                      (if err
-                       (throw err)
+                       (do (error err)
+                           (throw err))
                        (a/>! out-chan
                              [{:payload temp
                                :subfolder "metrics/temprature"}
@@ -50,9 +53,9 @@
         mixer (a/mix telemetry-chan)]
               (info "connecting sensor to mixer")
               (a/admix mixer s-chan)
-              [(-> system
-                   (assoc :mixer mixer)
-                   (assoc :sensor-chan s-chan))]))
+              (spy (-> system
+                       (assoc :mixer mixer)
+                       (assoc :sensor-chan s-chan)))))
 
 (defn start-mix-sensor
   [system-promise sensor-gpio]
