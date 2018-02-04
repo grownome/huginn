@@ -24,9 +24,10 @@
   [gpio-channel]
   (let [out-chan (a/chan)]
     (a/go-loop []
-      (debug s)
+      (a/<! (a/timeout 10000))
       (.read s 11 gpio-channel
              (fn [err temp humidity]
+               (spy [err temp humidity])
                      (if err
                        (do (error err)
                            (throw err))
