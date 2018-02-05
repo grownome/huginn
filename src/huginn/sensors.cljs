@@ -34,9 +34,9 @@
                        (do (info err))
                        (a/go
                          (a/>! out-chan
-                               [{:payload (str (payload-root opts) (str temp))
+                               [{:payload (str (payload-root opts) "-room-temp/" (str temp))
                                  :subfolder "metrics/temprature"}
-                                {:payload (str (payload-root opts) (str humidity))
+                                {:payload (str (payload-root opts) "-room-humidity/" (str humidity))
                                  :subfolder "metrics/humidity"}])))))
         (recur))
     out-chan))
