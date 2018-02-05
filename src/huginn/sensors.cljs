@@ -51,7 +51,7 @@
 
 
 (defn -start-mix-sensor
-  [sensor-gpio opts {:keys [telemetry-chan] :as system} ]
+  [opts sensor-gpio  {:keys [telemetry-chan] :as system} ]
   (let [s-chan (sensor-chan opts sensor-gpio)
         mixer (a/mix telemetry-chan)]
               (info "connecting sensor to mixer")
