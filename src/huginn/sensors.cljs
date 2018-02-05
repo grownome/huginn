@@ -28,7 +28,7 @@
       (a/<! (a/timeout 10000))
       (.read s 11 gpio-channel
              (fn [err temp humidity]
-               (go
+               (a/go
                  (if err
                    (do (info err))
                    (a/>! out-chan
