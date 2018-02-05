@@ -26,7 +26,7 @@
   (let [out-chan (a/chan)]
     (info gpio-channel)
     (a/go-loop []
-      (a/<! (a/timeout 10000))
+      (a/<! (a/timeout (:dht11Delay opts)))
       (.read s 11 gpio-channel
              (fn [err temp humidity]
                (spy [err temp humidity])
