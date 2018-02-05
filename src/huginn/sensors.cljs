@@ -31,7 +31,7 @@
                (spy [err temp humidity])
                      (if err
                        (do (info err))
-                       (go
+                       (a/go
                          (a/>! out-chan
                                [{:payload temp
                                  :subfolder "metrics/temprature"}
