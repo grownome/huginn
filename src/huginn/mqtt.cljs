@@ -146,8 +146,7 @@
           topic (mqtt-topic opts topic-name)
           qos #js {:qos 1}]
       (when (= "state" topic-name)
-        (debug "pushing state" topic)
-        (spy (into [] (map (comp type :payload)) teles)))
+        (debug "pushing state" topic))
       (a/onto-chan
        send
        (map  (fn [{:keys [subfolder] :as t}]

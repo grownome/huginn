@@ -5,6 +5,7 @@
     :refer-macros [log  trace  debug  info  warn  error  fatal  report
                    logf tracef debugf infof warnf errorf fatalf reportf
                    spy get-env]]
+   [huginn.mqtt :refer [payload-root]]
    [clojure.core.async :as a]))
 
 (def s (js/require "node-dht-sensor"))
@@ -21,7 +22,7 @@
   Please note that there are two different and confusing ways to reference a channel; either using the Raspberry Pi or the BCM/SoC naming schema (sadly, neither of which match the physical pins!). This module supports both schemas, with Raspberry Pi being the default. Please see this page for more details.
 
   taken from rpi-gpio readem "
-  [gpio-channel]
+  [opts gpio-channel]
   (let [out-chan (a/chan)]
     (info gpio-channel)
     (a/go-loop []
@@ -33,9 +34,9 @@
                        (do (info err))
                        (a/go
                          (a/>! out-chan
-                               [{:payload temp
+                               [{:payload (str (payload-root opts) (str temp))
                                  :subfolder "metrics/temprature"}
-                                {:payload humidity
+                                {:payload (str (payload-root opts) (str humidity))
                                  :subfolder "metrics/humidity"}])))))
         (recur))
     out-chan))
@@ -50,8 +51,8 @@
 
 
 (defn -start-mix-sensor
-  [sensor-gpio {:keys [telemetry-chan] :as system} ]
-  (let [s-chan (sensor-chan sensor-gpio)
+  [sensor-gpio opts {:keys [telemetry-chan] :as system} ]
+  (let [s-chan (sensor-chan opts sensor-gpio)
         mixer (a/mix telemetry-chan)]
               (info "connecting sensor to mixer")
               (a/admix mixer s-chan)
@@ -60,5 +61,5 @@
                        (assoc :sensor-chan s-chan)))))
 
 (defn start-mix-sensor
-  [system-promise sensor-gpio]
-  (p/then system-promise (partial -start-mix-sensor sensor-gpio)))
+  [system-promise opts sensor-gpio]
+  (p/then system-promise (partial -start-mix-sensor opts sensor-gpio)))
