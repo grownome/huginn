@@ -28,14 +28,14 @@
       (a/<! (a/timeout 10000))
       (.read s 11 gpio-channel
              (fn [err temp humidity]
-               (spy [err temp humidity])
-                     (if err
-                       (do (info err))
-                       (a/>! out-chan
-                             [{:payload temp
-                               :subfolder "metrics/temprature"}
-                              {:payload humidity
-                               :subfolder "metrics/humidity"}]))))
+               (go
+                 (if err
+                   (do (info err))
+                   (a/>! out-chan
+                         [{:payload temp
+                           :subfolder "metrics/temprature"}
+                          {:payload humidity
+                           :subfolder "metrics/humidity"}])))))
         (recur))
     out-chan))
 
