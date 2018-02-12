@@ -26,7 +26,7 @@ RUN cd /root &&\
 
 
 ENV DEVICE_TYPE=%%RESIN_MACHINE_NAME%%
-mkdir /usr/src/app
+RUN mkdir /usr/src/app
 # Use apt-get to install dependencies
 RUN apt-get update && apt-get install -yq --no-install-recommends \
      dnsmasq && \
