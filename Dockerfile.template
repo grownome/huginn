@@ -54,6 +54,7 @@ COPY package.json package.json
 COPY shadow-cljs.edn shadow-cljs.edn
 COPY ./project.clj  /usr/src/app/project.clj
 RUN JOBS=MAX npm install --dht_verbose=true --unsafe-perm 
+RUN npm prune --unsafe-perm
 RUN shadow-cljs npm-deps dev
 
 COPY ./  /usr/src/app/
