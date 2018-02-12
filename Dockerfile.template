@@ -24,8 +24,19 @@ RUN cd /root &&\
  make install  
 # Move to app dir
 
+ENV DEVICE_TYPE=%%RESIN_MACHINE_NAME%%
 
-ENV LEIN_VERSION=2.8.1
+# Use apt-get to install dependencies
+RUN apt-get update && apt-get install -yq --no-install-recommends \
+     dnsmasq && \
+      apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install resin-wifi-connect
+RUN curl https://api.github.com/repos/resin-io/resin-wifi-connect/releases/latest -s \
+    | grep -hoP 'browser_download_url": "\K.*%%RESIN_ARCH%%\.tar\.gz' \
+    | xargs -n1 curl -Ls \
+    | tar -xvz -C /usr/src/app/
+
 ENV LEIN_INSTALL=/usr/local/bin/
 
 WORKDIR /tmp
@@ -56,7 +67,7 @@ ENV CONF_DIR=/data/config/ \
 # reinstall deps
 COPY package.json package.json
 
-RUN npm install -g node-gyp
+RUN npm install -g node-gyp shadow-cljs
 RUN JOBS=MAX npm install --dht_verbose=true --unsafe-perm 
 RUN npm link
 # Now copy our app
@@ -64,6 +75,6 @@ RUN npm link
 COPY ./project.clj  /usr/src/app/project.clj
 RUN lein deps
 COPY ./  /usr/src/app/
-RUN lein cljsbuild once dev
+RUN shadow-cljs build dev
 # Start app
 CMD ["npm", "start"]

@@ -15,7 +15,8 @@
   (spy  [{:payload sensor-reading
           :subfolder (str "metrics/" sensor-name)}]))
 
-(defn publish-sensor-reading [err temp humidity]
+(defn publish-sensor-reading
+  [opts out-chan err temp humidity]
   (if err
     (do (info err))
     (a/go
@@ -37,7 +38,7 @@
     (info gpio-channel)
     (a/go-loop []
       (a/<! (a/timeout (:dht11Delay opts)))
-      (.read s 11 gpio-channel publish-sensor-reading)
+      (.read s 11 gpio-channel (partial publish-sensor-reading opts out-chan))
         (recur))
     out-chan))
 

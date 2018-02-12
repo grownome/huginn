@@ -1,5 +1,5 @@
 {
- :dependencies [[org.clojure/clojure "1.8.0"]
+ :dependencies [[org.clojure/clojure "1.9.0"]
                  [org.clojure/clojurescript "1.9.946"]
                  [cljs-node-io "0.5.0"]
                  [funcool/promesa "1.9.0"]
@@ -12,7 +12,7 @@
  :source-paths ["src" "dev"]
  :builds  {:dev {:optimizations :none
                     :install-deps true
-                          :main huginn.core/main
+                          :main huginn.core/-main
                                  :target :node-script
                                    :output-to "target/js/compiled/huginn.js"
                                    :npm-deps 

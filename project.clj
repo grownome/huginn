@@ -78,7 +78,4 @@
                  [lein-cljsbuild "1.1.7"]
                  [org.clojure/tools.nrepl "0.2.10"]
                  [org.clojure/tools.reader "1.1.1"]
-                 [com.github.sarxos/v4l4j "0.9.1-r507"]
-                 [io.pyroclast/pyroclast-clojure "0.2.1"]
-                 [com.profesorfalken/jSensors "2.0.2"]
                  [org.clojure/test.check "0.10.0-alpha2"]])
