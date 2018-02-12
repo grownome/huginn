@@ -65,11 +65,12 @@ WORKDIR /usr/src/app
 ENV CONF_DIR=/data/config/ \
   INITSYSTEM=on
 
+RUN npm install -g node-gyp shadow-cljs
+
 # Copy package json first so that when other things change we don't 
 # reinstall deps
 COPY package.json package.json
 
-RUN npm install -g node-gyp shadow-cljs
 RUN JOBS=MAX npm install --dht_verbose=true --unsafe-perm 
 RUN npm link
 # Now copy our app
@@ -77,6 +78,6 @@ RUN npm link
 COPY ./project.clj  /usr/src/app/project.clj
 RUN lein deps
 COPY ./  /usr/src/app/
-RUN shadow-cljs build dev
+RUN shadow-cljs compile dev
 # Start app
 CMD ["npm", "start"]
