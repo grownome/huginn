@@ -76,8 +76,8 @@ RUN npm link
 # Now copy our app
 
 COPY ./project.clj  /usr/src/app/project.clj
-RUN lein deps
+#RUN lein deps
 COPY ./  /usr/src/app/
 RUN shadow-cljs compile dev
 # Start app
-CMD ["npm", "start"]
+CMD ["start.sh"]
