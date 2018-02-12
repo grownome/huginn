@@ -15,6 +15,16 @@
   (spy  [{:payload sensor-reading
           :subfolder (str "metrics/" sensor-name)}]))
 
+(defn publish-sensor-reading [err temp humidity]
+  (if err
+    (do (info err))
+    (a/go
+      (a/>! out-chan
+            [{:payload (str (payload-root opts) "-room-temp/" (str temp))
+              :subfolder "metrics/temprature"}
+             {:payload (str
+                        (payload-root opts) "-room-humidity/" (str humidity))
+              :subfolder "metrics/humidity"}]))))
 
 (defn sensor-chan
   "this creates a channel with sensor readings from a given gpio channel
@@ -27,17 +37,7 @@
     (info gpio-channel)
     (a/go-loop []
       (a/<! (a/timeout (:dht11Delay opts)))
-      (.read s 11 gpio-channel
-             (fn [err temp humidity]
-               (spy [err temp humidity])
-                     (if err
-                       (do (info err))
-                       (a/go
-                         (a/>! out-chan
-                               [{:payload (str (payload-root opts) "-room-temp/" (str temp))
-                                 :subfolder "metrics/temprature"}
-                                {:payload (str (payload-root opts) "-room-humidity/" (str humidity))
-                                 :subfolder "metrics/humidity"}])))))
+      (.read s 11 gpio-channel publish-sensor-reading)
         (recur))
     out-chan))
 
