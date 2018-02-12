@@ -12,7 +12,7 @@
 
 (def system-atom (atom nil))
 
-(defn -main [& args]
+(defn main [& args]
   (println "starting huginn")
   (let [system (mqtt/system-function config/default-options)
         s-with-humididty (sensor/start-mix-sensor system config/default-options 17)
@@ -22,4 +22,3 @@
      #(reset! system-atom %))))
 
 
-(set! *main-cli-fn* -main)
