@@ -66,8 +66,8 @@
        (add-handlers client handlers)))))
 
 (defn payload-root
-  [{:keys [registryId deviceId] :as opts}]
-  (str registryId "/" deviceId "-payload"))
+  [{:keys [registryId userId deviceId] :as opts}]
+  (str registryId "/" userId "/" deviceId "-payload"))
 
 (defn mqtt-topic
   "msg-type can be 'state' for state updates
