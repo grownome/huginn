@@ -1,6 +1,9 @@
 (ns user
-  (:require [figwheel-sidecar.repl-api :as f]))
+ ; (:require [figwheel-sidecar.repl-api :as f])
+  
+  )
 
+(comment 
 (defn fig-start
   []
   (f/start-figwheel!))
@@ -12,3 +15,4 @@
 (defn cljs-repl
   []
   (f/cljs-repl))
+)

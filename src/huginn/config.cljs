@@ -8,7 +8,9 @@
    :privateKeyFile (or js/process.env.PRIVATE_KEY_FILE "rsa_private.pem")
    :privateKey js/process.env.PRIVATE_KEY
    :algorithm "RS256"
-   :tokenExpMins 20
+   :tokenExpMins 25
+   :userId (or js/process.env.USER_ID "0")
+   :dht11Delay (* 60 1000 2)
    :delayMs (* 1000 30)
    :mqttBridgeHostname "mqtt.googleapis.com"
    :mqttBridgePort 8883

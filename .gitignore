@@ -4,6 +4,7 @@
 /.cljs_node_repl
 /.cljs_rhino_repl
 /package
+/target
 /package-adv
 figwheel_server.log
 out

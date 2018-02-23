@@ -1,0 +1,29 @@
+{
+ :dependencies [[org.clojure/clojure "1.9.0"]
+                 [org.clojure/clojurescript "1.9.946"]
+                 [cljs-node-io "0.5.0"]
+                 [funcool/promesa "1.9.0"]
+                 [org.clojure/core.async "0.4.474"]
+                 [org.clojure/tools.nrepl "0.2.10"]
+                 [com.taoensso/timbre "4.10.0"] 
+                 [org.clojure/tools.reader "1.1.1"]
+                 [org.clojure/test.check "0.10.0-alpha2"]]
+
+ :source-paths ["src" "dev"]
+ :builds  {:dev {:optimizations :none
+                    :install-deps true
+                          :main huginn.core/main
+                                 :target :node-script
+                                   :output-to "target/js/compiled/huginn.js"
+                                   :npm-deps 
+                                   {"@google-cloud/storage" "1.5.2"
+                                     "@google-cloud/pubsub" "0.13.2"
+                                     :ava "0.22.0"
+                                     :raspicam "0.2.14"
+                                     :systeminformation "3.33.0"
+                                     :jsonwebtoken "7.4.1"
+                                     :mqtt "2.15.0"
+                                     :uuid "3.1.0"
+                                     :node-dht-sensor "0.0.33"
+                                     :yargs "8.0.2"}
+                                    :pretty-print true}}}

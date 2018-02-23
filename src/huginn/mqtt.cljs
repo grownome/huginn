@@ -66,8 +66,8 @@
        (add-handlers client handlers)))))
 
 (defn payload-root
-  [{:keys [registryId deviceId] :as opts}]
-  (str registryId "/" deviceId "-payload"))
+  [{:keys [registryId userId deviceId] :as opts}]
+  (str registryId "/" userId "/" deviceId "-payload"))
 
 (defn mqtt-topic
   "msg-type can be 'state' for state updates
@@ -146,8 +146,7 @@
           topic (mqtt-topic opts topic-name)
           qos #js {:qos 1}]
       (when (= "state" topic-name)
-        (debug "pushing state" topic)
-        (spy (into [] (map (comp type :payload)) teles)))
+        (debug "pushing state" topic))
       (a/onto-chan
        send
        (map  (fn [{:keys [subfolder] :as t}]

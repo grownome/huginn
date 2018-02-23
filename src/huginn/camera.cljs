@@ -55,7 +55,6 @@
               (recur))
           (let [img-buffers (chunk-img img-data  100000)
                 rand-id (rand-int 100000)
-                header    {:payload (str "split_image/" (count img-buffers))}
                 img-packets (map-indexed
                              (fn [index payload]
                                (hash-map :payload payload
@@ -66,7 +65,8 @@
                                                          (- (count img-buffers) 1)
                                                          "/"
                                                          index))) img-buffers)
-                complete  (concat [header] img-packets)]
+                img-packets (map #(hash-map :payload % :timestamp timestamp :subfolder "captures") img-buffers)
+                complete  img-packets]
             (debug "trying to write img packet")
             (a/>! out complete)
             (debug "done xforming")

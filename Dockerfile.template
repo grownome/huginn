@@ -1,31 +1,64 @@
-FROM resin/%%RESIN_MACHINE_NAME%%-node:6-slim
+FROM resin/%%RESIN_MACHINE_NAME%%-node:7
 
 RUN apt-get update -q && apt-get install curl
 # Install dependencies as well as the proper version of uv4l-webrtc
 RUN apt-get update -q &&\
   apt-get install -yq \
+    pigpio \
+    gcc    \
+    build-essential \ 
+    oracle-java8-jdk \
+    binutils \
+    make   \
     libraspberrypi-bin \
+    python \ 
     wget \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+RUN cd /root &&\
+ wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.38.tar.gz  &&\
+ tar zxvf bcm2835-1.38.tar.gz &&\
+ cd bcm2835-1.38 &&\
+ ./configure     &&\
+ make            &&\
+ make install  
 # Move to app dir
+
+
+ENV DEVICE_TYPE=%%RESIN_MACHINE_NAME%%
+
+RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
 
+# Use apt-get to install dependencies
+RUN apt-get update && apt-get install -yq --no-install-recommends \
+     dnsmasq && \
+      apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install resin-wifi-connect
+RUN curl https://api.github.com/repos/resin-io/resin-wifi-connect/releases/latest -s \
+    | grep -hoP 'browser_download_url": "\K.*%%RESIN_ARCH%%\.tar\.gz' \
+    | xargs -n1 curl -Ls \
+    | tar -xvz -C /usr/src/app/
 
 # Configure env vars
 ENV CONF_DIR=/data/config/ \
   INITSYSTEM=on
 
+RUN npm install -g node-gyp shadow-cljs
+
 # Copy package json first so that when other things change we don't 
 # reinstall deps
+
 COPY package.json package.json
+COPY shadow-cljs.edn shadow-cljs.edn
+COPY ./project.clj  /usr/src/app/project.clj
+RUN JOBS=MAX npm install --dht_verbose=true --unsafe-perm 
+RUN npm prune --unsafe-perm
+RUN shadow-cljs npm-deps dev
 
-RUN JOBS=MAX npm install --production --unsafe-perm && npm cache clean && rm -rf /tmp/*
-RUN npm link
-
-# Now copy our app
-COPY ./target /usr/src/app/target
-
+COPY ./  /usr/src/app/
+RUN shadow-cljs release dev
 
 # Start app
-CMD ["node", "target/js/compiled/huginn.js"]
+CMD ["/usr/src/app/start.sh"]

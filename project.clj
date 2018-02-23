@@ -1,11 +1,10 @@
-(def npm-deps {"@google-cloud/storage" "1.5.2"
-               "@google-cloud/pubsub" "0.13.2"
-               :ava "0.22.0"
+(def npm-deps {:ava "0.22.0"
                :raspicam "0.2.14"
                :systeminformation "3.33.0"
                :jsonwebtoken "7.4.1"
                :mqtt "2.15.0"
                :uuid "3.1.0"
+               :node-dht-sensor "0.0.33"
                :yargs "8.0.2"})
 
 (defproject huginn "0.1.0-SNAPSHOT"
@@ -23,10 +22,7 @@
                                   [com.cemerick/piggieback "0.2.2"]]
                    :source-paths ["src" "dev"]
                    :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}}
-  :jvm-opts ["--add-modules" "java.xml.bind"]
 
-  :figwheel {:server-ip "192.168.0.114"
-             }
   :clean-targets ["server.js"
                   "out"
                   "package"
@@ -50,7 +46,7 @@
                         :figwheel {:websocket-host :server-ip}
                         :source-paths ["src"]
                         :compiler {:optimizations :none
-                                   :install-deps true
+                                   :install-deps false
                                    :main huginn.core
                                    :target :nodejs
                                    :asset-path "target/js/compiled/dev"
@@ -58,6 +54,7 @@
                                    :output-dir "target/js/compiled/dev"
                                    :npm-deps ~npm-deps
                                    :pretty-print true}}
+
                        {:id "test"
                         :figwheel true
                         :source-paths ["src" "test"]
@@ -81,7 +78,4 @@
                  [lein-cljsbuild "1.1.7"]
                  [org.clojure/tools.nrepl "0.2.10"]
                  [org.clojure/tools.reader "1.1.1"]
-                 [com.github.sarxos/v4l4j "0.9.1-r507"]
-                 [io.pyroclast/pyroclast-clojure "0.2.1"]
-                 [com.profesorfalken/jSensors "2.0.2"]
                  [org.clojure/test.check "0.10.0-alpha2"]])
