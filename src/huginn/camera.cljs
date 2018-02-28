@@ -59,14 +59,13 @@
                              (fn [index payload]
                                (hash-map :payload payload
                                          :timestamp timestamp
-                                         :subfolder (str "captures-"
+                                         :subfolder (str "captures/"
                                                          rand-id
-                                                         "-"
+                                                         "/"
                                                          (- (count img-buffers) 1)
-                                                         "-"
+                                                         "/"
                                                          index))) img-buffers)
-                img-packets (map #(hash-map :payload % :timestamp timestamp :subfolder "captures") img-buffers)
-                complete  img-packets]
+               complete  img-packets]
             (debug "trying to write img packet")
             (a/>! out complete)
             (debug "done xforming")
