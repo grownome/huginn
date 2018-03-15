@@ -67,7 +67,7 @@ If you are using spacemacs:
 Use semaphore if you want to deploy it to the board. Just make a pull request and when it's merged it wil be automatically deployed to the devices.
 
 If you want to do a build locally use
-`lein cljsbuild once prod`
+`shadow-cljs release prod`
 
 To push to resin, after you have run  the build command and  checked in the result to git 
 you want to run

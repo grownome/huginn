@@ -37,11 +37,8 @@
   (if (< (.-length img) chunk-size)
     [img]
     (into []
-      (for [start (range 0 (.-length img) chunk-size)
-            :let [end (min (.-length img) (+ start chunk-size))]]
-        (do
-          (debug "at " [start end])
-          (js/Buffer. (into-array (array-chunk img start end))))))))
+          (map js/Buffer.
+               (clj->js (partition chunk-size img))))))
 
 (defn read-imgs
   [output-dir in out]
