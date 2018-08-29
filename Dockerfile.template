@@ -58,7 +58,7 @@ RUN npm prune --unsafe-perm
 RUN shadow-cljs npm-deps dev
 
 COPY ./  /usr/src/app/
-RUN shadow-cljs build dev
+RUN shadow-cljs compile dev
 
 # Start app
 CMD ["/usr/src/app/start.sh"]
