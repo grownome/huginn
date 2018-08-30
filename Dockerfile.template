@@ -59,6 +59,7 @@ RUN npm install
 COPY ./  /usr/src/app/
 RUN npm run build
 RUN rm -rf .shadow-cljs
+RUN   apt-get remove -yq gcc        build-essential     oracle-java8-jdk     binutils     make       libraspberrypi-bin     python     wget    
 
 # Start app
 CMD ["/usr/src/app/start.sh"]
