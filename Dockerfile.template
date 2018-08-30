@@ -58,6 +58,7 @@ RUN shadow-cljs npm-deps dev
 
 COPY ./  /usr/src/app/
 RUN shadow-cljs compile dev
+RUN rm -rf .shadow-cljs
 
 # Start app
 CMD ["/usr/src/app/start.sh"]
