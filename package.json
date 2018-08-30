@@ -6,7 +6,7 @@
     "@google-cloud/storage": "^1.5.2",
     "ava": "^0.22.0",
     "jsonwebtoken": "^7.4.1",
-    "node-dht-sensor": "^0.0.33",
+    "node-dht-sensor": "^0.0.34",
     "mqtt": "^2.15.0",
     "raspicam": "^0.2.14",
     "rpi-gpio": "^0.9.1",
@@ -16,6 +16,6 @@
   },
   "scripts": { "start" : "node target/js/compiled/huginn.js" },
   "devDependencies": {
-    "shadow-cljs": "^2.0.147"
+    "shadow-cljs": "^2.6.4"
   }
 }
