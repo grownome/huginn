@@ -14,7 +14,8 @@
     "uuid": "^3.1.0",
     "yargs": "^8.0.2"
   },
-  "scripts": { "start" : "node target/js/compiled/huginn.js" },
+  "scripts": { "start" : "node target/js/compiled/huginn.js",
+	       "build" : "shadow-cljs compile dev" },
   "devDependencies": {
     "shadow-cljs": "^2.6.4"
   }
