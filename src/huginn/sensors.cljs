@@ -6,9 +6,10 @@
                    logf tracef debugf infof warnf errorf fatalf reportf
                    spy get-env]]
    [huginn.mqtt :refer [payload-root]]
-   [clojure.core.async :as a]))
+   [clojure.core.async :as a]
+   ["node-dht-sensor" :as s]))
 
-(def s (js/require "node-dht-sensor"))
+(def s (js/require ))
 
 (defn build-sensor-packet
   [sensor-name  sensor-reading]
@@ -36,10 +37,10 @@
   [opts gpio-channel]
   (let [out-chan (a/chan)]
     (info gpio-channel)
-    (.read s 22 gpio-channel (partial publish-sensor-reading opts out-chan))
+    (s/read 22 gpio-channel (partial publish-sensor-reading opts out-chan))
     (a/go-loop []
       (a/<! (a/timeout (:dht11Delay opts)))
-      (.read s 22 gpio-channel (partial publish-sensor-reading opts out-chan))
+      (s/read 22 gpio-channel (partial publish-sensor-reading opts out-chan))
         (recur))
     out-chan))
 
