@@ -10,7 +10,7 @@
    :algorithm "RS256"
    :tokenExpMins 25
    :userId (or js/process.env.USER_ID "0")
-   :dht11Delay (* 60 1000 2)
+   :dht11Delay (* 60 10 2)
    :delayMs (* 1000 30)
    :mqttBridgeHostname "mqtt.googleapis.com"
    :mqttBridgePort 8883

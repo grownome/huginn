@@ -28,15 +28,13 @@
 (defn client-handlers
   [success-fn fail send recv]
   {"connect" (fn [success]
-               (info "client connected")
                (if success
                  (do
-                   (debug "client connection success")
                    (success-fn))
                  (do
                    (debug "client connection failure")
                    (fail))))
-   "close"   (fn [] (debug "client connection closed"))
+   "close"   (fn [] )
    "error"   (fn [err] (error "error: " err))
    "message" (fn [topic message packet]
                (a/go
