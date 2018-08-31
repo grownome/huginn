@@ -37,6 +37,9 @@
   (let [out-chan (a/chan)]
     (info gpio-channel)
     (s/read 22 gpio-channel (partial publish-sensor-reading opts out-chan))
+    (s/read 22 17  (partial publish-sensor-reading opts out-chan))
+    (s/read 22 10 (partial publish-sensor-reading opts out-chan))
+    (s/read 22 gpio-channel (partial publish-sensor-reading opts out-chan))
     (a/go-loop []
       (a/<! (a/timeout (:dht11Delay opts)))
       (s/read 22 gpio-channel (partial publish-sensor-reading opts out-chan))
