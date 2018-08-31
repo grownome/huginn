@@ -1,4 +1,4 @@
-FROM resin/%%RESIN_MACHINE_NAME%%-node:10.7.0
+FROM resin/%%RESIN_MACHINE_NAME%%-node:8
 
 RUN apt-get update -q && apt-get install curl
 # Install dependencies as well as the proper version of uv4l-webrtc
