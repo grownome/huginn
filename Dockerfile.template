@@ -57,7 +57,6 @@ RUN npm prune --unsafe-perm
 
 COPY ./  /usr/src/app/
 RUN npm run build
-RUN rm -rf .shadow-cljs
 RUN   apt-get remove -yq gcc        build-essential     oracle-java8-jdk     binutils     make  python     wget    
 
 # Start app
