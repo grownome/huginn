@@ -1,7 +1,6 @@
 {
   "name": "grownome",
   "dependencies": {
-    "@cljs-oss/module-deps": "^1.1.1",
     "@google-cloud/pubsub": "^0.13.2",
     "@google-cloud/storage": "^1.5.2",
     "ava": "^0.22.0",
