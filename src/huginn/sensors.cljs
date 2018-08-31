@@ -9,7 +9,6 @@
    [clojure.core.async :as a]
    ["node-dht-sensor" :as s]))
 
-(def s (js/require ))
 
 (defn build-sensor-packet
   [sensor-name  sensor-reading]
