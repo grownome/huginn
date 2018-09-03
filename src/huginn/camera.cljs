@@ -5,7 +5,7 @@
     :refer-macros [log  trace  debug  info  warn  error  fatal  report
                    logf tracef debugf infof warnf errorf fatalf reportf
                    spy get-env]]
-   [goog.crypt.Md5. :as MD5]
+   [goog.crypt.Md5 :as MD5]
    [clojure.core.async :as a]
    [cljs-node-io.core :as io]
    [raspicam :as r]))
