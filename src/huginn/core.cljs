@@ -21,7 +21,7 @@
   (println "starting huginn")
   (let [system (mqtt/system-function config/default-options)
         system-with-mixer (p/then system add-mixer)
-        s-with-humididty (sensor/start-mix-sensor system config/default-options 17)
+        s-with-humididty (sensor/start-mix-sensor system-with-mixer config/default-options 17)
        ; s-with-cam (camera/start-mix-camera s-with-humididty)
         ]
     (p/chain
