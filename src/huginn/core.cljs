@@ -4,6 +4,7 @@
    [huginn.mqtt :as mqtt]
    [huginn.camera :as camera]
    [huginn.sensors :as sensor]
+   [clojure.core.async :as a]
    [cljs.nodejs :as nodejs]
    [promesa.core :as p]))
 
@@ -19,7 +20,7 @@
 (defn main [& args]
   (println "starting huginn")
   (let [system (mqtt/system-function config/default-options)
-        system-with-mixer (p/then system (a/mix telemetry-chan))
+        system-with-mixer (p/then system add-mixer)
         s-with-humididty (sensor/start-mix-sensor system config/default-options 17)
        ; s-with-cam (camera/start-mix-camera s-with-humididty)
         ]
