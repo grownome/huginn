@@ -16,7 +16,6 @@
   [{:keys [telemetry-chan] :as state}]
   (assoc state :mixer (a/mix telemetry-chan)))
 
-(p/then (fn ))
 (defn main [& args]
   (println "starting huginn")
   (let [system (mqtt/system-function config/default-options)
