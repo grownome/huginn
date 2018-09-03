@@ -37,9 +37,6 @@
   (let [out-chan (a/chan)]
     (info gpio-channel)
     (s/read 22 gpio-channel (partial publish-sensor-reading opts out-chan))
-    (s/read 22 17  (partial publish-sensor-reading opts out-chan))
-    (s/read 22 10 (partial publish-sensor-reading opts out-chan))
-    (s/read 22 gpio-channel (partial publish-sensor-reading opts out-chan))
     (a/go-loop []
       (a/<! (a/timeout (:dht11Delay opts)))
       (s/read 22 gpio-channel (partial publish-sensor-reading opts out-chan))
@@ -56,9 +53,8 @@
 
 
 (defn -start-mix-sensor
-  [opts sensor-gpio  {:keys [telemetry-chan] :as system} ]
-  (let [s-chan (sensor-chan opts sensor-gpio)
-        mixer (a/mix telemetry-chan)]
+  [opts sensor-gpio  {:keys [telemetry-chan mixer] :as system} ]
+  (let [s-chan (sensor-chan opts sensor-gpio)]
               (info "connecting sensor to mixer")
               (a/admix mixer s-chan)
               (spy (-> system

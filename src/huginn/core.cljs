@@ -12,9 +12,15 @@
 
 (def system-atom (atom nil))
 
+(defn add-mixer
+  [{:keys [telemetry-chan] :as state}]
+  (assoc state :mixer (a/mix telemetry-chan)))
+
+(p/then (fn ))
 (defn main [& args]
   (println "starting huginn")
   (let [system (mqtt/system-function config/default-options)
+        system-with-mixer (p/then system (a/mix telemetry-chan))
         s-with-humididty (sensor/start-mix-sensor system config/default-options 17)
        ; s-with-cam (camera/start-mix-camera s-with-humididty)
         ]

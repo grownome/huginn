@@ -5,9 +5,15 @@
     :refer-macros [log  trace  debug  info  warn  error  fatal  report
                    logf tracef debugf infof warnf errorf fatalf reportf
                    spy get-env]]
+   [goog.crypt.Md5. :as MD5]
    [clojure.core.async :as a]
    [cljs-node-io.core :as io]
    [raspicam :as r]))
+
+(defn md5
+  "convert bytes to md5 bytes"
+  [bytes-in]
+  (hash-bytes (goog.crypt.Md5.) bytes-in))
 
 (defn cam-handlers
   [success-fn stop-fn restart-fn read-chan ]
@@ -51,13 +57,13 @@
           (do (error "error reading image:" err " " filename)
               (recur))
           (let [img-buffers (chunk-img img-data  100000)
-                rand-id (rand-int 100000)
+                byte-hash (md5 img-data)
                 img-packets (map-indexed
                              (fn [index payload]
                                (hash-map :payload payload
                                          :timestamp timestamp
                                          :subfolder (str "captures/"
-                                                         rand-id
+                                                         byte-hash
                                                          "/"
                                                          (- (count img-buffers) 1)
                                                          "/"
@@ -111,9 +117,8 @@
 
 
 (defn -start-mix-camera
-  [{:keys [telemetry-chan] :as system}]
-  (let [camera-p (build-camera)
-        mixer (a/mix telemetry-chan)]
+  [{:keys [telemetry-chan mixer] :as system}]
+  (let [camera-p (build-camera)]
     (p/then camera-p
             (fn [{:keys [snap-chan camera]}]
               (info "connecting camera to mixer")
