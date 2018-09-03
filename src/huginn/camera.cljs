@@ -10,6 +10,11 @@
    [cljs-node-io.core :as io]
    [raspicam :as r]))
 
+(defn hash-bytes [digester bytes-in]
+  (do
+    (.update digester bytes-in)
+    (.digest digester)))
+
 (defn md5
   "convert bytes to md5 bytes"
   [bytes-in]
