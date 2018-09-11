@@ -22,10 +22,10 @@
   (let [system (mqtt/system-function config/default-options)
         system-with-mixer (p/then system add-mixer)
         s-with-humididty (sensor/start-mix-sensor system-with-mixer config/default-options 17)
-       ; s-with-cam (camera/start-mix-camera s-with-humididty)
+        s-with-cam (camera/start-mix-camera s-with-humididty)
         ]
     (p/chain
-     s-with-humididty
+     s-with-cam
      #(reset! system-atom %))))
 
 
