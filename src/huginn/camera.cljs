@@ -6,6 +6,7 @@
                    logf tracef debugf infof warnf errorf fatalf reportf
                    spy get-env]]
    [goog.crypt.Md5 :as MD5]
+   [goog.crypt :as gcrypt]
    [clojure.core.async :as a]
    [cljs-node-io.core :as io]
    [raspicam :as r]))
@@ -18,7 +19,7 @@
 (defn md5
   "convert bytes to md5 bytes"
   [bytes-in]
-  (hash-bytes (goog.crypt.Md5.) bytes-in))
+  (gcrypt/byteArrayToString (hash-bytes (goog.crypt.Md5.) bytes-in)))
 
 (defn cam-handlers
   [success-fn stop-fn restart-fn read-chan ]
@@ -35,6 +36,7 @@
                 (a/>! read-chan {:err err
                                  :timestamp timestamp
                                  :filename filename}))))})
+
 
 
 (defn add-handlers
