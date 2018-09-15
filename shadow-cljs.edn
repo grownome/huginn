@@ -10,8 +10,15 @@
                  [org.clojure/test.check "0.10.0-alpha2"]]
 
  :source-paths ["src" "dev"]
- :builds  {:dev {:optimizations :none
-                          :main huginn.core/main
-                                 :target :node-script
-                                  :output-to "target/js/compiled/huginn.js"
-                                  :pretty-print true}}}
+ :builds  {
+           :local {:optimizations :none
+                        :main user/main
+                        :target :node-script
+                        :output-to "local/huginn.js"
+                        :pretty-print true}
+
+           :dev {:optimizations :none
+                 :main huginn.core/main
+                 :target :node-script
+                 :output-to "target/js/compiled/huginn.js"
+                 :pretty-print true}}}

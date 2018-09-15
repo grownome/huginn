@@ -9,23 +9,68 @@
     :refer-macros [log  trace  debug  info  warn  error  fatal  report
                    logf tracef debugf infof warnf errorf fatalf reportf
                    spy get-env]]
-   [clojure.core.async :as a]
+   [cljs.core.async :as a]
    [systeminformation :as si]
+   [cljs.spec.alpha :as s]
    [cljs.nodejs :as nodejs]))
 
 
+(s/def ::projectId string?)
+(s/def ::registryId string?)
+(s/def ::cloudRegion string?)
+(s/def ::deviceId string?)
+(s/def ::chan (partial instance? (a/chan)))
+
+(s/def ::topic-type #{"events" "state"})
+
+
+(s/def ::client-config (s/keys :req-un
+                               [::projectId
+                                ::registryId
+                                ::cloudRegion
+                                ::deviceId]))
+
+(s/def ::payload (s/and string? #(< ( count %) 200000)))
+(s/def ::subfolder (s/and string? #(< (count %) 200)))
+(s/def ::ts float?)
+
+(s/def ::mqtt-packet
+  (s/keys :req-un [::payload
+                   ::subfolder
+                   ::ts]))
+
+(s/fdef client-id
+  :args ::client-config
+  :ret  string?)
+
+
 (defn client-id
+  "Builds a client id used to identify the device this message is
+  comming from"
   [{:keys [projectId registryId cloudRegion deviceId] :as opts}]
   (str "projects/" projectId
        "/locations/" cloudRegion
        "/registries/" registryId
        "/devices/" deviceId))
 
+(s/fdef config-chan
+  :args (s/keys :req [::deviceId])
+  :ret string?)
 (defn config-chan
+  "google give each device two channeles, a state channel (the config channel)
+  and a telemetry channel (the one that we push all our data over). The name of
+  these channels are determined by google iot core."
   [{:keys [deviceId] :as opts}]
   (str "/devices/" deviceId "/config"))
 
+(s/fdef client-handlers
+  :args (s/cat :success-fn fn?
+               :fail       fn?
+               :send       ::chan
+               :recv       ::chan))
+
 (defn client-handlers
+  "builds a map of handels to attach to the mqtt object"
   [success-fn fail send recv]
   {"connect" (fn [success]
                (if success
@@ -42,20 +87,42 @@
                              :message message
                              :packet packet})))})
 
+
 (defn add-handlers
+  "takes a map of handlers and attaches them to the mqtt object"
   [client handlers]
   (doseq [[key hand] handlers]
     (.on client key hand)))
 
+(s/fdef build-client
+  :args ::client-config)
+
 (defn build-client [opts]
+  "builds the mqtt client using the client-config
+the mqtt client is responsible for holding on to
+auth to talk to google iot core. The mqtt client
+is also responsible for actually pushing the data
+to google iot core."
   (let [conn-args (jw/connection-args opts)
         client    (mqtt/connect conn-args)]
     {:client (mqtt/connect conn-args)
      :iat-time (jw/round-now)}))
 
+;This function is referenced before it is defined so we
+;declare it
 (declare publish-async)
 
-(defn init-client [opts send recv ]
+(s/fdef init-client
+  :args (s/cat :opts ::client-config
+               :send ::chan
+               :recv ::chan)
+  :ret p/promise?)
+
+(defn init-client [opts send recv]
+  "using client config and a channel to send and a channel to recv on,
+builds an mqtt client that will read from the send chan and push to google
+  and write to the recv chan when google pushes to it. This object is wrapped
+in a promise that returns when the client is ready"
   (p/promise
    (fn [resolve reject]
      (let [{:keys [time client] :as init} (build-client opts)
@@ -64,8 +131,15 @@
        (add-handlers client handlers)))))
 
 (defn payload-root
+  "builds the prefix of the actual values being sent
+  (str (payload-root config) sensor-name /  sensor-value)"
   [{:keys [registryId userId deviceId] :as opts}]
   (str registryId "/" userId "/" deviceId "-payload"))
+
+(s/fdef mqtt-topic
+    :args (s/cat :opts     ::client-config
+                 :msg-type ::topic-type)
+    :ret string?)
 
 (defn mqtt-topic
   "msg-type can be 'state' for state updates
@@ -73,7 +147,12 @@
   [{:keys [deviceId] :as opts} msg-type]
   (str "/devices/" deviceId "/" msg-type))
 
+(s/fdef prep-temps
+  :args (s/cat :opts ::client-config :data any?)
+  :ret (s/coll-of ::mqtt-packet))
 (defn prep-temps
+  "pulls the data out of the systeminformation library and wrapping them up
+  to be sent into mqtt"
   [opts data]
   (let [pr (payload-root opts)
         cores-raw (js->clj (.-cores data))
@@ -95,15 +174,20 @@
 
 (def stop (atom false))
 
+(s/fdef publish-one
+  :args (s/cat :client any? :packet ::mqtt-packet))
 (defn publish-one
+  "Publises one mqtt packet to the client"
   [^MqttClient client {:keys [topic payload qos] :as p}]
   (.publish client topic payload qos))
 
+
 (defn publisher
+  "main loop that pushes packets added to the send-chan to google iot core"
   [client-atom send-chan]
   (a/go-loop []
     (let [to-send (a/<! send-chan)]
-      (publish-one @client-atom  to-send)
+      (publish-one @client-atom to-send)
       (recur))))
 
 (defn client-refresher
@@ -115,43 +199,63 @@
       (p/chain
        (p/promise
         (fn [resolve reject]
-          (swap! client-atom (fn [c] (.end c)
+          (swap! client-atom (fn [c]
+                               (.end c)
                                (resolve)))))
-       #(init-client opts send recv)
+       (init-client opts send recv)
        (fn [client]
          (reset! client-atom client))))
     (recur)))
 
+(s/fdef tele-chan
+  :args ::client-config
+  :ret ::chan)
 (defn tele-chan
+  "takes the client opts and builds a channel with system telementry
+  values on it (cpu tempratures specifically)"
   [opts]
   (let [temp-chan (a/chan)
         out-chan (a/chan)]
     (a/go-loop []
         (p/chain
          (si/cpuTemperature)
-         (partial prep-temps opts)
-         (fn [vs] (a/go (a/>! temp-chan vs))))
+         #(prep-temps opts %)
+         (fn [mqtt-packets] (a/go (a/>! temp-chan mqtt-packets))))
         (let [v (a/<! temp-chan)]
           (a/>! out-chan v)
           (recur)))
     out-chan))
 
 
+(s/fdef sender
+  :args (s/cat :topic-name ::topic-type
+               :opts       ::client-config
+               :send       ::chan
+               :t-chan     ::chan))
+
 (defn sender
+  "takes information for the tele-chan in the form of collections of
+  mqtt-packets and assignes a default topic if a subfolder is set,
+  adds a default qos. Then takes the resulting structures and puts
+  them on to the send channel. waits for :delayMs between collections "
   [topic-name opts send t-chan]
   (a/go-loop []
     (let [teles (a/<! t-chan)
           topic (mqtt-topic opts topic-name)
           qos #js {:qos 1}]
+
+      ;becuase this should rarely happen
       (when (= "state" topic-name)
         (debug "pushing state" topic))
+
       (a/onto-chan
        send
-       (map  (fn [{:keys [subfolder] :as t}]
-               (let [my-topic (if subfolder (str topic "/" subfolder) topic)]
-                 (-> t
-                     (assoc :topic my-topic)
-                     (assoc :qos qos))) ) teles)
+       (map
+        (fn [{:keys [subfolder] :as mqtt-packet}]
+          (let [my-topic (if subfolder (str topic "/" subfolder) topic)]
+            (-> mqtt-packet
+                (assoc :topic my-topic)
+                (assoc :qos qos))) ) teles)
        false)
       (a/<! (a/timeout (:delayMs opts)))
       (recur))))
