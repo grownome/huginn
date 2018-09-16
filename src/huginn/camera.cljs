@@ -19,7 +19,7 @@
 (defn md5
   "convert bytes to md5 bytes"
   [bytes-in]
-  (gcrypt/byteArrayToString (hash-bytes (goog.crypt.Md5.) bytes-in)))
+  (gcrypt/byteArrayToHex (hash-bytes (goog.crypt.Md5.) bytes-in)))
 
 (defn cam-handlers
   [success-fn stop-fn restart-fn read-chan ]

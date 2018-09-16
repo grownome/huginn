@@ -15,6 +15,7 @@
    [cljs.nodejs :as nodejs]))
 
 
+
 (s/def ::projectId string?)
 (s/def ::registryId string?)
 (s/def ::cloudRegion string?)
