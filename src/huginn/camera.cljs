@@ -50,7 +50,7 @@
   (if (< (.-length img) chunk-size)
     [img]
     (into []
-          (map (fn [data] (.toString (js/Buffer. data) "base64"))
+          (map (fn [data] (js/Buffer. data))
                (clj->js (partition chunk-size img))))))
 
 (defn read-imgs
