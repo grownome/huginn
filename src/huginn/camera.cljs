@@ -58,7 +58,7 @@
     (if (< (.-length img) chunk-size)
       [img]
       (into []
-            (map (fn [data] (js/Buffer.from data "binary"))
+            (map (fn [data] (js/Buffer.from (clj->js data) "binary"))
                  (into []  (partition-all chunk-size img)))))))
 
 (defn read-imgs
