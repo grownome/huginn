@@ -51,7 +51,7 @@
     [img]
     (into []
           (map (fn [data] (js/Buffer. data))
-               (clj->js (partition chunk-size img))))))
+               (clj->js (partition-all chunk-size img))))))
 
 (defn read-imgs
   [output-dir in out]
