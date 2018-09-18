@@ -54,11 +54,11 @@
 
 (defn chunk-img
   [img chunk-size]
-  (let [stringed (.toString img)]
+  (let [stringed (.toString img "binary")]
     (if (< (.-length img) chunk-size)
       [img]
       (into []
-            (map (fn [data] (js/Buffer.from data))
+            (map (fn [data] (js/Buffer.from data "binary"))
                  (into []  (partition-all chunk-size img)))))))
 
 (defn read-imgs
