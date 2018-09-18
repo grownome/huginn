@@ -9,7 +9,8 @@
    [goog.crypt :as gcrypt]
    [clojure.core.async :as a]
    [cljs-node-io.core :as io]
-   [raspicam :as r]))
+   [raspicam :as r]
+   [cljs.spec.alpha :as spec]))
 
 (defn hash-bytes [digester bytes-in]
   (do
@@ -45,13 +46,20 @@
     (.on camera key hand)))
 
 
+
+(spec/fdef chunk-img
+  :args (spec/cat :img (partial instance? js/Buffer.)
+               :chunk-size int?)
+  :ret (spec/coll-of (partial instance? js/Buffer.)))
+
 (defn chunk-img
   [img chunk-size]
-  (if (< (.-length img) chunk-size)
-    [img]
-    (into []
-          (map (fn [data] (js/Buffer. data))
-               (clj->js (partition-all chunk-size img))))))
+  (let [stringed (.toString img)]
+    (if (< (.-length img) chunk-size)
+      [img]
+      (into []
+            (map (fn [data] (js/Buffer.from data))
+                 (into []  (partition-all chunk-size img)))))))
 
 (defn read-imgs
   [output-dir in out]
