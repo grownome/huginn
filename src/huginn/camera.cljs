@@ -49,17 +49,26 @@
 
 (spec/fdef chunk-img
   :args (spec/cat :img (partial instance? js/Buffer.)
-               :chunk-size int?)
-  :ret (spec/coll-of (partial instance? js/Buffer.)))
+                  :chunk-size int?)
+  :ret (spec/coll-of (partial instance? js/Buffer.))
+  :fn  (fn [{:keys [args ret]}]
+         (.equals (first args) (js/Buffer.concat ret))))
+
 
 (defn chunk-img
   [img chunk-size]
-  (let [stringed (.toString img "binary")]
+  (let [points  (range 0 (dec (.-length img)))
+        groups (partition-all points chunk-size)
+        starts (map first groups)
+        ends   (map last groups)
+        img-cpy  (repeat img)]
     (if (< (.-length img) chunk-size)
       [img]
       (into []
-            (map (fn [data] (js/Buffer.from (clj->js data) "binary"))
-                 (into []  (partition-all chunk-size stringed)))))))
+            (map (fn [start img end]
+                   (.slice img start end))
+                 starts img-cpy ends)))))
+
 
 (defn read-imgs
   [output-dir in out]
