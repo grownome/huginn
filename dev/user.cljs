@@ -3,16 +3,16 @@
    [cljs.core.async :as a]
    [systeminformation :as si]
    [huginn.camera :as c]
-   [clojure.pprint :as pprint]
    [cljs.test :as t]
-   [cljs.spec.test.alpha :as stest]))
+   [cljs.spec.alpha :as s]))
 
-
-(defn summarize-results [spec-check]
-  (map (comp
-        #(pprint/write % :stream nil) stest/abbrev-result) spec-check))
+(chunk-image (js/Buffer.from "string" "ascii"))
 
 (def check-opts {:clojure.spec.test.check/opts {:num-tests 500}})
 
+(defn check-it []
+  (stest/check 'c/chunk-image))
+
+(i/)
 
 (defn main [])
