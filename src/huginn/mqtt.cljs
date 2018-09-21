@@ -192,18 +192,18 @@ in a promise that returns when the client is ready"
       (recur))))
 
 (defn client-refresher
-  "loops and refreshs the client atom every token experation"
+  "loops and refreshs the client atom every token experation.
+  Mqtt requires that you refresh your token frequently (less then 20 mins)"
   [client-atom {:keys [tokenExpMins delayMs] :as opts} send recv]
+  ;Loop forever waiting for the tokenExpMins, then building a new client
   (a/go-loop []
+    ; use core.async/timeout to set up a channel that has a value every tokenExpMins
     (let [wait (a/<! (a/timeout (* tokenExpMins 1000 60)))]
       (info "\tRefreshing token after " (* tokenExpMins 1000 60)  "ms")
       (p/chain
-       (p/promise
-        (fn [resolve reject]
-          (swap! client-atom (fn [c]
-                               (.end c)
-                               (resolve)))))
+       ;Builds a new client
        (init-client opts send recv)
+       ;Use the client built in the previous step and replace the old-client
        (fn [client]
          (reset! client-atom client))))
     (recur)))
