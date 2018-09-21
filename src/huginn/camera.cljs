@@ -57,6 +57,7 @@
 
 (defn chunk-img
   [img chunk-size]
+  ""
   (let [points   (range 0 (dec (.-length img)))
         groups   (partition-all chunk-size points)
         starts   (map first groups)
