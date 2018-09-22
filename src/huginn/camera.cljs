@@ -66,7 +66,7 @@
     (if (< (.-length img) chunk-size)
       [img]
       (->> (map (fn [start end] (.slice img start end)) starts ends)
-           (map (fn [buff] (b64/encodeByteArray buff true)))
+           (map (fn [ buff] (b64/encodeByteArray (js/Buffer. buff) true)))
            (into [])))))
 
 
