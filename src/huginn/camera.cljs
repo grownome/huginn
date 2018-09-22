@@ -105,7 +105,7 @@
   ([{:keys [output-dir tl mode encoding]
      :or {output-dir "pics"
           mode "timelapse"
-          encoding "jpg"
+          encoding "png"
           tl (* 60 1000 7)} :as opts} ]
    (p/promise
     (fn [resolve reject]
