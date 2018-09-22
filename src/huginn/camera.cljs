@@ -82,7 +82,7 @@
         (if (or err (= filename ""))
           (do (error "error reading image:" err " " filename)
               (recur))
-          (let [img-buffers (chunk-img img-data  100000)
+          (let [img-buffers (chunk-img img-data  50000)
                 byte-hash (md5 img-data)
                 img-packets (map-indexed
                              (fn [index payload]
