@@ -66,7 +66,7 @@
     (if (< (.-length img) chunk-size)
       [img]
       (->> (map (fn [start end] (.slice img start end)) starts ends)
-           (map (fn [ buff] (b64/encodeByteArray (js/Buffer. buff) true)))
+           (map (fn [buff] (b64/encodeByteArray (js/Buffer. buff) true)))
            (into [])))))
 
 
@@ -82,7 +82,7 @@
         (if (or err (= filename ""))
           (do (error "error reading image:" err " " filename)
               (recur))
-          (let [img-buffers (chunk-img img-data  150000)
+          (let [img-buffers (chunk-img img-data  100000)
                 byte-hash (md5 img-data)
                 img-packets (map-indexed
                              (fn [index payload]
@@ -106,7 +106,7 @@
      :or {output-dir "pics"
           mode "timelapse"
           encoding "jpg"
-          tl (* 60 1000 10)} :as opts} ]
+          tl (* 60 1000 7)} :as opts} ]
    (p/promise
     (fn [resolve reject]
       (let [snap-chan (a/chan)
