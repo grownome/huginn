@@ -195,18 +195,24 @@ in a promise that returns when the client is ready"
   "loops and refreshs the client atom every token experation.
   Mqtt requires that you refresh your token frequently (less then 20 mins)"
   [client-atom {:keys [tokenExpMins delayMs] :as opts} send recv]
-  ;Loop forever waiting for the tokenExpMins, then building a new client
-  (a/go-loop []
-    ; use core.async/timeout to set up a channel that has a value every tokenExpMins
-    (let [wait (a/<! (a/timeout (* tokenExpMins 1000 60)))]
-      (info "\tRefreshing token after " (* tokenExpMins 1000 60)  "ms")
-      (p/chain
-       ;Builds a new client
-       (init-client opts send recv)
-       ;Use the client built in the previous step and replace the old-client
-       (fn [client]
-         (reset! client-atom client))))
-    (recur)))
+  ; make a mixer so that we can pause the data when switching clients
+  (let [client-send-chan (a/chan)
+        client-mixer (a/mix client-send-chan)]
+    (a/admix client-mixer send)
+   ;Loop forever waiting for the tokenExpMins, then building a new client
+    (a/go-loop []
+   ; use core.async/timeout to set up a channel that has a value every tokenExpMins
+      (let [wait (a/<! (a/timeout (* tokenExpMins 1000 60)))]
+        (info "\tRefreshing token after " (* tokenExpMins 1000 60)  "ms")
+        (a/toggle client-mixer {send {:pause true}})
+        (p/chain
+         ;Builds a new client
+         (init-client opts client-send-chan recv)
+         ;Use the client built in the previous step and replace the old-client
+         (fn [client]
+           (reset! client-atom client)
+           (a/toggle client-mixer {send {:pause false}}))))
+      (recur))))
 
 (s/fdef tele-chan
   :args ::client-config
