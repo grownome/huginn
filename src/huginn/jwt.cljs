@@ -49,7 +49,6 @@
        :clientId (client-id opts)
        :username "unused"
        :password (create-jwt opts)
-       :encoding "binary"
        :protocol "mqtts"
        :secureProtocol "TLSv1_2_method"})
 

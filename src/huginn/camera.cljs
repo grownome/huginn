@@ -66,7 +66,7 @@
     (if (< (.-length img) chunk-size)
       [img]
       (->> (map (fn [start end] (.slice img start end)) starts ends)
-           (map (fn [buff] (js/Buffer. buff)))
+           (map (fn [buff] (b64/encodeByteArray  (js/Buffer. buff))))
            (into [])))))
 
 
@@ -105,8 +105,8 @@
   ([{:keys [output-dir tl mode encoding]
      :or {output-dir "pics"
           mode "timelapse"
-          encoding "png"
-          tl (* 60 1000 7)} :as opts} ]
+          encoding "gif"
+          tl (* 60 1000 5)} :as opts} ]
    (p/promise
     (fn [resolve reject]
       (let [snap-chan (a/chan)
