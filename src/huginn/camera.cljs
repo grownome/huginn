@@ -65,13 +65,9 @@
         ends     (map (comp inc last) groups)]
     (if (< (.-length img) chunk-size)
       [img]
-      (->> (map (fn [start end]
-                  (.slice img start end))
-                starts ends)
-           (map (fn [buff]
-                  (b64/encodeByteArray buff true)))
-           (into [])
-           ))))
+      (->> (map (fn [start end] (.slice img start end)) starts ends)
+           (map (fn [buff] (b64/encodeByteArray buff true)))
+           (into [])))))
 
 
 (defn read-imgs
