@@ -221,7 +221,9 @@ in a promise that returns when the client is ready"
         (p/chain
          (si/cpuTemperature)
          #(prep-temps opts %)
-         (fn [mqtt-packets] (a/go (a/>! temp-chan mqtt-packets))))
+         (fn [mqtt-packets] (a/go
+                              (a/<! (a/timeout (* 1000 60 1)))
+                              (a/>! temp-chan mqtt-packets))))
         (let [v (a/<! temp-chan)]
           (a/>! out-chan v)
           (recur)))
@@ -256,7 +258,7 @@ in a promise that returns when the client is ready"
           (let [my-topic (if subfolder (str topic "/" subfolder) topic)]
             (-> mqtt-packet
                 (assoc :topic my-topic)
-                (assoc :qos qos))) ) teles)
+                (assoc :qos qos)))) teles)
        false)
       (a/<! (a/timeout (:delayMs opts)))
       (recur))))
