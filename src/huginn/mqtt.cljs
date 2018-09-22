@@ -206,6 +206,8 @@ in a promise that returns when the client is ready"
         (info "\tRefreshing token after " (* tokenExpMins 1000 60)  "ms")
         (a/toggle client-mixer {send {:pause true}})
         (p/chain
+         (p/promise  (fn [resolve _]
+                       (swap! client-atom (fn [c] (.close c (fn [] (resolve)))))))
          ;Builds a new client
          (init-client opts client-send-chan recv)
          ;Use the client built in the previous step and replace the old-client
