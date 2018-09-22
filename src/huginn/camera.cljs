@@ -6,6 +6,7 @@
                    logf tracef debugf infof warnf errorf fatalf reportf
                    spy get-env]]
    [goog.crypt.Md5 :as MD5]
+   [goog.crypt.base64 :as b64]
    [goog.crypt :as gcrypt]
    [clojure.core.async :as a]
    [cljs-node-io.core :as io]
@@ -61,14 +62,16 @@
   (let [points   (range 0 (dec (.-length img)))
         groups   (partition-all chunk-size points)
         starts   (map first groups)
-        ends     (map (comp inc last) groups)
-        img-cpy  (repeat img)]
+        ends     (map (comp inc last) groups)]
     (if (< (.-length img) chunk-size)
       [img]
-      (into []
-            (map (fn [start img end]
-                   (.slice img start end))
-                 starts img-cpy ends)))))
+      (->> (map (fn [start end]
+                  (.slice img start end))
+                starts ends)
+           (map (fn [buff]
+                  (b64/encodeByteArray buff true)))
+           (into [])
+           ))))
 
 
 (defn read-imgs
@@ -77,7 +80,9 @@
     (let [{:keys [err timestamp filename]
            :as img-res} (a/<! in)]
       (debug "xforming image " filename)
-      (let [[err img-data] (a/<! (io/aslurp (str output-dir "/" filename) {:encoding ""}))]
+      (let [[err img-data] (a/<!
+                            (io/aslurp (str output-dir "/" filename)
+                                       {:encoding ""}))]
         (if (or err (= filename ""))
           (do (error "error reading image:" err " " filename)
               (recur))

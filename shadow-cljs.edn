@@ -15,7 +15,7 @@
            {:target    :node-test
             :output-to "local/node-tests.js"
             :ns-regexp "-spec$"
-            :autorun   true}}
+            :autorun   true}
            :local {:optimizations :none
                         :main user/main
                         :target :node-script

@@ -3,6 +3,7 @@
    [cljs.test :as t]
    [cljs.spec.alpha :as s]
    [huginn.camera :as c]
+   [goog.crypt :as gc]
    [cljs.spec.test.alpha :as sr]))
 
 (t/deftest equal-chunk-img
@@ -21,4 +22,17 @@
         b1 (js/Buffer.from s )]
     (t/is (= (.toString (js/Buffer.concat (to-array (c/chunk-img b1 3))) )) s)))
 
+(t/deftest equal-big-chunk-img-bytes
+  (let [s #js [0xff 0xff]
+        b1 (js/Buffer.from s )]
+    (t/is (= (.toString (js/Buffer.concat (to-array (c/chunk-img b1 3))) )) s)))
+
+
+
+
+
+(t/deftest equal-huge-chunk-img
+  (let [s (to-array ( into [] (take 1000 (repeat "string"))))
+        b1 (js/Buffer.from s "")]
+    (t/is (= (.toString (js/Buffer.concat (to-array (c/chunk-img b1 3))) "ascii")) s)))
 
