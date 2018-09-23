@@ -46,6 +46,7 @@
   [{:keys [mqttBridgeHostname mqttBridgePort projectId privateKeyFile algorithm] :as opts}]
   #js {:host mqttBridgeHostname
        :port mqttBridgePort
+       :clean true
        :clientId (client-id opts)
        :username "unused"
        :password (create-jwt opts)

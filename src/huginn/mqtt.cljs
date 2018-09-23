@@ -205,7 +205,7 @@ in a promise that returns when the client is ready"
       (let [wait (a/<! (a/timeout (* tokenExpMins 1000 60)))]
         (info "\tRefreshing token after " (* tokenExpMins 1000 60)  "ms")
         (a/toggle client-mixer {send {:pause true}})
-        (.end @client-atom (jw/connection-args opts))
+        (.end @client-atom )
         (a/<! a/timeout 10)
         (p/then (init-client opts send recv)
                 (fn [new-client]
