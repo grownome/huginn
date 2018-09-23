@@ -205,19 +205,8 @@ in a promise that returns when the client is ready"
       (let [wait (a/<! (a/timeout (* tokenExpMins 1000 60)))]
         (info "\tRefreshing token after " (* tokenExpMins 1000 60)  "ms")
         (a/toggle client-mixer {send {:pause true}})
-        (p/chain
-         (p/promise  (fn [resolve _]
-                       ;; update the client atom with a ended client
-                       (swap! client-atom (fn [c]
-                                        ;end the client but wait for any
-                                            ;in progress messages to be acked
-                                            (.end c false (fn [] (resolve)))))))
-         ;Builds a new client
-         (init-client opts client-send-chan recv)
-         ;Use the client built in the previous step and replace the old-client
-         (fn [client]
-           (reset! client-atom client)
-           (a/toggle client-mixer {send {:pause false}}))))
+        (swap! client-atom (fn [c] (.reconnect c (jw/connection-args opts))))
+        (a/toggle client-mixer {send {:pause false}}))
       (recur))))
 
 (s/fdef tele-chan
