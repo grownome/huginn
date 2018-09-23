@@ -207,7 +207,11 @@ in a promise that returns when the client is ready"
         (a/toggle client-mixer {send {:pause true}})
         (p/chain
          (p/promise  (fn [resolve _]
-                       (swap! client-atom (fn [c] (.close c (fn [] (resolve)))))))
+                       ;; update the client atom with a ended client
+                       (swap! client-atom (fn [c]
+                                        ;end the client but wait for any
+                                            ;in progress messages to be acked
+                                            (.end c false (fn [] (resolve)))))))
          ;Builds a new client
          (init-client opts client-send-chan recv)
          ;Use the client built in the previous step and replace the old-client
