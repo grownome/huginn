@@ -77,8 +77,7 @@
            :as img-res} (a/<! in)]
       (debug "xforming image " filename)
       (let [[err img-data] (a/<!
-                            (io/aslurp (str output-dir "/" filename)
-                                       {:encoding ""}))]
+                            (io/aslurp (str output-dir "/" filename) :encoding ""))]
         (if (or err (= filename ""))
           (do (error "error reading image:" err " " filename)
               (recur))
