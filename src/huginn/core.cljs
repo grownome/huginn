@@ -7,7 +7,7 @@
    [clojure.core.async :as a]
    [cljs.nodejs :as nodejs]
    [promesa.core :as p]
-   [clj-gpio 0.2.0]))
+   [clj-gpio :as gp]))
 
 
 (nodejs/enable-util-print!)
@@ -18,18 +18,17 @@
   [{:keys [telemetry-chan] :as state}]
   (assoc state :mixer (a/mix telemetry-chan)))
 
+(def port (gp/open-port 4))
+
 (defn led-flash
-  (write-value! port :high)
+  (gp/set-direction! port :out)
+  (gp/write-value! port :high)
   (a/<! (a/timeout 500))
-  (write-value! port :low)
-  (a/<! (a/timeout 500))
-  )
+  (gp/write-value! port :low)
+  (a/<! (a/timeout 500)))
 
 (defn led-start-flash
-  (def port (open-port 4))
-  (set-direction! port :out)
-  (take 5 (repeatedly led-flash))
-  )
+  (take 5 (repeatedly led-flash)))
 
 (defn main [& args]
   (println "starting huginn")
