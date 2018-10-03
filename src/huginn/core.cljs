@@ -20,9 +20,10 @@
 
 (defn led-flash
   (write-value! port :high)
-  (time (Thread/sleep 500))
+  (a/<! (a/timeout 500))
   (write-value! port :low)
-  (time (Thread/sleep 500)))
+  (a/<! (a/timeout 500))
+  )
 
 (defn led-start-flash
   (def port (open-port 4))
