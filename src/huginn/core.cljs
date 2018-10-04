@@ -7,7 +7,7 @@
    [clojure.core.async :as a]
    [cljs.nodejs :as nodejs]
    [promesa.core :as p]
-   [clj-gpio :as gp]))
+   [gpio.core :as gp]))
 
 
 (nodejs/enable-util-print!)
