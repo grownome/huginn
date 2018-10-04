@@ -18,16 +18,17 @@
   [{:keys [telemetry-chan] :as state}]
   (assoc state :mixer (a/mix telemetry-chan)))
 
-(def port (gp/open-port 4))
+(def port (gp/open-port 04))
 
-(defn led-flash
-  (gp/set-direction! port :out)
-  (gp/write-value! port :high)
-  (a/<! (a/timeout 500))
-  (gp/write-value! port :low)
-  (a/<! (a/timeout 500)))
+(defn led-flash []
+  (a/go
+    (gp/set-direction! port :out)
+    (gp/write-value! port :high)
+    (a/<! (a/timeout 500))
+    (gp/write-value! port :low)
+    (a/<! (a/timeout 500))))
 
-(defn led-start-flash
+(defn led-start-flash []
   (take 5 (repeatedly led-flash)))
 
 (defn main [& args]
