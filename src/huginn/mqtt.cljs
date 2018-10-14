@@ -206,12 +206,12 @@ in a promise that returns when the client is ready"
         (info "\tRefreshing token after " (* tokenExpMins 1000 60)  "ms")
         (a/toggle client-mixer {send {:pause true}})
         (.end @client-atom )
-        (a/<! a/timeout 10)
+        (a/<!  (a/timeout 10))
         (p/then (init-client opts send recv)
                 (fn [new-client]
                   (reset! client-atom new-client)
-                  (a/toggle client-mixer {send {:pause false}}))))
-      (recur))))
+                  (a/toggle client-mixer {send {:pause false}})))
+        (recur)))))
 
 (s/fdef tele-chan
   :args ::client-config
