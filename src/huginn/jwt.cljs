@@ -48,6 +48,7 @@
        :port mqttBridgePort
        :clean true
        :clientId (client-id opts)
+       :keepAlive 60
        :username "unused"
        :password (create-jwt opts)
        :protocol "mqtts"

@@ -47,19 +47,27 @@
     (.on camera key hand)))
 
 
+(defn decode
+  [v]
+  (js/Buffer.from
+   (b64/decodeStringToUint8Array
+    v
+    ))
+
+  )
 
 (spec/fdef chunk-img
   :args (spec/cat :img (partial instance? js/Buffer.)
                   :chunk-size int?)
-  :ret (spec/coll-of (partial instance? js/Buffer.))
+  :ret (spec/coll-of string?)
   :fn  (fn [{:keys [args ret]}]
-         (.equals (first args) (js/Buffer.concat ret))))
+         (.equals (:img args) (js/Buffer.concat (apply array (map decode ret))))))
 
 
 (defn chunk-img
   [img chunk-size]
   ""
-  (let [points   (range 0 (dec (.-length img)))
+  (let [points   (range 0 (.-length img))
         groups   (partition-all chunk-size points)
         starts   (map first groups)
         ends     (map (comp inc last) groups)]

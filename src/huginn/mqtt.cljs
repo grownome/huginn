@@ -81,6 +81,7 @@
                    (debug "client connection failure")
                    (fail))))
    "close"   (fn [] )
+   "reconnect" (fn [] (log  "reconnecting"))
    "error"   (fn [err] (error "error: " err))
    "message" (fn [topic message packet]
                (a/go
@@ -205,13 +206,17 @@ in a promise that returns when the client is ready"
       (let [wait (a/<! (a/timeout (* tokenExpMins 1000 60)))]
         (info "\tRefreshing token after " (* tokenExpMins 1000 60)  "ms")
         (a/toggle client-mixer {send {:pause true}})
-        (.end @client-atom)
-        (let [wait-again (a/<! (a/timeout 100))]
-          (p/then (init-client opts send recv)
-                  (fn [new-client]
-                    (reset! client-atom new-client)
-                    (a/toggle client-mixer {send {:pause false}})))
-          (recur))))))
+        (.end @client-atom
+              (fn []
+                (aset @client-atom "password" (clj->js (jw/create-jwt opts)))
+                (.reconnect @client-atom
+                            (fn []
+                              (a/toggle client-mixer {send {:pause false}})))))
+;        (let [wait-again (a/<! (a/timeout 100))]
+;          (p/then (init-client opts send recv)
+;                  (fn [new-client]
+;                    (reset! client-atom new-client)
+        (recur)))))
 
 (s/fdef tele-chan
   :args ::client-config
