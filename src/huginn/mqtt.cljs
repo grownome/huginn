@@ -3,7 +3,7 @@
    [promesa.core :as p]
    [clojure.string :as st]
    [huginn.jwt :as jw]
-   [mqtt :as mqtt]
+   ["gcic-mqtt-client" :as mqtt]
    [huginn.config :as config]
    [taoensso.timbre :as timbre
     :refer-macros [log  trace  debug  info  warn  error  fatal  report
@@ -105,10 +105,9 @@ the mqtt client is responsible for holding on to
 auth to talk to google iot core. The mqtt client
 is also responsible for actually pushing the data
 to google iot core."
-  (let [conn-args (jw/connection-args opts)
-        client    (mqtt/connect conn-args)]
-    {:client (mqtt/connect conn-args)
-     :iat-time (jw/round-now)}))
+  (let [conn-args (jw/google-iot-conn-args opts)
+        client    (mqtt. conn-args)]
+    {:client client}))
 
 ;This function is referenced before it is defined so we
 ;declare it
@@ -127,7 +126,7 @@ builds an mqtt client that will read from the send chan and push to google
 in a promise that returns when the client is ready"
   (p/promise
    (fn [resolve reject]
-     (let [{:keys [time client] :as init} (build-client opts)
+     (let [{:keys [client] :as init} (build-client opts)
            handlers (client-handlers #(resolve client) #(reject :client-fail) send recv)]
        (.subscribe client (config-chan opts))
        (add-handlers client handlers)))))
@@ -180,8 +179,8 @@ in a promise that returns when the client is ready"
   :args (s/cat :client any? :packet ::mqtt-packet))
 (defn publish-one
   "Publises one mqtt packet to the client"
-  [^MqttClient client {:keys [topic payload qos] :as p}]
-  (.publish client topic payload qos))
+  [client {:keys [topic payload qos] :as p}]
+  (.publishEvent client payload  qos topic))
 
 
 (defn publisher
@@ -260,7 +259,6 @@ in a promise that returns when the client is ready"
       ;becuase this should rarely happen
       (when (= "state" topic-name)
         (debug "pushing state" topic))
-
       (a/onto-chan
        send
        (map
@@ -316,7 +314,7 @@ in a promise that returns when the client is ready"
      client-promise
      (fn [client]
        (reset! client-atom client)
-       (client-refresher client-atom opts send recv)
+;       (client-refresher client-atom opts send recv)
        (publisher client-atom send)
        (tele-send opts send t-chan)
        (state-send opts send state-chan)

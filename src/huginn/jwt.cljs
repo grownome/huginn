@@ -38,6 +38,17 @@
        "/registries/" registryId
        "/devices/" deviceId))
 
+(defn google-iot-conn-args
+  [{:keys [registryId
+           deviceId
+           cloudRegion
+           projectId
+           privateKeyFile] :as opts}]
+  #js {:projectId projectId
+       :registryId registryId
+       :deviceId deviceId
+       :cloudRegion cloudRegion
+       :privateKey (io/slurp privateKeyFile)})
 
 (defn connection-args
   "builds connection args for connecting to mqtt
@@ -49,6 +60,7 @@
        :clean true
        :clientId (client-id opts)
        :keepAlive 60
+       :reconnectPeriod 10000
        :username "unused"
        :password (create-jwt opts)
        :protocol "mqtts"
