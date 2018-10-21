@@ -81,7 +81,7 @@
                    (debug "client connection failure")
                    (fail))))
    "close"   (fn [] )
-   "reconnect" (fn [] (log  "reconnecting"))
+   "reconnect" (fn [] (info "reconnecting"))
    "error"   (fn [err] (error "error: " err))
    "message" (fn [topic message packet]
                (a/go
