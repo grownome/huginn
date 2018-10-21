@@ -4,6 +4,7 @@
    [clojure.string :as st]
    [huginn.jwt :as jw]
    ["gcic-mqtt-client" :as mqtt]
+   [orchestra-cljs.spec.test :as st]
    [huginn.config :as config]
    [taoensso.timbre :as timbre
     :refer-macros [log  trace  debug  info  warn  error  fatal  report
@@ -15,6 +16,7 @@
    [cljs.nodejs :as nodejs]))
 
 
+(st/instrument)
 
 (s/def ::projectId string?)
 (s/def ::registryId string?)
@@ -180,11 +182,12 @@ in a promise that returns when the client is ready"
 (def stop (atom false))
 
 (s/fdef publish-one
-  :args (s/cat :client any? :packet ::mqtt-packet))
+  :args (s/cat :client any? :packet (s/or :nil nil? :value ::mqtt-packet)))
 (defn publish-one
   "Publises one mqtt packet to the client"
   [client {:keys [topic payload qos] :as p}]
-  (.publishEvent client payload qos topic))
+  (when p
+    (.publishEvent client payload qos topic)))
 
 
 (defn publisher

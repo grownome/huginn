@@ -32,12 +32,13 @@
             :subfolder "metrics/temperature"}]
           c (a/chan)
           ]
-      (a/onto-chan c mets false)))
+      (a/onto-chan c mets )))
 
 
 (defn -start-mix-tester
-  [sensor-gpio  {:keys [telemetry-chan mixer] :as system} ]
+  [ {:keys [telemetry-chan mixer] :as system} ]
   (let [s-chan (test-chan)]
+    (println "adding mixxer")
     (a/admix mixer s-chan)
     (-> system
         (assoc :mixer mixer)
@@ -45,24 +46,26 @@
 
 (defn start-mix-tester
   [system-promise]
-  (p/then system-promise (partial -start-mix-tester )))
+  (p/then system-promise  -start-mix-tester ))
 
 (defn sleep
   [prom]
   (p/then prom
-          (fn [res ]
+          (fn [res]
+            (t/is (contains? res :mixer))
+            (t/is (contains? res :test-chan))
             (p/promise
              (fn [resolve reject]
                (a/go
-                 (let [waiter (a/<! (a/timeout 1000))]
+                 (let [waiter (a/<! (a/timeout 1))]
                    (resolve res))))))))
 
-(t/deftest test-send-shutdown
-  (t/async done
-           (p/chain
-            (mqtt/system-function config/default-options)
-            start-mix-tester
-            mqtt/kill-it
-            sleep
-            (fn [system]
-              (done)))))
+  (t/deftest test-send-shutdown
+    (t/async done
+             (p/chain
+              (mqtt/system-function config/default-options)
+              start-mix-tester
+              sleep
+              mqtt/kill-it
+              (fn [system]
+                (done)))))
