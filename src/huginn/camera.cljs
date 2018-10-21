@@ -52,9 +52,7 @@
   (js/Buffer.from
    (b64/decodeStringToUint8Array
     v
-    ))
-
-  )
+    )))
 
 (spec/fdef chunk-img
   :args (spec/cat :img (partial instance? js/Buffer.)
