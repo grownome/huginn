@@ -20,7 +20,7 @@
 (s/def ::registryId string?)
 (s/def ::cloudRegion string?)
 (s/def ::deviceId string?)
-(s/def ::chan (partial instance? (a/chan)))
+(s/def ::chan any?)
 
 (s/def ::topic-type #{"events" "state"})
 
@@ -34,10 +34,11 @@
 (s/def ::payload (s/and string? #(< ( count %) 200000)))
 (s/def ::subfolder (s/and string? #(< (count %) 200)))
 (s/def ::ts float?)
-
+(s/def ::qos #{0 1})
 (s/def ::mqtt-packet
   (s/keys :req-un [::payload
                    ::subfolder
+                   ::qos 
                    ::ts]))
 
 (s/fdef client-id
@@ -55,7 +56,7 @@
        "/devices/" deviceId))
 
 (s/fdef config-chan
-  :args (s/keys :req [::deviceId])
+  :args (s/cat :opts (s/keys :req-un [::deviceId]))
   :ret string?)
 (defn config-chan
   "google give each device two channeles, a state channel (the config channel)
@@ -97,7 +98,7 @@
     (.on client key hand)))
 
 (s/fdef build-client
-  :args ::client-config)
+  :args (s/cat :opts ::client-config))
 
 (defn build-client [opts]
   "builds the mqtt client using the client-config
@@ -161,15 +162,18 @@ in a promise that returns when the client is ready"
                (fn [index value]
                  {:payload (str pr "-core-temp-" index "/" (str value))
                   :subfolder (str "metrics/core-temp-" index)
+                  :qos 1
                   :ts (jw/round-now)})
                cores-raw)
         main (when (.-main data)
                {:payload (str pr "-core-temp-main/" (str (.-main data)))
                 :subfolder "metrics/core-temp-main"
+                :qos 1
                 :ts (jw/round-now)})
         max (when (.-max data)
               {:payload (str pr "-core-temp-max/" (str (.-max data)))
                :subfolder "metrics/core-temp-max"
+               :qos 1
                :ts (jw/round-now)})]
     (concat [main] [max] cores)))
 
@@ -180,7 +184,7 @@ in a promise that returns when the client is ready"
 (defn publish-one
   "Publises one mqtt packet to the client"
   [client {:keys [topic payload qos] :as p}]
-  (.publishEvent client payload  qos topic))
+  (.publishEvent client payload qos topic))
 
 
 (defn publisher
@@ -218,7 +222,7 @@ in a promise that returns when the client is ready"
         (recur)))))
 
 (s/fdef tele-chan
-  :args ::client-config
+  :args (s/cat :opts  ::client-config)
   :ret ::chan)
 (defn tele-chan
   "takes the client opts and builds a channel with system telementry
@@ -279,7 +283,7 @@ in a promise that returns when the client is ready"
 
 (defn clean-up
   [{:keys [send-chan recv-chan telemetry-chan state-chan client-atom] :as system}]
-  (log "Killing system")
+  (debug "Killing system")
   (doall
    (map (fn [c] (a/close! c))
         [send-chan recv-chan state-chan telemetry-chan]))
