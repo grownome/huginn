@@ -3056,7 +3056,7 @@ SHADOW_IMPORT("cljs_node_io.core.js");
 SHADOW_IMPORT("cljs.nodejs.js");
 SHADOW_IMPORT("shadow.js.shim.module$jsonwebtoken.js");
 SHADOW_IMPORT("huginn.jwt.js");
-SHADOW_IMPORT("shadow.js.shim.module$mqtt.js");
+SHADOW_IMPORT("shadow.js.shim.module$gcic_mqtt_client.js");
 SHADOW_IMPORT("huginn.config.js");
 SHADOW_IMPORT("clojure.set.js");
 SHADOW_IMPORT("cljs.tools.reader.impl.utils.js");

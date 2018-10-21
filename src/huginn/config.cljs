@@ -3,9 +3,9 @@
 (def default-options
   {:projectId (or js/process.env.GCLOUD_PROJECT js/process.env.GCLOUD_PROJECT "grownome")
    :cloudRegion "us-central1"
-   :registryId (or js/process.env.REGISTRY_ID "nomes")
-   :deviceId  (or js/process.env.DEVICE_ID "test-device")
-   :privateKeyFile (or js/process.env.PRIVATE_KEY_FILE "rsa_private.pem")
+   :registryId (or js/process.env.REGISTRY_ID "nomesDev")
+   :deviceId  (or js/process.env.DEVICE_ID "local-tester")
+   :privateKeyFile (or js/process.env.PRIVATE_KEY_FILE "rsa_private_local-tester.pem")
    :privateKey js/process.env.PRIVATE_KEY
    :algorithm "RS256"
    :tokenExpMins 25

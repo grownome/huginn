@@ -43,12 +43,13 @@
            deviceId
            cloudRegion
            projectId
+           privateKey
            privateKeyFile] :as opts}]
   #js {:projectId projectId
        :registryId registryId
        :deviceId deviceId
        :cloudRegion cloudRegion
-       :privateKey (io/slurp privateKeyFile)})
+       :privateKey (or (clean-env-key privateKey) (io/slurp privateKeyFile))})
 
 (defn connection-args
   "builds connection args for connecting to mqtt
