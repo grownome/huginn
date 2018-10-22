@@ -22,22 +22,8 @@
           joined-text (st/join "\n" [header joined-body footer])]
       joined-text)))
 
-(defn create-jwt
-  "Builds a jwt with an experation"
-  [{:keys [projectId tokenExpMins privateKey privateKeyFile algorithm] :as opts}]
-  (let [token
-        #js {:iat (round-now)
-             :exp (+ (* tokenExpMins 60) (round-now)) ;now + 20 min
-             :aud projectId}
-        privKey (or (clean-env-key privateKey) (io/slurp privateKeyFile))]
-    (jwt/sign token privKey #js {:algorithm algorithm })))
 
-(defn client-id
-  [{:keys [projectId registryId cloudRegion deviceId] :as opts}]
-  (str "projects/" projectId
-       "/locations/" cloudRegion
-       "/registries/" registryId
-       "/devices/" deviceId))
+
 
 (defn google-iot-conn-args
   [{:keys [registryId
@@ -49,22 +35,9 @@
   #js {:projectId projectId
        :registryId registryId
        :deviceId deviceId
+       :tokenLifecycle  (* 60 (:tokenExpMins config/default-options))
        :cloudRegion cloudRegion
        :privateKey (or (clean-env-key privateKey) (io/slurp privateKeyFile))})
 
-(defn connection-args
-  "builds connection args for connecting to mqtt
-  The same args are used no matter what topic you
-  are connecting too"
-  [{:keys [mqttBridgeHostname tokenExpMins mqttBridgePort projectId privateKeyFile algorithm] :as opts}]
-  #js {:host mqttBridgeHostname
-       :port mqttBridgePort
-       :clean true
-       :clientId (client-id opts)
-       :tokenLifecycle  3600
-       :username "unused"
-       :password (create-jwt opts)
-       :protocol "mqtts"
-       :onConfiguration (fn [config] (swap! config/iot-config  merge (js->clj config)))
-       :secureProtocol "TLSv1_2_method"})
+
 

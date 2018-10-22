@@ -35,13 +35,11 @@
 
 (s/def ::payload (s/and string? #(< ( count %) 200000)))
 (s/def ::subfolder (s/and string? #(< (count %) 200)))
-(s/def ::ts float?)
 (s/def ::qos #{0 1})
 (s/def ::mqtt-packet
   (s/keys :req-un [::payload
                    ::subfolder
-                   ::qos 
-                   ::ts]))
+                   ::qos]))
 
 (s/fdef client-id
   :args ::client-config
@@ -165,19 +163,16 @@ in a promise that returns when the client is ready"
                (fn [index value]
                  {:payload (str pr "-core-temp-" index "/" (str value))
                   :subfolder (str "metrics/core-temp-" index)
-                  :qos 1
-                  :ts (jw/round-now)})
+                  :qos 1})
                cores-raw)
         main (when (.-main data)
                {:payload (str pr "-core-temp-main/" (str (.-main data)))
                 :subfolder "metrics/core-temp-main"
-                :qos 1
-                :ts (jw/round-now)})
+                :qos 1})
         max (when (.-max data)
               {:payload (str pr "-core-temp-max/" (str (.-max data)))
                :subfolder "metrics/core-temp-max"
-               :qos 1
-               :ts (jw/round-now)})]
+               :qos 1})]
     (concat [main] [max] cores)))
 
 (def stop (atom false))
