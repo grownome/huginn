@@ -55,13 +55,13 @@
   "builds connection args for connecting to mqtt
   The same args are used no matter what topic you
   are connecting too"
-  [{:keys [mqttBridgeHostname mqttBridgePort projectId privateKeyFile algorithm] :as opts}]
+  [{:keys [mqttBridgeHostname tokenExpMins mqttBridgePort projectId privateKeyFile algorithm] :as opts}]
   #js {:host mqttBridgeHostname
        :port mqttBridgePort
        :clean true
        :clientId (client-id opts)
        :keepAlive 60
-       :reconnectPeriod 10000
+       :tokenLifecycle (* tokenExpMins 60)
        :username "unused"
        :password (create-jwt opts)
        :protocol "mqtts"
