@@ -4,7 +4,7 @@
    [clojure.string :as st]
    [huginn.jwt :as jw]
    ["gcic-mqtt-client" :as mqtt]
-   [orchestra-cljs.spec.test :as st]
+   [orchestra-cljs.spec.test :as spec-test]
    [huginn.config :as config]
    [taoensso.timbre :as timbre
     :refer-macros [log  trace  debug  info  warn  error  fatal  report
@@ -16,7 +16,7 @@
    [cljs.nodejs :as nodejs]))
 
 
-(st/instrument)
+(spec-test/instrument)
 
 (s/def ::projectId string?)
 (s/def ::registryId string?)
