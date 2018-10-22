@@ -187,7 +187,7 @@ in a promise that returns when the client is ready"
   "Publises one mqtt packet to the client"
   [client {:keys [topic payload qos] :as p}]
   (when p
-    (.publishEvent client payload qos topic)))
+    (.publishEvent client payload  1 topic)))
 
 
 (defn publisher
@@ -213,6 +213,7 @@ in a promise that returns when the client is ready"
         (info "\tRefreshing token after " (* tokenExpMins 1000 60)  "ms")
         (a/toggle client-mixer {send {:pause true}})
         (.end @client-atom
+              #js {}
               (fn []
                 (aset @client-atom "password" (clj->js (jw/create-jwt opts)))
                 (.reconnect @client-atom
@@ -287,10 +288,18 @@ in a promise that returns when the client is ready"
 (defn clean-up
   [{:keys [send-chan recv-chan telemetry-chan state-chan client-atom] :as system}]
   (debug "Killing system")
-  (doall
-   (map (fn [c] (a/close! c))
-        [send-chan recv-chan state-chan telemetry-chan]))
-  (.end @client-atom))
+  (p/promise
+   (fn [resolve reject]
+     (doall
+      (map (fn [c] (a/close! c))
+           [send-chan recv-chan state-chan telemetry-chan]))
+     (debug "killing client")
+     (debug @client-atom)
+     (p/then 
+      (.end @client-atom #js )
+      (fn [& args] (debug "client dead") (resolve system)))
+     )))
+   
 
 (defn system-function
   "the heart of the system lies here.
