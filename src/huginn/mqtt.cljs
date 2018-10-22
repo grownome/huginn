@@ -263,7 +263,7 @@ in a promise that returns when the client is ready"
   (a/go-loop []
     (let [teles (a/<! t-chan)
           topic (mqtt-topic opts topic-name)
-          qos #js {:qos 1}]
+          qos #js {:qos 0}]
 
       ;becuase this should rarely happen
       (when (= "state" topic-name)
@@ -275,7 +275,7 @@ in a promise that returns when the client is ready"
           (let [my-topic (if subfolder (str topic "/" subfolder) topic)]
             (-> mqtt-packet
                 (assoc :topic my-topic)
-                (assoc :qos qos)))) teles)
+                (assoc :qos 0)))) teles)
        false)
       (a/<! (a/timeout (:delayMs opts)))
       (recur))))
@@ -289,7 +289,6 @@ in a promise that returns when the client is ready"
 (defn clean-up
   [{:keys [send-chan recv-chan telemetry-chan state-chan client-atom] :as system}]
   (debug "Killing system")
-  
      (doall
       (map (fn [c] (a/close! c))
            [send-chan recv-chan state-chan telemetry-chan]))
