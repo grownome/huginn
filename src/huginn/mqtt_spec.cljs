@@ -18,12 +18,14 @@
 
 
 (t/deftest test-startup-shutdown
+  "tests that the system can start and stop"
   (t/async done
            (p/then
             (mqtt/system-function config/default-options)
             (fn [system]
               (p/then (mqtt/kill-it system)
                       (fn [dead]
+                        (debug "its dead")
                         (done)))))))
 
 (defn test-chan
@@ -56,6 +58,7 @@
 
 (defn add-mixer
   [{:keys [telemetry-chan] :as state}]
+  (debug "adding mixer")
   (assoc state :mixer (a/mix telemetry-chan)))
 
 
@@ -71,14 +74,16 @@
                  (let [waiter (a/<! (a/timeout 1))]
                    (resolve res))))))))
 
-  (t/deftest test-send-shutdown
-    (t/async done
-             (p/chain
-              (mqtt/system-function config/default-options)
-              add-mixer
-              (fn [sys] (debug "got sys") (spy sys))
-              start-mix-tester
-              sleep
-              mqtt/kill-it
-              (fn [system]
-                (done)))))
+(t/deftest test-send-shutdown
+  "testing that the system can send then shutdown"
+  (debug "send test")
+  (t/async done
+           (p/chain
+            (mqtt/system-function config/default-options)
+            add-mixer
+            (fn [sys] (debug "got sys") (spy sys))
+            start-mix-tester
+            sleep
+            mqtt/kill-it
+            (fn [system]
+              (done)))))

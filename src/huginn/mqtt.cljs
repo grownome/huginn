@@ -132,6 +132,7 @@ in a promise that returns when the client is ready"
      (let [{:keys [client] :as init} (build-client opts)
            handlers (client-handlers #(resolve client) #(reject :client-fail) send recv)]
        (.subscribe client (config-chan opts))
+       (debug "subscribe")
        (add-handlers client handlers)))))
 
 (defn payload-root
@@ -288,18 +289,12 @@ in a promise that returns when the client is ready"
 (defn clean-up
   [{:keys [send-chan recv-chan telemetry-chan state-chan client-atom] :as system}]
   (debug "Killing system")
-  (p/promise
-   (fn [resolve reject]
+  
      (doall
       (map (fn [c] (a/close! c))
            [send-chan recv-chan state-chan telemetry-chan]))
      (debug "killing client")
-     (debug @client-atom)
-     (p/then 
-      (.end @client-atom #js )
-      (fn [& args] (debug "client dead") (resolve system)))
-     )))
-   
+     (.end @client-atom  ))
 
 (defn system-function
   "the heart of the system lies here.
