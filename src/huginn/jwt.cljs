@@ -36,7 +36,9 @@
        :registryId registryId
        :deviceId deviceId
        :tokenLifecycle  (* 60 (:tokenExpMins config/default-options))
+       :keepalive 300
        :cloudRegion cloudRegion
+       :onConfiguration (fn [v] (swap! config/iot-config merge (js->clj v)))
        :privateKey (or (clean-env-key privateKey) (io/slurp privateKeyFile))})
 
 
