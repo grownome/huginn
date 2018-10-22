@@ -4,6 +4,7 @@
    [promesa.core :as p]
    [cljs-node-io.core :as io]
    [cljs.nodejs :as nodejs]
+   [huginn.config :as config]
    [jsonwebtoken :as jwt]))
 
 (defn round-now []
@@ -65,5 +66,6 @@
        :username "unused"
        :password (create-jwt opts)
        :protocol "mqtts"
+       :onConfiguration (fn [config] (swap! config/iot-config  merge (js->clj config)))
        :secureProtocol "TLSv1_2_method"})
 

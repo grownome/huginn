@@ -16,3 +16,5 @@
    :mqttBridgePort 8883
    :messageType "events"})
 
+
+(def iot-config (atom {}))
