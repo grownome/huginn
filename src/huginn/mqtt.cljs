@@ -186,9 +186,9 @@ in a promise that returns when the client is ready"
   :args (s/cat :client any? :packet (s/or :nil nil? :value ::mqtt-packet)))
 (defn publish-one
   "Publises one mqtt packet to the client"
-  [client {:keys [topic payload qos] :as p}]
+  [client {:keys [payload qos subfolder] :as p}]
   (when p
-    (.publishEvent client payload  1 topic)))
+    (.publishEvent client payload  1 subfolder)))
 
 
 (defn publisher
