@@ -158,11 +158,11 @@
             (fn [{:keys [snap-chan restart-chan camera]}]
               (info "connecting camera to mixer")
               (a/admix mixer snap-chan)
-              [(-> system
-                   (assoc :camera camera)
-                   (assoc :mixer mixer)
-                   (assoc :camera-restart restart-chan)
-                   (assoc :snap-chan snap-chan))]))))
+              (-> system
+                  (assoc :camera camera)
+                  (assoc :mixer mixer)
+                  (assoc :camera-restart restart-chan)
+                  (assoc :snap-chan snap-chan))))))
 
 (defn start-mix-camera
   [system-promise]
