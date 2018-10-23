@@ -81,8 +81,7 @@
   (a/go-loop []
     (let [{:keys [err timestamp filename]
            :as img-res} (a/<! in)]
-      (debug "xforming image " filename)::camera-restart
-
+      (debug "xforming image " filename)
       (let [[err img-data] (a/<!
                             (io/aslurp (str output-dir "/" filename) :encoding ""))]
         (if (or err (= filename ""))
@@ -135,7 +134,8 @@
                         (map io/delete-file
                              (io/file-seq output-dir)))
                       (fn restart []
-                        (a/>! restart-chan "Camera Dead"))
+                        (a/go
+                          (a/>! restart-chan "Camera Dead")))
                       snap-chan)]
         (read-imgs output-dir snap-chan data-chan)
         (add-handlers camera handlers)
