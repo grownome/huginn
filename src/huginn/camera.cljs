@@ -102,7 +102,7 @@
                complete  img-packets]
             (debug "trying to write img packet")
             (a/>! out complete)
-            (debug "done xforming")
+            (debug "done transforming")
             (recur)))))))
 
 (defn build-camera
@@ -111,7 +111,7 @@
      :or {output-dir "pics"
           mode "timelapse"
           encoding "jpg"
-          tl (* 60 1000 5)} :as opts} ]
+          tl (* 60 1000 5)} :as opts}]
    (p/promise
     (fn [resolve reject]
       (let [snap-chan (a/chan)
@@ -119,7 +119,7 @@
             ^RaspiCam
             camera (r.
                     #js
-                    {:output (str output-dir "/%04d_img.jpg")
+                    {:output (str output-dir "/%01d_img.jpg")
                      :mode mode
                      :encoding encoding
                      :tl tl})

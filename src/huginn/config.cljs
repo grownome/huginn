@@ -11,7 +11,7 @@
    :tokenExpMins (* 60 24)
    :userId (or js/process.env.USER_ID "0")
    :dht11Delay (* 60 1000 2)
-   :delayMs (* 1000 30)
+   :delayMs (* 1000 10)
    :mqttBridgeHostname "mqtt.googleapis.com"
    :mqttBridgePort 8883
    :messageType "events"})

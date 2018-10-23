@@ -162,17 +162,14 @@ in a promise that returns when the client is ready"
         cores (map-indexed
                (fn [index value]
                  {:payload (str pr "-core-temp-" index "/" (str value))
-                  :subfolder (str "metrics/core-temp-" index)
-                  :qos 1})
+                  :subfolder (str "metrics/core-temp-" index)})
                cores-raw)
         main (when (.-main data)
                {:payload (str pr "-core-temp-main/" (str (.-main data)))
-                :subfolder "metrics/core-temp-main"
-                :qos 1})
+                :subfolder "metrics/core-temp-main"})
         max (when (.-max data)
               {:payload (str pr "-core-temp-max/" (str (.-max data)))
-               :subfolder "metrics/core-temp-max"
-               :qos 1})]
+               :subfolder "metrics/core-temp-max"})]
     (concat [main] [max] cores)))
 
 (def stop (atom false))
@@ -243,8 +240,7 @@ in a promise that returns when the client is ready"
         (fn [{:keys [subfolder] :as mqtt-packet}]
           (let [my-topic (if subfolder (str topic "/" subfolder) topic)]
             (-> mqtt-packet
-                (assoc :topic my-topic)
-                (assoc :qos 0)))) teles)
+                (assoc :topic my-topic)))) teles)
        false)
       (a/<! (a/timeout (:delayMs opts)))
       (recur))))
