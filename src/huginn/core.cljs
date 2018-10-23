@@ -4,8 +4,10 @@
    [huginn.mqtt :as mqtt]
    [huginn.camera :as camera]
    [huginn.sensors :as sensor]
+   [orchestra-cljs.spec.test :as spec-test]
    [clojure.core.async :as a]
    [cljs.nodejs :as nodejs]
+   [cljs.spec.alpha :as s]
    [promesa.core :as p]))
 
 
@@ -13,10 +15,28 @@
 
 (def system-atom (atom nil))
 
+
+(spec-test/instrument)
+
+;Channel
+(s/def ::camera-restart any?)
+(s/def ::snap-chan any?)
+(s/def ::camera-restart any?)
+(s/def ::telemetry-chan any?)
+(s/def ::mixer   any?)
+
+
+(s/fdef add-mixer
+  :args (s/cat :state (s/keys :req-un [::telemetry-chan]))
+  :ret (s/keys :req-un [::telemetry-chan ::mixer]))
+
 (defn add-mixer
   [{:keys [telemetry-chan] :as state}]
   (assoc state :mixer (a/mix telemetry-chan)))
 
+(s/fdef camera-restarter
+  :args (s/cat :system (s/keys [::camera-restart ::snap-chan ::mixer]))
+  :ret any?)
 (defn camera-restarter
   [system]
   (a/go-loop [restart  (a/<! (:camera-restart system))]
