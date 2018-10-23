@@ -18,10 +18,10 @@
   (assoc state :mixer (a/mix telemetry-chan)))
 
 (defn camera-restarter
-  []
-  (a/go-loop [restart  (a/<! (:restart-chan @system-atom))]
-    (a/unmix (:mixer @system-atom) (:snap-chan @system-atom))
-    (p/then (camera/start-mix-camera @system-atom)
+  [system]
+  (a/go-loop [restart  (a/<! (:restart-chan system))]
+    (a/unmix (:mixer system) (:snap-chan system))
+    (p/then (camera/start-mix-camera system)
             (fn [sys]
               (reset! system-atom sys)
               (recur (a/<! (:restart-chan sys)))))))
@@ -36,6 +36,6 @@
      s-with-cam
      (fn final [sys]
        (reset! system-atom sys)
-       (camera-restarter)))))
+       (camera-restarter sys)))))
 
 
