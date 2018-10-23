@@ -48,7 +48,7 @@
     (a/unmix (:mixer system) (:snap-chan system))
     (p/then (camera/start-mix-camera system)
             (fn [sys]
-              (a/go 
+              (a/go
                 (reset! system-atom sys)
                 (recur (a/<! (:camera-restart sys))))))))
 
