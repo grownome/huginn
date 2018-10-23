@@ -38,8 +38,7 @@
 (s/def ::qos #{0 1})
 (s/def ::mqtt-packet
   (s/keys :req-un [::payload
-                   ::subfolder
-                   ::qos]))
+                   ::subfolder]))
 
 (s/fdef client-id
   :args ::client-config

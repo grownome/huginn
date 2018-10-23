@@ -81,7 +81,8 @@
   (a/go-loop []
     (let [{:keys [err timestamp filename]
            :as img-res} (a/<! in)]
-      (debug "xforming image " filename)
+      (debug "xforming image " filename)::camera-restart
+
       (let [[err img-data] (a/<!
                             (io/aslurp (str output-dir "/" filename) :encoding ""))]
         (if (or err (= filename ""))
