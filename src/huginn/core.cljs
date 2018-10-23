@@ -44,13 +44,17 @@
 
 (defn camera-restarter
   [system]
-  (a/go-loop [restart  (a/<! (:camera-restart system))]
-    (a/unmix (:mixer system) (:snap-chan system))
-    (p/then (camera/start-mix-camera system)
-            (fn [sys]
-              (a/go
-                (reset! system-atom sys)
-                (recur (a/<! (:camera-restart sys))))))))
+  (let [temp-chan (a/chan)]
+    (a/go-loop [restart  (a/<! (:camera-restart system))
+                system system]
+      (a/unmix (:mixer system) (:snap-chan system))
+      (p/then (camera/start-mix-camera system)
+              (fn [sys]
+                (a/go
+                  (reset! system-atom sys)
+                  (a/>! temp-chan sys))))
+      (let [v (a/<! temp-chan)]
+        (recur (:camera-restart v) v)))))
 
 (defn main [& args]
   (println "starting huginn")
