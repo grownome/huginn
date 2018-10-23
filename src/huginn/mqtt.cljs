@@ -278,8 +278,8 @@ in a promise that returns when the client is ready"
 
   payloads must be prefixed with a string describing where the data came (payload-root opts) will generate this for you"
   [opts]
-  (let [send (a/chan)
-        recv (a/chan)
+  (let [send (a/chan (a/buffer 50))
+        recv (a/chan (a/buffer 50))
         kill (atom false)
         client-promise (init-client opts send recv)
         client-atom (atom nil)
