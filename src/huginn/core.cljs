@@ -35,7 +35,7 @@
   (assoc state :mixer (a/mix telemetry-chan)))
 
 (s/fdef camera-restarter
-  :args (s/cat :system (s/keys [::camera-restart ::snap-chan ::mixer]))
+  :args (s/cat :system (s/keys :req-un [::camera-restart ::snap-chan ::mixer]))
   :ret any?)
 (defn camera-restarter
   [system]
