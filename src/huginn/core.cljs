@@ -8,6 +8,10 @@
    [clojure.core.async :as a]
    [cljs.nodejs :as nodejs]
    [cljs.spec.alpha :as s]
+   [taoensso.timbre :as timbre
+    :refer-macros [log  trace  debug  info  warn  error  fatal  report
+                   logf tracef debugf infof warnf errorf fatalf reportf
+                   spy get-env]]
    [promesa.core :as p]))
 
 
@@ -37,6 +41,7 @@
 (s/fdef camera-restarter
   :args (s/cat :system (s/keys :req-un [::camera-restart ::snap-chan ::mixer]))
   :ret any?)
+
 (defn camera-restarter
   [system]
   (a/go-loop [restart  (a/<! (:camera-restart system))]
@@ -55,6 +60,7 @@
     (p/chain
      s-with-cam
      (fn final [sys]
+       (debug sys)
        (reset! system-atom sys)
        (camera-restarter sys)))))
 
