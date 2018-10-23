@@ -38,7 +38,7 @@
        :tokenLifecycle  (* 60 (:tokenExpMins config/default-options))
        :keepalive 300
        :cloudRegion cloudRegion
-       :onConfiguration (fn [v] (swap! config/iot-config merge (or (js->clj v) {} )))
+       :onConfiguration (fn [v] (reset! config/iot-config (js->clj v)))
        :privateKey (or (clean-env-key privateKey) (io/slurp privateKeyFile))})
 
 
