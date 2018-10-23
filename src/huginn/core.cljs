@@ -54,7 +54,7 @@
                   (reset! system-atom sys)
                   (a/>! temp-chan sys))))
       (let [v (a/<! temp-chan)]
-        (recur (:camera-restart v) v)))))
+        (recur (a/<! (:camera-restart v)) v)))))
 
 (defn main [& args]
   (println "starting huginn")
