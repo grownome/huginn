@@ -17,15 +17,25 @@
   [{:keys [telemetry-chan] :as state}]
   (assoc state :mixer (a/mix telemetry-chan)))
 
+(defn camera-restarter
+  []
+  (a/go-loop [restart  (a/<! (:restart-chan @system-atom))]
+    (a/unmix (:mixer @system-atom) (:snap-chan @system-atom))
+    (p/then (camera/start-mix-camera @system-atom)
+            (fn [sys]
+              (reset! system-atom sys)
+              (recur (a/<! (:restart-chan sys)))))))
+
 (defn main [& args]
   (println "starting huginn")
   (let [system (mqtt/system-function config/default-options)
         system-with-mixer (p/then system add-mixer)
         s-with-humididty (sensor/start-mix-sensor system-with-mixer config/default-options 17)
-        s-with-cam (camera/start-mix-camera s-with-humididty)
-        ]
+        s-with-cam (camera/start-mix-camera s-with-humididty)]
     (p/chain
      s-with-cam
-     #(reset! system-atom %))))
+     (fn final [sys]
+       (reset! system-atom sys)
+       (camera-restarter)))))
 
 

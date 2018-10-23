@@ -116,6 +116,7 @@
     (fn [resolve reject]
       (let [snap-chan (a/chan)
             data-chan (a/chan)
+            restart-chan (a/chan)
             ^RaspiCam
             camera (r.
                     #js
@@ -125,13 +126,15 @@
                      :tl tl})
             output {:raw-chan snap-chan
                     :snap-chan data-chan
+                    :restart-chan restart-chan
                     :camera camera}
             handlers (cam-handlers
                       #(resolve output)
                       #(doall
                         (map io/delete-file
                              (io/file-seq output-dir)))
-                      #(.start camera)
+                      (fn restart []
+                        (a/>! restart-chan "Camera Dead"))
                       snap-chan)]
         (read-imgs output-dir snap-chan data-chan)
         (add-handlers camera handlers)
@@ -149,14 +152,15 @@
 
 (defn -start-mix-camera
   [{:keys [telemetry-chan mixer] :as system}]
-  (let [camera-p (build-camera)]
+  (let [camera-p (build-camera )]
     (p/then camera-p
-            (fn [{:keys [snap-chan camera]}]
+            (fn [{:keys [snap-chan restart-chan camera]}]
               (info "connecting camera to mixer")
               (a/admix mixer snap-chan)
               [(-> system
                    (assoc :camera camera)
                    (assoc :mixer mixer)
+                   (assoc :camera-restart restart-chan)
                    (assoc :snap-chan snap-chan))]))))
 
 (defn start-mix-camera
