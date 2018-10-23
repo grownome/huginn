@@ -48,8 +48,9 @@
     (a/unmix (:mixer system) (:snap-chan system))
     (p/then (camera/start-mix-camera system)
             (fn [sys]
-              (reset! system-atom sys)
-              (recur (a/<! (:camera-restart sys)))))))
+              (a/go 
+                (reset! system-atom sys)
+                (recur (a/<! (:camera-restart sys))))))))
 
 (defn main [& args]
   (println "starting huginn")

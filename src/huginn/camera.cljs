@@ -55,7 +55,7 @@
     )))
 
 (spec/fdef chunk-img
-  :args (spec/cat :img (partial instance? js/Buffer.)
+  :args (spec/cat :img (partial js/Buffer.isBuffer)
                   :chunk-size int?)
   :ret (spec/coll-of string?)
   :fn  (fn [{:keys [args ret]}]
@@ -143,11 +143,14 @@
 
 
 (defn cleanup-camera
-  [{:keys [camera snap-chan] :as system}]
+  [{:keys [camera restart-chan mixer snap-chan] :as system}]
   (.stop camera)
+  (a/close! restart-chan)
+  (a/unmix mixer snap-chan)
   (a/close! snap-chan)
   (-> system
       (dissoc :camera)
+      (dissoc :restart-chan)
       (dissoc :snap-chan)))
 
 
