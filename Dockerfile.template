@@ -8,6 +8,7 @@ RUN apt-get update -q &&\
     gcc    \
     build-essential \ 
     oracle-java8-jdk \
+    oracle-java8-jre-headless \
     binutils \
     make   \
     libraspberrypi-bin \
