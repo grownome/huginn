@@ -122,6 +122,7 @@
                     #js
                     {:output (str output-dir "/%01d_img.jpg")
                      :mode mode
+                     :rotation 90
                      :encoding encoding
                      :tl tl})
             output {:raw-chan snap-chan
