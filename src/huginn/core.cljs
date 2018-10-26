@@ -49,7 +49,7 @@
                 system system
                 cnt 0]
       (when (< 10 cnt)
-        (js/process.exit)))
+        (js/process.exit))
       (a/unmix (:mixer system) (:snap-chan system))
       (p/then (camera/start-mix-camera system)
               (fn [sys]
@@ -57,7 +57,7 @@
                   (reset! system-atom sys)
                   (a/>! temp-chan sys))))
       (let [v (a/<! temp-chan)]
-        (recur (a/<! (:camera-restart v)) v (inc cnt)))))
+        (recur (a/<! (:camera-restart v)) v (inc cnt))))))
 
 (defn main [& args]
   (println "starting huginn")
