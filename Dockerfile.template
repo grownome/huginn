@@ -58,8 +58,6 @@ RUN npm prune --unsafe-perm
 
 COPY ./  /usr/src/app/
 RUN npm run build
-RUN   apt-get remove -yq gcc        build-essential     oracle-java8-jdk     binutils     make  python     wget    
-RUN apt-get autoremove -y
 
 # Start app
 CMD ["/usr/src/app/start.sh"]
