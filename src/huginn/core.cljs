@@ -48,8 +48,6 @@
     (a/go-loop [restart  (a/<! (:camera-restart system))
                 system system
                 cnt 0]
-      (when (< 10 cnt)
-        (js/process.exit))
       (a/unmix (:mixer system) (:snap-chan system))
       (p/then (camera/start-mix-camera system)
               (fn [sys]
