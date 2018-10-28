@@ -70,7 +70,7 @@
         starts   (map first groups)
         ends     (map (comp inc last) groups)]
     (if (< (.-length img) chunk-size)
-      [img]
+      [(b64/encodeByteArray img)]
       (->> (map (fn [start end] (.slice img start end)) starts ends)
            (map (fn [buff] (b64/encodeByteArray  (js/Buffer. buff))))
            (into [])))))
