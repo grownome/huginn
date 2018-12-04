@@ -11,7 +11,8 @@
     "rpi-gpio": "^0.9.1",
     "systeminformation": "^3.33.0",
     "uuid": "^3.1.0",
-    "yargs": "^8.0.2"
+    "yargs": "^8.0.2",
+    "pi-gpio": "~0.0.7"
   },
   "scripts": {
     "start": "node target/js/compiled/huginn.js",
