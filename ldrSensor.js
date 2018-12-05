@@ -1,7 +1,7 @@
 var gpio = require("pi-gpio");
 
-var ldr = 7;
-var led = 22;
+var ldr = 18;
+var led = 7;
 
 console.log("exporting ports with gpio-admin");
 gpio.open(ldr, "in", function() {
